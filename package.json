@@ -1,0 +1,17 @@
+{
+  "name": "champlain-api",
+  "module": "src/index.ts",
+  "type": "module",
+  "homepage": "https://github.com/Open-Source-Champlain/champlain-api",
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.13.1"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
