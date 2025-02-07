@@ -1,11 +1,11 @@
 {
-  "name": "swagger-ui-webpack-getting-started",
-  "version": "0.0.1",
-  "description": "A simple setup of Swagger UI with Webpack",
+  "name": "champlain-swagger",
+  "version": "0.0.5",
   "scripts": {
     "build": "webpack",
     "start": "webpack-dev-server --open"
   },
+  "private": "true",
   "author": "Shaun Luttin",
   "license": "Apache-2.0",
   "devDependencies": {
