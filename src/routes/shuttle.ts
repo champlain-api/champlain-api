@@ -6,17 +6,13 @@
  * 
  * Request all shuttles
  * GET /shuttles
- * 
- * Request all shuttles and filter by a given cutoffHour. 
- * This will only return shuttles that have been updated
- * within X number of hours. This defaults to 2.
- * GET /shuttles?cutoffHours=X
- * Returns a 400 if the cutoffHours are invalid.
+ *  Parameters:
+ *      updatedWithin: Int - only show shuttles updated within the past X hours. Defaults to 2.
+ *      Returns a 400 if the updatedWithin are invalid.
  * 
  * Request a specific shuttle given a ID
  * GET /shuttles/:id
- * Returns a 404 if the ID is invalid.
- * 
+ *  Returns a 404 if the ID is invalid.
  * 
  */
 
@@ -39,23 +35,22 @@ router
         let shuttles: Shuttle[] = [];
 
         // Return 2 if the functions fails (such as returns NaN) or if the user provides no number
-        const cutoffHours = Number(req.query["cutoffHours"]) || 2
+        const updatedWithinParam = Number(req.query["updatedWithin"]) || 2
         // check to make sure the cutoff hours is valid
         // > 1 and <= 1 week
-        if (cutoffHours < 1 || cutoffHours >= 1 * 24 * 7) {
-            res.status(400).json({ "error": "cutoffHours is not valid." })
+        if (updatedWithinParam < 0 || updatedWithinParam >= 1 * 24 * 7) {
+            res.status(400).json({ "error": "updatedWithin is not valid. Must be between 0 and 168 (1 week) inclusive." })
         }
-        const twoHoursAgo = new Date(Date.now()).getTime() - (1000 * 1 * 60 * 60 * cutoffHours)
+        const updatedWithinValue = new Date(Date.now()).getTime() - (1000 * 1 * 60 * 60 * updatedWithinParam)
 
         for (var oldShuttle of data as _ChamplainShuttle[]) {
             // Check if the shuttle is within our cutoff time.
             // If it is, add it to the array so it can be returned
-            const isWithinCutoffTime = new Date(oldShuttle.Date_Time) > new Date(twoHoursAgo)
+            const isWithinCutoffTime = new Date(oldShuttle.Date_Time) > new Date(updatedWithinValue)
 
             if (isWithinCutoffTime) {
                 // Format it to how we should return our shuttles.
                 let newShuttle: Shuttle = makeNewShuttle(oldShuttle)
-
                 shuttles.push(newShuttle)
             }
 
