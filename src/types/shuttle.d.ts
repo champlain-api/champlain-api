@@ -7,12 +7,12 @@
  * We also change `Knots` to MPH.
  */
 export type Shuttle = {
-    DateTimeISO: Date,
+    DateTime: Date,
     UnitID: number,
     Lat: string
     Lon: string
-    MPH: number
-    Direction: number
+    MPH: string
+    Direction: string
 }
 
 
@@ -24,7 +24,7 @@ export type _ChamplainShuttle = {
     Date_Time: string
     Date_Time_ISO: string
     UnitID: string
-    Unit_Name: string | Object
+    Unit_Name: string | Object // the newer buses have empty objects as the name.
     Unit_Operator: string
     Lat: string
     Lon: string

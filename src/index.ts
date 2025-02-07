@@ -10,7 +10,7 @@ app.get("/", (request: Request, response: Response) => {
 
 
 app.use("/announcements", announcementsRoute)
-app.use("/shuttle", shuttleRoute)
+app.use("/shuttles", shuttleRoute)
 
 app.listen(3000, () => {
     console.log("API running on :3000!")
