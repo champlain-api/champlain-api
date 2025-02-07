@@ -1,0 +1,158 @@
+[
+  {
+    "name": "194 St. Paul",
+    "type": "Apartment Style",
+    "imageDescription": "exterior 194 St. Paul",
+    "imageUrl": "https://www.champlain.edu/app/uploads/2023/07/194-St-Paul_res-hall-dorm-residence-4-800x450.jpg"
+  },
+  {
+    "name": "308 Maple Street",
+    "type": "Contemporary (Room)",
+    "imageDescription": "A photo of 308 Maple during the daytime",
+    "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/308-Maple-Street_res-hall-dorm-residence-800x450.jpg"
+  },
+  {
+    "name": "371 Main Street",
+    "type": "Victorian-Era Mansion",
+    "imageDescription": "A photo of 371 Main Street during the daytime",
+    "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/371-Main-2-800x450.jpg"
+  },
+  {
+    "name": "396 Main Street",
+    "type": "Victorian-Era Mansion",
+    "imageDescription": "students enjoy a sunny day at 396 Main street residence hall",
+    "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/396-Main-Street_res-hall-dorm-residence-1-800x450.jpg"
+  },
+  {
+    "name": "Adirondack Hall",
+    "type": "Contemporary (Room)",
+    "imageDescription": "A photo of Adirondack hall during the daytime",
+    "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/Adirondack-Hall-1-800x450.jpg"
+  },
+  {
+    "name": "Aiken Hall",
+    "type": "Victorian-Era Mansion",
+    "imageDescription": "Aiken Hall",
+    "imageUrl": "https://www.champlain.edu/app/uploads/2025/02/Aiken-Hall_res-residence-hall-dorm-800x450.jpg"
+  },
+  {
+    "name": "Bader Hall",
+    "type": "Victorian-Era Mansion",
+    "imageDescription": "A photo of Bader hall during the daytime",
+    "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/Bader-Hall-2-800x450.jpg"
+  },
+  {
+    "name": "Bankus Hall",
+    "type": "Victorian-Era Mansion",
+    "imageDescription": "A photo of Bankus hall during the daytime",
+    "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/Bankus-Hall-1-800x450.jpg"
+  },
+  {
+    "name": "Boardman Hall",
+    "type": "Contemporary (Suite)",
+    "imageDescription": "A photo of Boardman hall during the daytime",
+    "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/Boardman-Hall-800x450.jpg"
+  },
+  {
+    "name": "Butler Hall",
+    "type": "Contemporary (Room)",
+    "imageDescription": "A photo of Butler hall during the daytime",
+    "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/Butler-Hall-2-800x450.jpg"
+  },
+  {
+    "name": "Carriage House",
+    "type": "Contemporary (Room)",
+    "imageDescription": "A photo of Carriage house during the daytime",
+    "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/Carriage-House-1-800x450.jpg"
+  },
+  {
+    "name": "Cushing Hall",
+    "type": "Victorian-Era Mansion",
+    "imageDescription": "A photo of Cushing hall during the daytime",
+    "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/Cushing-Hall-1-800x450.jpg"
+  },
+  {
+    "name": "Hill Hall",
+    "type": "Victorian-Era Mansion",
+    "imageDescription": "A photo of Hill hall during the daytime",
+    "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/Hill-Hall-1-800x450.jpg"
+  },
+  {
+    "name": "Jensen Hall",
+    "type": "Victorian-Era Mansion",
+    "imageDescription": "A photo of Jensen hall during the daytime",
+    "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/Jensen-Hall-1-800x450.jpg"
+  },
+  {
+    "name": "Juniper Hall",
+    "type": "Contemporary (Room)",
+    "imageDescription": "A photo of Juniper hall during the daytime",
+    "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/Juniper-Hall_res-hall-dorm-residence-1-800x450.jpg"
+  },
+  {
+    "name": "Lakeview Hall",
+    "type": "Contemporary (Room)",
+    "imageDescription": "A photo of Lakeview hall during the daytime",
+    "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/Lakeview-Hall-1-800x450.jpg"
+  },
+  {
+    "name": "Lyman Hall",
+    "type": "Victorian-Era Mansion",
+    "imageDescription": "A photo of Lyman hall during the daytime",
+    "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/Lyman-Hall-800x450.jpg"
+  },
+  {
+    "name": "McDonald Hall",
+    "type": "Victorian-Era Mansion",
+    "imageDescription": "A photo of McDonald hall during the daytime",
+    "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/McDonald-Hall-800x450.jpg"
+  },
+  {
+    "name": "Pearl Hall",
+    "type": "Victorian-Era Mansion",
+    "imageDescription": "A photo of Pearl hall during the daytime",
+    "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/Pearl-Hall-1-800x450.jpg"
+  },
+  {
+    "name": "Rowell Hall",
+    "type": "Victorian-Era Mansion",
+    "imageDescription": "A photo of Rowell hall during the daytime",
+    "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/Rowell-Hall-800x450.jpg"
+  },
+  {
+    "name": "Sanders Hall",
+    "type": "Victorian-Era Mansion",
+    "imageDescription": "A photo of Sanders hall during the daytime",
+    "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/Sanders-Hall-800x450.jpg"
+  },
+  {
+    "name": "Schillhammer Hall",
+    "type": "Victorian-Era Mansion",
+    "imageDescription": "A photo of Schillhammer hall during the sunset",
+    "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/Schillhammer-Hall-2-800x450.jpg"
+  },
+  {
+    "name": "South House",
+    "type": "Victorian-Era Mansion",
+    "imageDescription": "A photo of South House during the daytime",
+    "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/South-House-2-800x450.jpg"
+  },
+  {
+    "name": "Summit Hall",
+    "type": "Victorian-Era Mansion",
+    "imageDescription": "A photo of Summit hall during the daytime",
+    "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/Summit-Hall_res-hall-dorm-residence-2-800x450.jpg"
+  },
+  {
+    "name": "Valcour Hall",
+    "type": "Contemporary (Room)",
+    "imageDescription": "A photo of Valcour hall during the daytime",
+    "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/Valcour-Hall-4-800x450.jpg"
+  },
+  {
+    "name": "Whiting Hall",
+    "type": "Victorian-Era Mansion",
+    "imageDescription": "A photo of Whiting hall during the daytime",
+    "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/Whiting-Hall-800x450.jpg"
+  }
+]
