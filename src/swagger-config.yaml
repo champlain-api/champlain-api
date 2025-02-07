@@ -1,6 +1,6 @@
 openapi: "3.0.0"
 info:
-  version: "0.0.1"
+  version: "0.0.3"
   title: "Champlain API Documentation"
   description: "Champlain Open API Documentation."
   contact:
@@ -8,7 +8,6 @@ info:
     url: "https://github.com/Open-Source-Champlain/"
 servers:
   - url: "http://localhost:3000/api/v1"
-    # description: "Please run the API server"
 
 # security:
 #   - identity_server_auth:
