@@ -92,11 +92,11 @@ router
 function makeNewShuttle(oldShuttle: _ChamplainShuttle): Shuttle {
     let newShuttle: Shuttle = Object()
     newShuttle.updated = new Date(oldShuttle.Date_Time_ISO)
-    newShuttle.direction = oldShuttle.Direction
-    newShuttle.lat = oldShuttle.Lat
-    newShuttle.lon = oldShuttle.Lon
+    newShuttle.direction = Number(oldShuttle.Direction)
+    newShuttle.lat = Number(oldShuttle.Lat)
+    newShuttle.lon = Number(oldShuttle.Lon)
     newShuttle.id = Number(oldShuttle.UnitID)
-    newShuttle.mph = String((Number(oldShuttle.Knots) * 1.15).toFixed(2))
+    newShuttle.mph = Number((Number(oldShuttle.Knots) * 1.15).toFixed(2))
     return newShuttle
 }
 

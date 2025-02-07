@@ -9,10 +9,10 @@
 export type Shuttle = {
     updated: Date,
     id: number,
-    lat: string
-    lon: string
-    mph: string
-    direction: string
+    lat: number
+    lon: number
+    mph: number
+    direction: number
 }
 
 
