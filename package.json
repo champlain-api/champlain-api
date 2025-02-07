@@ -3,6 +3,10 @@
   "module": "src/index.ts",
   "type": "module",
   "homepage": "https://github.com/Open-Source-Champlain/champlain-api",
+  "scripts": {
+    "build": "npx tsc",
+    "dev": "node out/index.js"
+  },
   "devDependencies": {
     "@types/express": "^5.0.0",
     "@types/node": "^22.13.1",

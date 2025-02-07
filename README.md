@@ -10,6 +10,6 @@ Currently there is no centralized API to access Champlain College’s data. A ce
 
 ## Building
 1. Install dependencies with `npm i`
-2. Transpile TS to JS using `npx tsc`
-3. Run using `node out/index.js`
+2. Build with `npm run build`
+3. Run using `npm run dev`
 4. Visit http://localhost:3000/ in web browser.
