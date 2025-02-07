@@ -1,0 +1,320 @@
+{
+  "programs": [
+    {
+      "name": "Actuarial Studies",
+      "type": "Minor"
+    },
+    {
+      "name": "Artificial Intelligence",
+      "type": "Concentration"
+    },
+    {
+      "name": "Business Administration",
+      "type": "Minor"
+    },
+    {
+      "name": "Business Strategy",
+      "type": "Concentration"
+    },
+    {
+      "name": "Cinematography",
+      "type": "Concentration"
+    },
+    {
+      "name": "Computer & Digital Forensics",
+      "type": "Minor"
+    },
+    {
+      "name": "Computer Science",
+      "type": "Concentration"
+    },
+    {
+      "name": "Computer Science Education",
+      "type": "Concentration"
+    },
+    {
+      "name": "Computer Science",
+      "type": "Minor"
+    },
+    {
+      "name": "Conflict Management",
+      "type": "Minor"
+    },
+    {
+      "name": "Content & Community",
+      "type": "Concentration"
+    },
+    {
+      "name": "Creative Writing",
+      "type": "Concentration"
+    },
+    {
+      "name": "Criminal Justice",
+      "type": "Minor"
+    },
+    {
+      "name": "Cybersecurity",
+      "type": "Concentration"
+    },
+    {
+      "name": "Cybersecurity",
+      "type": "Minor"
+    },
+    {
+      "name": "Data Analytics",
+      "type": "Minor"
+    },
+    {
+      "name": "Data Science for Sustainability",
+      "type": "Concentration"
+    },
+    {
+      "name": "Dialogue & Consensus Building for Sustainability Solutions",
+      "type": "Concentration"
+    },
+    {
+      "name": "Directing",
+      "type": "Concentration"
+    },
+    {
+      "name": "Early Childhood Education",
+      "type": "Concentration"
+    },
+    {
+      "name": "Editing / Publishing",
+      "type": "Concentration"
+    },
+    {
+      "name": "Education for Sustainability",
+      "type": "Concentration"
+    },
+    {
+      "name": "Elementary Teacher Education",
+      "type": "Concentration"
+    },
+    {
+      "name": "Entrepreneurship",
+      "type": "Minor"
+    },
+    {
+      "name": "Environmental Communication",
+      "type": "Concentration"
+    },
+    {
+      "name": "Environmental Policy",
+      "type": "Concentration"
+    },
+    {
+      "name": "Environmental Studies & Policy",
+      "type": "Minor"
+    },
+    {
+      "name": "Environmental Studies",
+      "type": "Concentration"
+    },
+    {
+      "name": "Family Studies",
+      "type": "Minor"
+    },
+    {
+      "name": "Film",
+      "type": "Minor"
+    },
+    {
+      "name": "Flex Path Psychology",
+      "type": "Concentration"
+    },
+    {
+      "name": "Game Media",
+      "type": "Concentration"
+    },
+    {
+      "name": "Game Programming",
+      "type": "Minor"
+    },
+    {
+      "name": "Game Sound Design",
+      "type": "Minor"
+    },
+    {
+      "name": "Gerontology",
+      "type": "Minor"
+    },
+    {
+      "name": "Global Studies",
+      "type": "Minor"
+    },
+    {
+      "name": "Graphic Design",
+      "type": "Concentration"
+    },
+    {
+      "name": "Graphic Design",
+      "type": "Minor"
+    },
+    {
+      "name": "Health & Wellbeing",
+      "type": "Concentration"
+    },
+    {
+      "name": "Human Resource Management",
+      "type": "Minor"
+    },
+    {
+      "name": "Implementation",
+      "type": "Concentration"
+    },
+    {
+      "name": "Information Systems & Technology",
+      "type": "Concentration"
+    },
+    {
+      "name": "Information Technology",
+      "type": "Minor"
+    },
+    {
+      "name": "Interaction Design",
+      "type": "Concentration"
+    },
+    {
+      "name": "Interactive Narrative",
+      "type": "Minor"
+    },
+    {
+      "name": "International Business",
+      "type": "Concentration"
+    },
+    {
+      "name": "International Business",
+      "type": "Minor"
+    },
+    {
+      "name": "LGBTQ Studies",
+      "type": "Minor"
+    },
+    {
+      "name": "Law",
+      "type": "Minor"
+    },
+    {
+      "name": "Management",
+      "type": "Concentration"
+    },
+    {
+      "name": "Marketing",
+      "type": "Minor"
+    },
+    {
+      "name": "Mathematics",
+      "type": "Minor"
+    },
+    {
+      "name": "Media Production",
+      "type": "Minor"
+    },
+    {
+      "name": "Middle Grades & Secondary Education",
+      "type": "Concentration"
+    },
+    {
+      "name": "Middle Grades English Language Arts",
+      "type": "Concentration"
+    },
+    {
+      "name": "Middle Grades Mathematics",
+      "type": "Concentration"
+    },
+    {
+      "name": "Middle Grades Social Studies",
+      "type": "Concentration"
+    },
+    {
+      "name": "Mobile App Development",
+      "type": "Concentration"
+    },
+    {
+      "name": "Producing",
+      "type": "Concentration"
+    },
+    {
+      "name": "Psychology",
+      "type": "Minor"
+    },
+    {
+      "name": "Real-Time 3-D Animation",
+      "type": "Minor"
+    },
+    {
+      "name": "Real-Time 3-D Modeling",
+      "type": "Minor"
+    },
+    {
+      "name": "Reinventing Business Through Sustainability",
+      "type": "Concentration"
+    },
+    {
+      "name": "Research & Analytics",
+      "type": "Concentration"
+    },
+    {
+      "name": "Screenwriting",
+      "type": "Concentration"
+    },
+    {
+      "name": "Secondary Level English",
+      "type": "Concentration"
+    },
+    {
+      "name": "Secondary Level Mathematics",
+      "type": "Concentration"
+    },
+    {
+      "name": "Secondary Level Social Studies",
+      "type": "Concentration"
+    },
+    {
+      "name": "Social Change / Social Impact",
+      "type": "Concentration"
+    },
+    {
+      "name": "Social Justice",
+      "type": "Minor"
+    },
+    {
+      "name": "Social Work",
+      "type": "Minor"
+    },
+    {
+      "name": "Software Engineering",
+      "type": "Concentration"
+    },
+    {
+      "name": "Sustainable Business",
+      "type": "Concentration"
+    },
+    {
+      "name": "Sustainable Business",
+      "type": "Minor"
+    },
+    {
+      "name": "UI Design & Implementation",
+      "type": "Minor"
+    },
+    {
+      "name": "Visual Art & Design",
+      "type": "Concentration"
+    },
+    {
+      "name": "Visual Communication",
+      "type": "Concentration"
+    },
+    {
+      "name": "Visual Design",
+      "type": "Concentration"
+    },
+    {
+      "name": "Writing",
+      "type": "Minor"
+    }
+  ]
+}
