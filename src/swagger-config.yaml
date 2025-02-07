@@ -59,6 +59,55 @@ paths:
           description: "Unauthorized"
         200:
           description: "OK"
+    post:
+      tags:
+        - dining-menu
+      deprecated: true
+      parameters:
+      - in: query
+        name: day
+        schema:
+          type: string
+          $ref: '#/components/schemas/dining'
+        required: true
+        description: Day of the week to get the specific menu type for
+      - in: query
+        name: station
+        schema:
+          type: string
+          enum:
+            - rustic-roots
+      - in: query
+        name: food
+        schema:
+          type: string
+        required: true
+        description: Food item
+    patch:
+        tags:
+          - dining-menu
+        deprecated: true
+        parameters:
+        - in: query
+          name: day
+          schema:
+            type: string
+            $ref: '#/components/schemas/dining'
+          required: true
+          description: Day of the week to get the specific menu type for
+        - in: query
+          name: station
+          schema:
+            type: string
+            enum:
+              - rustic-roots
+        - in: query
+          name: food
+          schema:
+            type: string
+          required: true
+          description: Food item
+
 
   "/dining-menu/cru5h":
     get:
@@ -96,11 +145,11 @@ paths:
           description: "OK"
 
 
-  "/shuttle":
+  "/shuttle/location":
     get:
       tags:
       - shuttle
-      # summary: "Runs a test request against the Identity Server demo API"
+      summary: "Get the location of all shuttles"
       responses:
         401:
           description: "Unauthorized"
