@@ -33,7 +33,7 @@ async function scrapeFaculty() {
   // Function to load the next page using the "View More People" button
   const loadNextPage = async () => {
     try {
-      // Wait for the "View More People" button and get its href
+
       const loadMoreButton = await page.$('a.btn.btn-lg.btn-primary.btn-left[data-load-more]');
       if (loadMoreButton) {
         const nextPageUrl = await page.evaluate((btn) => btn.getAttribute('href'), loadMoreButton);
@@ -48,7 +48,6 @@ async function scrapeFaculty() {
 
           console.log(`Scraped ${facultyList.length} faculty members`);
 
-          // Recursively load the next page if more faculty data exists
           await loadNextPage();
         }
       } else {
@@ -59,16 +58,14 @@ async function scrapeFaculty() {
     }
   };
 
-  // Start by loading the first page and scraping data
+
   await page.goto(currentPageUrl, { waitUntil: 'domcontentloaded' });
   let initialFacultyData = await scrapeData();
   facultyList.push(...initialFacultyData);
   console.log(`Scraped ${facultyList.length} faculty members`);
 
-  // Start loading additional pages
   await loadNextPage();
 
-  // Save the scraped data to a JSON file
   fs.writeFileSync('faculty.json', JSON.stringify(facultyList, null, 2));
 
   // Close the browser
