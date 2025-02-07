@@ -1,7 +1,7 @@
 # Champlain API
 
 ## Explanation:
-Currently there is no centralized API to access Champlain College’s data. A centralized API would provide easy access to this data. This enables developers and students to build solutions that improve campus experiences.
+Currently there is no centralized API to access Champlain College's data. A centralized API would provide easy access to this data. This enables developers and students to build solutions that improve campus experiences.
 
 
 ## Objectives: 
