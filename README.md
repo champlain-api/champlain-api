@@ -7,3 +7,9 @@ Currently there is no centralized API to access Champlain College’s data. A ce
 ## Objectives: 
 - Create a centralized API: This project should create a centralized API where information can be accessed. Public users, students, and faculty should be able to use the API.
 - Offer a scalable solution: The API should be designed so that future integrations and endpoints can be easily added.
+
+## Building
+1. Install dependencies with `npm i`
+2. Build with `npm run build`
+3. Run using `npm run dev`
+4. Visit http://localhost:3000/ in web browser.
