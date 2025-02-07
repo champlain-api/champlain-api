@@ -1,0 +1,34 @@
+openapi: "3.0.0"
+info:
+  version: "0.0.1"
+  title: "Champlain API Documentation"
+  description: ""
+servers:
+  - url: "http://localhost:8080/"
+    # description: "Identity Server test API"
+tags:
+- name: dining
+  description: Endpoints related to dining
+paths:
+  "/idx":
+    get:
+      tags:
+      - dining
+      summary: "Runs a test request against the Identity Server demo API"
+      responses:
+        401:
+          description: "Unauthorized"
+        200:
+          description: "OK"
+  "/eats":
+    get:
+      tags:
+      - dining
+      summary: "Runs a test request against the Identity Server demo API"
+      responses:
+        401:
+          description: "Unauthorized"
+        200:
+          description: "OK"
+          
+          
