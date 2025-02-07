@@ -34,12 +34,13 @@ router
 
         let shuttles: Shuttle[] = [];
 
-        // Return 2 if the functions fails (such as returns NaN) or if the user provides no number
-        const updatedWithinParam = Number(req.query["updatedWithin"]) || 2
+        // If no value is found, set it to 2. If one is found, and it can't be made
+        // into a number, set it to -1.
+        const updatedWithinParam: number = Number(req.query["updatedWithin"] ?? 2) || -1
         // check to make sure the cutoff hours is valid
         // > 1 and <= 1 week
-        if (updatedWithinParam < 0 || updatedWithinParam >= 1 * 24 * 7) {
-            res.status(400).json({ "error": "updatedWithin is not valid. Must be between 0 and 168 (1 week) inclusive." })
+        if (updatedWithinParam < 0 || updatedWithinParam > 1 * 24 * 7) {
+            res.status(400).json({ "error": "updatedWithin is not valid. Must be between 1 and 168 (1 week) inclusive." })
         }
         const updatedWithinValue = new Date(Date.now()).getTime() - (1000 * 1 * 60 * 60 * updatedWithinParam)
 
