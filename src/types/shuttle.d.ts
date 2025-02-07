@@ -3,16 +3,16 @@
  * The Shuttle object that our API is returning.
  * This one is different from the Champlain one because it cleans up
  * some unused fields and changes some existing ones.
- * Ours does not include the `Unit_Name` or `Unit_Operator`
- * We also change `Knots` to MPH.
+ * Ours does not include the Unit_Name or Unit_Operator
+ * We also change Knots to MPH.
  */
 export type Shuttle = {
-    DateTime: Date,
-    UnitID: number,
-    Lat: string
-    Lon: string
-    MPH: string
-    Direction: string
+    updated: Date,
+    id: number,
+    lat: string
+    lon: string
+    mph: string
+    direction: string
 }
 
 
