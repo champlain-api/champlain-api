@@ -2,33 +2,119 @@ openapi: "3.0.0"
 info:
   version: "0.0.1"
   title: "Champlain API Documentation"
-  description: ""
+  description: "Champlain Open API Documentation"
 servers:
-  - url: "http://localhost:8080/"
+  - url: "http://localhost:8080/v1"
     # description: "Identity Server test API"
+# securitySchemes:
+#     # See https://demo.identityserver.io/ for configuration details.
+#     identity_server_auth:
+#       type: oauth2
+#       flows:
+#         implicit:
+#           authorizationUrl: "https://demo.identityserver.io/connect/authorize"
+#           scopes:
+#             api: "api"
+# security:
+#   - identity_server_auth:
+#     - api
 tags:
 - name: dining
-  description: Endpoints related to dining
+  description: Endpoints related to dining.
+- name: shuttle
+  description: Endpoints relating to the shuttle service.
+- name: faculty
+  description: Endpoints relating to faculty.
+- name: announcements
+  description: Endpoints relating to announcements.
 paths:
   "/idx":
     get:
       tags:
       - dining
-      summary: "Runs a test request against the Identity Server demo API"
+      # summary: "Runs a test request against the Identity Server demo API"
       responses:
         401:
           description: "Unauthorized"
         200:
           description: "OK"
+
   "/eats":
-    get:
+    post:
       tags:
       - dining
-      summary: "Runs a test request against the Identity Server demo API"
+      # summary: "Runs a test request against the Identity Server demo API"
       responses:
         401:
           description: "Unauthorized"
         200:
           description: "OK"
-          
-          
+
+
+  "/shuttle":
+    get:
+      tags:
+      - shuttle
+      # summary: "Runs a test request against the Identity Server demo API"
+      responses:
+        401:
+          description: "Unauthorized"
+        200:
+          description: "OK"
+
+
+  "/name":
+    get:
+      tags:
+      - faculty
+      # summary: "Runs a test request against the Identity Server demo API"
+      responses:
+        401:
+          description: "Unauthorized"
+        200:
+          description: "OK"
+
+  "/announcements":
+    get:
+      tags:
+      - announcements
+      summary: "Returns any announcements"
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    default: success
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/announcements'
+
+components:
+  schemas:
+    announcements:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        summary:
+          type: string
+        style:
+          type: string
+          enum:
+            - info
+            - emergency
+        type:
+          type: string
+          enum:
+            - Mobile
+            - Shuttle
+            - WWW
+
