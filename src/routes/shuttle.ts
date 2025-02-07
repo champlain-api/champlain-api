@@ -39,7 +39,7 @@ router
         let shuttles: Shuttle[] = [];
 
         // Return 2 if the functions fails (such as returns NaN) or if the user provides no number
-        const cutoffHours = Number(req.query["cutoffHours"] ?? 2) || 2
+        const cutoffHours = Number(req.query["cutoffHours"]) || 2
         // check to make sure the cutoff hours is valid
         // > 1 and <= 1 week
         if (cutoffHours < 1 || cutoffHours >= 1 * 24 * 7) {
