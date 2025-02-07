@@ -60,8 +60,6 @@ paths:
         200:
           description: "OK"
 
-
-
   "/dining-menu/cru5h":
     get:
       tags:
