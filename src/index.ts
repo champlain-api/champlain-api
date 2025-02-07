@@ -1,9 +1,9 @@
 import express, { type Request, type Response } from "express";
-import announcementsRoute from "./routes/announcements"
+import announcementsRoute from "./routes/announcements.ts"
 const app = express()
 
 app.get("/", (request: Request, response: Response) => {
-    response.set("content-type","text/plain")
+    response.setHeader("Content-Type", "text/plain")
     response.status(200).send("Champlain API");
 })
 

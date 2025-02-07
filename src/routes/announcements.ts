@@ -7,7 +7,7 @@ router
         const champlainAnnouncements = await fetch("https://my.champlain.edu/announcements/api")
 
         // Set the content-type header and return the annoucements.
-        res.set("content-type", "application/json")
+        res.setHeader("Content-Type","application/json")
         res.json(await champlainAnnouncements.json())
     })
 
