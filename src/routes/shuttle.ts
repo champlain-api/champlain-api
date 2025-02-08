@@ -41,6 +41,7 @@ router
         // > 1 and <= 1 week
         if (updatedWithinParam < 0 || updatedWithinParam > 1 * 24 * 7) {
             res.status(400).json({ "error": "updatedWithin is not valid. Must be between 1 and 168 (1 week) inclusive." })
+            return
         }
         const updatedWithinValue = new Date(Date.now()).getTime() - (1000 * 1 * 60 * 60 * updatedWithinParam)
 
