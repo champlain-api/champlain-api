@@ -5,7 +5,7 @@ info:
   description: "Champlain Open API Documentation."
   contact:
     name: Champlain API
-    url: "https://github.com/Open-Source-Champlain/"
+    url: "https://github.com/champlain-api/"
 servers:
   - url: "http://localhost:3000/api/v1"
     
