@@ -1,6 +1,6 @@
 openapi: "3.0.0"
 info:
-  version: "0.0.3"
+  version: "0.0.4"
   title: "Champlain API Documentation"
   description: "Champlain Open API Documentation."
   contact:
@@ -8,127 +8,13 @@ info:
     url: "https://github.com/Open-Source-Champlain/"
 servers:
   - url: "http://localhost:3000/api/v1"
-
-# security:
-#   - identity_server_auth:
-#     - api
     
 tags:
-- name: dining-menu
-  description: Endpoints related to dining.
 - name: shuttle
   description: Endpoints relating to the shuttle service.
-- name: faculty
-  description: Endpoints relating to faculty.
 - name: announcements
   description: Endpoints relating to announcements.
 paths:
-  "/dining-menu/idx":
-    get:
-      tags:
-      - dining-menu
-      summary: "Get the entire menu"
-      parameters:
-        - in: query
-          name: day
-          schema:
-            type: string
-            $ref: '#/components/schemas/weeks'
-          required: false
-          description: Day of the week to get the specific menu type for
-        - in: query
-          name: station
-          schema:
-            $ref: '#/components/schemas/idx-food-stations'
-          required: false
-          description: Dining station
-      responses:
-        401:
-          description: "Unauthorized"
-        200:
-          description: "OK"
-
-    post:
-      tags:
-        - dining-menu
-      summary: Add a new item to the menu
-      description: "New items are not added unless approved"
-      parameters:
-      - in: query
-        name: day
-        schema:
-          type: string
-          $ref: '#/components/schemas/weeks'
-        required: true
-        description: Day of the week to get the specific menu type for
-      - in: query
-        name: station
-        schema:
-          $ref: '#/components/schemas/idx-food-stations'
-      - in: query
-        name: food
-        schema:
-          type: string
-        required: true
-        description: Food item
-    put:
-        tags:
-          - dining-menu
-        deprecated: false
-        summary: Update an exisitng menu item
-        description: "Items are not updated unless approved"
-        parameters:
-        - in: query
-          name: day
-          schema:
-            type: string
-            $ref: '#/components/schemas/weeks'
-          required: true
-          description: Day of the week to get the specific menu type for
-        - in: query
-          name: station
-          schema:
-            $ref: '#/components/schemas/idx-food-stations'
-        - in: query
-          name: old-food
-          schema:
-            type: string
-          required: true
-          description: Old item to replace
-        - in: query
-          name: new-food
-          schema:
-            type: string
-          required: true
-          description: New item to replace
-
-
-  "/dining-menu/cru5h":
-    get:
-      tags:
-      - dining-menu
-      # summary: "Runs a test request against the Identity Server demo API"
-      parameters:
-        - in: query
-          name: day
-          schema:
-            type: string
-            $ref: '#/components/schemas/weeks'
-          required: false
-          description: Day of the week to get the specific menu type for
-        - in: query
-          name: station
-          schema:
-            $ref: '#/components/schemas/cru5h-category'
-          required: false
-          description: Dining station
-      responses:
-        401:
-          description: "Unauthorized"
-        200:
-          description: "OK"
-
-
   "/shuttles":
     get:
       tags:
@@ -157,7 +43,6 @@ paths:
           schema:
             type: integer
             minimum: 0
-            
       responses:
         404:
           description: "Invalid shuttleId"
@@ -168,31 +53,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/shuttle'
-
-  "/faculty":
-    get:
-      tags:
-      - faculty
-      parameters:
-      - in: query
-        name: type
-        schema:
-          type: string
-          enum:
-            - name
-            - title
-            - department
-          example: department
-      - in: query
-        name: field
-        example: Core Division
-        required: false
-      responses:
-        401:
-          description: "Unauthorized"
-        200:
-          description: "OK"
-    
 
   "/announcements":
     get:
@@ -216,53 +76,7 @@ paths:
                       $ref: '#/components/schemas/announcements'
 
 components:
-  # securitySchemes:
-  #   # See https://demo.identityserver.io/ for configuration details.
-  #   identity_server_auth:
-  #     type: oauth2
-  #     flows:
-  #       implicit:
-  #         authorizationUrl: "https://demo.identityserver.io/connect/authorize"
-  #         scopes:
-  #           api: "api"
   schemas:
-    cru5h-category:
-      type: string
-      enum:
-        - go-green
-        - sauces
-        - appz
-        - breakfast
-        - fun-on-a-bun
-        - bad-egg
-        - sides
-        - mexcellente
-        - zertz
-    idx-food-stations:
-      type: string
-      enum:
-        - bakery
-        - have-a-nice-day
-        - rise
-        - breakfast-bar
-        - deli
-        - rustic-roots
-        - savory
-        - showcase
-        - sizzle
-        - slices
-        - soup
-    weeks:
-      type: string
-      description: Available days of the week
-      enum:
-        - sunday
-        - monday
-        - tuesday
-        - wednesday
-        - thursday
-        - friday
-        - saturday
     announcements:
       type: object
       properties:
