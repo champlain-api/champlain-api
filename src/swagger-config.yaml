@@ -173,7 +173,6 @@ paths:
     get:
       tags:
       - faculty
-      # summary: "Runs a test request against the Identity Server demo API"
       parameters:
       - in: query
         name: type

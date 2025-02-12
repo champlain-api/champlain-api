@@ -11,7 +11,7 @@ Currently there is no centralized API to access Champlain College's data. A cent
 
 # Installation
 This project uses Swagger to host API endpoint documentation.
-## Setup
+## Swagger Setup
 Our Swagger UI implementation references code from [Swagger's Webpack setup](https://github.com/swagger-api/swagger-ui/tree/e5f9647433cbc9648c85ed12551db97fc0b16434/docs/samples/webpack-getting-started)
 1. Make sure you have node installed
 2. Run `npm install`
