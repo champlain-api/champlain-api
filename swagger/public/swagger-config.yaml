@@ -21,8 +21,6 @@ paths:
       - shuttle
       summary: "Get information relating to all shuttles"
       responses:
-        400:
-          description: "Invalid cutoff hours"
         200:
           description: "OK"
           content:
@@ -119,4 +117,4 @@ components:
         mph:
           type: integer
         direction:
-          type: string
+          type: number
