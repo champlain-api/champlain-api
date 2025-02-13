@@ -1,0 +1,120 @@
+openapi: "3.0.0"
+info:
+  version: "0.0.4"
+  title: "Champlain API Documentation"
+  description: "Champlain Open API Documentation."
+  contact:
+    name: Champlain API
+    url: "https://github.com/champlain-api/"
+servers:
+  - url: "http://localhost:3000/"
+    
+tags:
+- name: shuttle
+  description: Endpoints relating to the shuttle service.
+- name: announcements
+  description: Endpoints relating to announcements.
+paths:
+  "/shuttles":
+    get:
+      tags:
+      - shuttle
+      summary: "Get information relating to all shuttles"
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/shuttle'
+
+  "/shuttles/{shuttleId}":
+    get:
+      tags:
+      - shuttle
+      summary: "Get information relating to specific shuttle"
+      parameters:
+        - in: path
+          name: shuttleId
+          description: ID of the shuttle. Any number is accepted starting from 0
+          required: true
+          schema:
+            type: integer
+            minimum: 0
+      responses:
+        404:
+          description: "Invalid shuttleId"
+        200:
+        # TODO: Make schema for specific shuttle
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/shuttle'
+
+  "/announcements":
+    get:
+      tags:
+      - announcements
+      summary: "Returns any announcements"
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    default: success
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/announcements'
+
+components:
+  schemas:
+    announcements:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        summary:
+          type: string
+          description: The announcement text
+        style:
+          type: string
+          enum:
+            - info
+            - emergency
+        type:
+          type: string
+          enum:
+            - Mobile
+            - Shuttle
+            - WWW
+    shuttle:
+      type: object
+      properties:
+        date_time:
+          type: string
+          format: date-time
+        unitid:
+          type: integer
+          minimum: 0
+          description: Shuttle number
+        lat:
+          type: number
+          format: double
+          description: Latitude
+        lon:
+          type: number
+          format: double
+          description: Longitude
+        mph:
+          type: integer
+        direction:
+          type: number
