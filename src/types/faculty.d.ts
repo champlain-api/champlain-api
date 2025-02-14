@@ -3,9 +3,17 @@
  * All the Info that is being returned.
  */
 
-export type Faculty = {
+// export type Faculty = {
+//     name: string;
+//     title: string;
+//     departments: string[];
+//     imageUrl: string;
+// }
+
+export interface Faculty {
+    id: number;
     name: string;
-    title: string;
-    departments: string[];
-    imageUrl: string;
+    department: string;
+    email?: string;
+    phone?: string;
 }
