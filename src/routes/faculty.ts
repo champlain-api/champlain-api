@@ -3,6 +3,8 @@ import type { Response, Request } from "express";
 import pool from "../database.js"; // Use MySQL instead of JSON file
 import type { Faculty } from "../types/faculty.d.ts"; // Keep the type
 
+// implement later for auth
+// import authMiddleware from "../middleware/auth.js"; // Import Auth0 JWT middleware
 const router = express.Router();
 
 // Route to get all faculty data from MySQL
