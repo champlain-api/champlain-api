@@ -2,157 +2,209 @@
   {
     "name": "194 St. Paul",
     "type": "Apartment Style",
-    "imageDescription": "exterior 194 St. Paul",
+    "students": "312",
+    "distance": "Less than a mile",
+    "address": "194 St. Paul St, Burlington, VT 05401",
     "imageUrl": "https://www.champlain.edu/app/uploads/2023/07/194-St-Paul_res-hall-dorm-residence-4-800x450.jpg"
   },
   {
     "name": "308 Maple Street",
     "type": "Contemporary (Room)",
-    "imageDescription": "A photo of 308 Maple during the daytime",
+    "students": "13",
+    "distance": "1 block",
+    "address": "308 Maple St, Burlington, VT 05401",
     "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/308-Maple-Street_res-hall-dorm-residence-800x450.jpg"
   },
   {
     "name": "371 Main Street",
     "type": "Victorian-Era Mansion",
-    "imageDescription": "A photo of 371 Main Street during the daytime",
+    "students": "36",
+    "distance": "3 block",
+    "address": "371 Main St, Burlington, VT 05401",
     "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/371-Main-2-800x450.jpg"
   },
   {
     "name": "396 Main Street",
     "type": "Victorian-Era Mansion",
-    "imageDescription": "students enjoy a sunny day at 396 Main street residence hall",
+    "students": "36",
+    "distance": "4 block",
+    "address": "396 Main St, Burlington, VT 05401",
     "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/396-Main-Street_res-hall-dorm-residence-1-800x450.jpg"
   },
   {
     "name": "Adirondack Hall",
     "type": "Contemporary (Room)",
-    "imageDescription": "A photo of Adirondack hall during the daytime",
+    "students": "19",
+    "distance": "1 block",
+    "address": "324 Maple St, Burlington, VT 05401",
     "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/Adirondack-Hall-1-800x450.jpg"
   },
   {
     "name": "Aiken Hall",
     "type": "Victorian-Era Mansion",
-    "imageDescription": "Aiken Hall",
+    "students": "33",
+    "distance": "Less Than 1 block",
+    "address": "83 Summit St, Burlington, VT 05401",
     "imageUrl": "https://www.champlain.edu/app/uploads/2025/02/Aiken-Hall_res-residence-hall-dorm-800x450.jpg"
   },
   {
     "name": "Bader Hall",
     "type": "Victorian-Era Mansion",
-    "imageDescription": "A photo of Bader hall during the daytime",
+    "students": "21",
+    "distance": "Less Than 1 block",
+    "address": "232 S. Willard St, Burlington, VT 05401",
     "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/Bader-Hall-2-800x450.jpg"
   },
   {
     "name": "Bankus Hall",
     "type": "Victorian-Era Mansion",
-    "imageDescription": "A photo of Bankus hall during the daytime",
+    "students": "45",
+    "distance": "Less Than 1 block",
+    "address": "285 S. Willard St, Burlington, VT 05401",
     "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/Bankus-Hall-1-800x450.jpg"
   },
   {
     "name": "Boardman Hall",
     "type": "Contemporary (Suite)",
-    "imageDescription": "A photo of Boardman hall during the daytime",
+    "students": "59",
+    "distance": "4 blocks",
+    "address": "",
     "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/Boardman-Hall-800x450.jpg"
   },
   {
     "name": "Butler Hall",
     "type": "Contemporary (Room)",
-    "imageDescription": "A photo of Butler hall during the daytime",
+    "students": "89",
+    "distance": "1 block",
+    "address": "319 Maple Street, Burlington, VT 05401",
     "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/Butler-Hall-2-800x450.jpg"
   },
   {
     "name": "Carriage House",
     "type": "Contemporary (Room)",
-    "imageDescription": "A photo of Carriage house during the daytime",
+    "students": "10",
+    "distance": "Less Than 1 block",
+    "address": "4 Cedar Ln, Burlington, VT 05401",
     "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/Carriage-House-1-800x450.jpg"
   },
   {
     "name": "Cushing Hall",
     "type": "Victorian-Era Mansion",
-    "imageDescription": "A photo of Cushing hall during the daytime",
+    "students": "27",
+    "distance": "Less Than 1 block",
+    "address": "246 S. Willard St, Burlington, VT 05401",
     "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/Cushing-Hall-1-800x450.jpg"
   },
   {
     "name": "Hill Hall",
     "type": "Victorian-Era Mansion",
-    "imageDescription": "A photo of Hill hall during the daytime",
+    "students": "37",
+    "distance": "Less Than 1 block",
+    "address": "227 S. Willard St, Burlington, VT 05401",
     "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/Hill-Hall-1-800x450.jpg"
   },
   {
     "name": "Jensen Hall",
     "type": "Victorian-Era Mansion",
-    "imageDescription": "A photo of Jensen hall during the daytime",
+    "students": "36",
+    "distance": "Less Than 1 block",
+    "address": "391 St, Burlington, VT 05401",
     "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/Jensen-Hall-1-800x450.jpg"
   },
   {
     "name": "Juniper Hall",
     "type": "Contemporary (Room)",
-    "imageDescription": "A photo of Juniper hall during the daytime",
+    "students": "95",
+    "distance": "1 block",
+    "address": "197 S. Willard St, Burlington, VT 05401",
     "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/Juniper-Hall_res-hall-dorm-residence-1-800x450.jpg"
   },
   {
     "name": "Lakeview Hall",
     "type": "Contemporary (Room)",
-    "imageDescription": "A photo of Lakeview hall during the daytime",
+    "students": "81",
+    "distance": "1 block",
+    "address": "320 Maple St, Burlington, VT 05401",
     "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/Lakeview-Hall-1-800x450.jpg"
   },
   {
     "name": "Lyman Hall",
     "type": "Victorian-Era Mansion",
-    "imageDescription": "A photo of Lyman hall during the daytime",
+    "students": "36",
+    "distance": "Less Than 1 block",
+    "address": "237 S. Willard St, Burlington, VT 05401",
     "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/Lyman-Hall-800x450.jpg"
   },
   {
     "name": "McDonald Hall",
     "type": "Victorian-Era Mansion",
-    "imageDescription": "A photo of McDonald hall during the daytime",
+    "students": "45",
+    "distance": "1 block",
+    "address": "225 S. Willard St, Burlington, VT 05401",
     "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/McDonald-Hall-800x450.jpg"
   },
   {
     "name": "Pearl Hall",
     "type": "Victorian-Era Mansion",
-    "imageDescription": "A photo of Pearl hall during the daytime",
+    "students": "49",
+    "distance": "Less Than 1 block",
+    "address": "258 S. Willard St, Burlington, VT 05401",
     "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/Pearl-Hall-1-800x450.jpg"
   },
   {
     "name": "Rowell Hall",
     "type": "Victorian-Era Mansion",
-    "imageDescription": "A photo of Rowell hall during the daytime",
+    "students": "44",
+    "distance": "Less Than 1 block",
+    "address": "227 S. Willard St, Burlington, VT 05401",
     "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/Rowell-Hall-800x450.jpg"
   },
   {
     "name": "Sanders Hall",
     "type": "Victorian-Era Mansion",
-    "imageDescription": "A photo of Sanders hall during the daytime",
+    "students": "36",
+    "distance": "4 block",
+    "address": "368 College St, Burlington, VT 05401",
     "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/Sanders-Hall-800x450.jpg"
   },
   {
     "name": "Schillhammer Hall",
     "type": "Victorian-Era Mansion",
-    "imageDescription": "A photo of Schillhammer hall during the sunset",
+    "students": "26",
+    "distance": "1 block",
+    "address": "109 Summit St, Burlington, VT 05401",
     "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/Schillhammer-Hall-2-800x450.jpg"
   },
   {
     "name": "South House",
     "type": "Victorian-Era Mansion",
-    "imageDescription": "A photo of South House during the daytime",
+    "students": "47",
+    "distance": "2 block",
+    "address": "363 S. Willard St, Burlington, VT 05401",
     "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/South-House-2-800x450.jpg"
   },
   {
     "name": "Summit Hall",
     "type": "Victorian-Era Mansion",
-    "imageDescription": "A photo of Summit hall during the daytime",
+    "students": "48",
+    "distance": "2 block",
+    "address": "322 Maple St, Burlington, VT 05401",
     "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/Summit-Hall_res-hall-dorm-residence-2-800x450.jpg"
   },
   {
     "name": "Valcour Hall",
     "type": "Contemporary (Room)",
-    "imageDescription": "A photo of Valcour hall during the daytime",
+    "students": "91",
+    "distance": "1 block",
+    "address": "197 S. Willard St, Burlington, VT 05401",
     "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/Valcour-Hall-4-800x450.jpg"
   },
   {
     "name": "Whiting Hall",
     "type": "Victorian-Era Mansion",
-    "imageDescription": "A photo of Whiting hall during the daytime",
+    "students": "31",
+    "distance": "1 block",
+    "address": "203 S. Willard St, Burlington, VT 05401",
     "imageUrl": "https://www.champlain.edu/app/uploads/2023/08/Whiting-Hall-800x450.jpg"
   }
 ]
