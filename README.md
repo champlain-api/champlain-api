@@ -15,7 +15,7 @@ Currently there is no centralized API to access Champlain College’s data. A ce
 4. Visit http://localhost:3000/ in web browser.
 
 ## Building the documentation
-1. Change directory to the `swagger` folder
+1. Change directory to the `docs` folder
 1. Install dependencies with `npm i`
 1. Build with `npm run build`
 1. Preview with `npm run preview`
