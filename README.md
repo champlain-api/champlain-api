@@ -21,4 +21,4 @@ Currently there is no centralized API to access Champlain College’s data. A ce
 1. Preview with `npm run preview`
 1. Visit http://localhost:4173/ in a web browser
 
-The API files are generated in `/swagger/dist`
+The API files are generated in `/docs/dist`
