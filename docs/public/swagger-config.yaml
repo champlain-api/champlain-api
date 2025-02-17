@@ -1,6 +1,6 @@
 openapi: "3.0.0"
 info:
-  version: "0.0.4"
+  version: "0.0.5"
   title: "Champlain API Documentation"
   description: "Champlain Open API Documentation."
   contact:
@@ -80,6 +80,7 @@ paths:
       tags:
       - faculty
       summary: "Get all faculty data"
+      description: "Returns a JSON list of all faculty members, including their title, departments, and photo URL"
       responses:
         200:
           description: "OK"
@@ -93,6 +94,7 @@ paths:
       tags:
       - faculty
       summary: "Get a faculty member by name"
+      description: "Returns a faculty member including their title, departments, and photo URL"
       parameters:
       - in: path
         name: name
@@ -123,6 +125,7 @@ paths:
       tags:
       - faculty
       summary: "Get faculty members by department"
+      description: "Returns all faculty members within a department including their title and photo URL"
       parameters:
       - in: path
         name: departmentName
