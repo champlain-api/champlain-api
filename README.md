@@ -9,6 +9,7 @@ Currently there is no centralized API to access Champlain College’s data. A ce
 - Offer a scalable solution: The API should be designed so that future integrations and endpoints can be easily added.
 
 ## Building the API
+1. cd to the `api` folder
 1. Install dependencies with `npm i`
 2. Build with `npm run build`
 3. Run using `npm run dev`
