@@ -1,3 +1,30 @@
+/*
+ * announcements.ts
+ * This defines the routes for the announcements endpoint.
+ *
+ * Users can do the following:
+ *
+ * Request all announcements
+ *  GET /announcements
+ *
+ * Request a specific announcement given a ID
+ *  GET /announcements/:id
+ *      Returns a 404 if the ID is invalid.
+ *
+ * Create an announcement with information
+ * JSON-encoded in the body of a request.
+ *  POST /announcements
+ *      Returns a 400 if the body is invalid or an error occurred.
+ *
+ * Edit an announcement given the id.
+ *  PUT /announcements/:id
+ *      Returns a 404 if the ID is invalid.
+ *
+ * Delete an announcement given the id.
+ *  DELETE /announcements/:id
+ *      Returns a 404 if the ID is invalid.
+ *
+ */
 import express, {type Response, type Request} from "express"
 
 const router = express.Router()
@@ -62,7 +89,7 @@ router
         const {title, description, type, style} = req.body
         res.setHeader("Content-Type", "application/json")
         if (id == null) {
-            res.status(400).json({error: "Invalid announcement id."})
+            res.status(404).json({error: "Invalid announcement id."})
             return
         }
 

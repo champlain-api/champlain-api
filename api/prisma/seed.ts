@@ -23,7 +23,7 @@ async function main() {
         }
     })
 
-    // Add example shuttle
+    // Add example shuttle.
     await prisma.shuttle.upsert({
         where: {id: 1},
         update: {},
