@@ -12,7 +12,8 @@ datasource db {
 
 model Announcement {
   id          Int                @id @default(autoincrement())
-  title       String             @default("Champlain College Announcement") @db.VarChar(256)
+  updated     DateTime           @updatedAt @db.Timestamptz()
+  title       String             @default("Champlain College Announcement")
   description String             @default("")
   type        AnnouncementType[] @default([WEB])
   style       AnnouncementStyle  @default(INFO)
@@ -29,41 +30,9 @@ enum AnnouncementType {
   MOBILE
 }
 
-model Semester {
-  id      String   @id @unique
-  name    String   @unique
-  classes Course[]
-}
-
-// Each course has semester identified by the `semesterID` property.
-model Course {
-  id          String          @id @unique
-  description String          @default("")
-  sections    CourseSection[]
-  Semester    Semester        @relation(fields: [semesterID], references: [id])
-  semesterID  String          @map("semester_id")
-}
-
-model CourseSection {
-  sectionID String   @id @unique
-  class     Course   @relation(fields: [courseID], references: [id])
-  courseID  String
-  professor Faculty  @relation(fields: [facultyID], references: [id])
-  days      String[]
-  time      String[]
-  facultyID Int
-}
-
-model Faculty {
-  firstName     String          @map("first_name")
-  lastName      String          @map("last_name")
-  id            Int             @id @unique
-  CourseSection CourseSection[]
-}
-
 model Shuttle {
   id        Int      @id @default(autoincrement())
-  updated   DateTime @updatedAt
+  updated   DateTime @updatedAt @db.Timestamptz()
   lat       Int
   lon       Int
   mph       Int
