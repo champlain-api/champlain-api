@@ -1,7 +1,6 @@
 import express, {type Response, type Request} from "express"
 
 const router = express.Router()
-import {AnnouncementStyle, AnnouncementType} from "@prisma/client"
 import prisma from "../prisma_client.ts"
 
 router.use(express.json())
