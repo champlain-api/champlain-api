@@ -47,8 +47,11 @@ router
 
     })
     .get("/:id", async (req: Request, res: Response) => {
-        const id: number = Number(req.params.id) || -1
-
+        const id: number = Number(req.params.id)
+        if (isNaN(id)) {
+            res.status(400).json({error: "Invalid announcement id."})
+            return
+        }
         const announcement = await prisma.announcement.findFirst({
             where: {
                 id: id
@@ -85,10 +88,10 @@ router
         return
     })
     .put("/:id", async (req: Request, res: Response) => {
-        const id = Number(req.params.id) || null
+        const id = Number(req.params.id)
         const {title, description, type, style} = req.body
         res.setHeader("Content-Type", "application/json")
-        if (id == null) {
+        if (isNaN(id)) {
             res.status(404).json({error: "Invalid announcement id."})
             return
         }
@@ -97,7 +100,7 @@ router
         try {
             announcement = await prisma.announcement.update({
                 where: {
-                    id: id!
+                    id: id
                 },
                 data: {
                     title: title,
@@ -114,8 +117,12 @@ router
     })
 
     .delete("/:id", async (req: Request, res: Response) => {
-        const id: number = Number(req.params.id) || -1
+        const id: number = Number(req.params.id)
         res.setHeader("Content-Type", "application/json")
+        if (isNaN(id)) {
+            res.status(404).json({error: "Invalid announcement id."})
+            return
+        }
         let announcement;
         try {
             announcement = await prisma.announcement.delete({

@@ -68,10 +68,14 @@ router
     .get("/:id", async (req: Request, res: Response) => {
         // Set our response's content type.
         res.setHeader("Content-Type", "application/json")
-        const idParam: number = Number(req.params.id) || -1
+        const id: number = Number(req.params.id)
+        if (isNaN(id)) {
+            res.status(404).json({error: "Invalid shuttle id."})
+            return
+        }
         const shuttles = await prisma.shuttle.findMany({
             where: {
-                id: idParam
+                id: id
             }
         })
 
@@ -85,10 +89,15 @@ router
     .put("/:id", async (req: Request, res: Response) => {
         const {lat, lon, mph, direction} = req.body
         let shuttle;
+        let id = Number(req.params.id)
+        if (isNaN(id)) {
+            res.status(404).json({error: "Invalid shuttle id."})
+            return
+        }
         try {
             shuttle = await prisma.shuttle.upsert({
                 where: {
-                    id: Number(req.params.id)
+                    id: id
                 },
                 update: {
                     lat: lat || 0,
@@ -111,10 +120,15 @@ router
     })
     .delete("/:id", async (req: Request, res: Response) => {
         let shuttle;
+         let id = Number(req.params.id)
+         if (isNaN(id)) {
+            res.status(404).json({error: "Invalid shuttle id."})
+            return
+        }
         try {
             shuttle = await prisma.shuttle.delete({
                 where: {
-                    id: Number(req.params.id)
+                    id: id
                 }
             })
         } catch {
