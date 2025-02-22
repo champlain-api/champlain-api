@@ -6,8 +6,11 @@
  *
  * Request all announcements
  *  GET /announcements
+ *      The user can also specify a 'type' parameter which
+ *      includes an *array* of strings of type AnnouncementType (defined in the prisma schema).
+ *      Returns a 400 if they are not valid.
  *
- * Request a specific announcement given a ID
+ * Request a specific announcement given an ID
  *  GET /announcements/:id
  *      Returns a 404 if the ID is invalid.
  *
@@ -29,22 +32,44 @@ import express, {type Response, type Request} from "express"
 
 const router = express.Router()
 import prisma from "../prisma_client.ts"
+import {AnnouncementType} from "@prisma/client";
 
 router.use(express.json())
 router
     .get("/", async (req: Request, res: Response) => {
         // Fetch the announcements from the database
-        const announcements = await prisma.announcement.findMany({
-            orderBy: {
-                id: "asc"
-            }
-        })
-
-        // Set the content-type header and return the announcements.
         res.setHeader("Content-Type", "application/json")
+        const typeFilter = req.query["type"] || [AnnouncementType.WEB, AnnouncementType.SHUTTLE, AnnouncementType.MOBILE]
+
+        // Check if the type was given as an array.
+        if (!(typeFilter instanceof Array)) {
+            res.status(400).json({error: "'type' property is not an array."})
+            return
+        }
+        // Now check if the array contains those only of AnnouncementType
+        const hasValidTypes = typeFilter.every(el => Object.values(AnnouncementType).includes(el as AnnouncementType))
+        if (!hasValidTypes) {
+            res.status(400).json({error: "'type' property contains invalid values."})
+            return
+        }
+        let announcements;
+        try {
+            announcements = await prisma.announcement.findMany({
+                orderBy: {
+                    id: "asc"
+                },
+                where: {
+                    type: {
+                        hasSome: typeFilter as AnnouncementType[]
+                    }
+                }
+            })
+        } catch {
+            res.status(500).json({error: "Unable to get announcements."})
+            return
+        }
+        // Set the content-type header and return the announcements.
         res.json(announcements)
-
-
     })
     .get("/:id", async (req: Request, res: Response) => {
         const id: number = Number(req.params.id)
