@@ -1,6 +1,6 @@
 import prisma from "../src/prisma_client"
 
-async function main() {
+async function addSeedData() {
     // Add example announcements
     await prisma.announcement.upsert({
         where: {id: 1},
@@ -35,14 +35,7 @@ async function main() {
             updated: new Date(Date.now())
         }
     })
+
 }
 
-main()
-    .then(async () => {
-        await prisma.$disconnect()
-    })
-    .catch(async (e) => {
-        console.error(e)
-        await prisma.$disconnect()
-        // process.exit(1)
-    })
+addSeedData()
