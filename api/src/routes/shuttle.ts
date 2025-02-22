@@ -36,12 +36,11 @@ router
     .get("/", async (req: Request, res: Response) => {
         // Set our response's content type.
         res.setHeader("Content-Type", "application/json")
-        // If no value is found, set it to 2. If one is found, and it can't be made
-        // into a number, set it to -1.
-        const updatedWithinParam: number = Number(req.query["updatedWithin"] ?? 2) || -1
-        // check to make sure the cutoff hours is valid
-        // > 1 and <= 1 week
-        if (updatedWithinParam < 0 || updatedWithinParam > 1 * 24 * 7) {
+        // If no value is found, set it to 2
+        const updatedWithinParam: number = Number(req.query["updatedWithin"] ?? 2)
+
+        // check to make sure the hours valid (> 1 hour and <= 1 week)
+        if (isNaN(updatedWithinParam) || updatedWithinParam <= 0 || updatedWithinParam > 1 * 24 * 7) {
             res.status(400).json({"error": "updatedWithin is not valid. Must be between 1 and 168 (1 week) inclusive."})
             return
         }
@@ -120,8 +119,8 @@ router
     })
     .delete("/:id", async (req: Request, res: Response) => {
         let shuttle;
-         let id = Number(req.params.id)
-         if (isNaN(id)) {
+        let id = Number(req.params.id)
+        if (isNaN(id)) {
             res.status(404).json({error: "Invalid shuttle id."})
             return
         }

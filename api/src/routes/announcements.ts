@@ -34,15 +34,15 @@ router.use(express.json())
 router
     .get("/", async (req: Request, res: Response) => {
         // Fetch the announcements from the database
-        const announcement = await prisma.announcement.findMany({
+        const announcements = await prisma.announcement.findMany({
             orderBy: {
                 id: "asc"
             }
         })
 
-        // Set the content-type header and return the announcement.
+        // Set the content-type header and return the announcements.
         res.setHeader("Content-Type", "application/json")
-        res.json(announcement)
+        res.json(announcements)
 
 
     })
