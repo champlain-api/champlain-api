@@ -1,6 +1,6 @@
 openapi: "3.0.0"
 info:
-  version: "0.0.4"
+  version: "0.0.5"
   title: "Champlain API Documentation"
   description: "Champlain Open API Documentation."
   contact:
@@ -14,6 +14,8 @@ tags:
   description: Endpoints relating to the shuttle service.
 - name: announcements
   description: Endpoints relating to announcements.
+- name: faculty
+  description: Endpoints related to faculty.
 paths:
   "/shuttles":
     get:
@@ -73,6 +75,83 @@ paths:
                     items:
                       $ref: '#/components/schemas/announcements'
 
+  "/faculty":
+    get:
+      tags:
+      - faculty
+      summary: "Get all faculty data"
+      description: "Returns a JSON list of all faculty members, including their title, departments, and photo URL"
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/faculty'
+
+  "/faculty/{name}":
+    get:
+      tags:
+      - faculty
+      summary: "Get a faculty member by name"
+      description: "Returns a faculty member including their title, departments, and photo URL"
+      parameters:
+      - in: path
+        name: name
+        description: "The name of the faculty member"
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/faculty"
+        404:
+          description: "Faculty member not found."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Faculty member not found."
+
+  "/faculty/department/{departmentName}":
+    get:
+      tags:
+      - faculty
+      summary: "Get faculty members by department"
+      description: "Returns all faculty members within a department including their title and photo URL"
+      parameters:
+      - in: path
+        name: departmentName
+        example: "Core Division"
+        description: "The name of the department"
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/faculty"
+        404:
+          description: "Department not found."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Department not found."
+
 components:
   schemas:
     announcements:
@@ -118,3 +197,23 @@ components:
           type: integer
         direction:
           type: number
+    faculty:
+      type: object
+      properties:
+        name:
+          description: "The faculty member's name"
+          type: string
+          example: "John Business"
+        title:
+          description: "The faculty member's title"
+          type: string
+          example: "Adjunct Instructor"
+        departments:
+          description: "The department(s) the faculty member is part of"
+          type: array
+          items:
+            type: string
+            example: "Stiller School of Business"
+        imageUrl:
+          type: string
+          format: uri
