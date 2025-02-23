@@ -19,10 +19,10 @@ Prerequisite: A functioning Postgres database.
 7. Visit http://localhost:3000/ in web browser.
 
 ## Building the documentation
-1. Change directory to the `swagger` folder
+1. Change directory to the `docs` folder
 2. Install dependencies with `npm i`
 3. Build with `npm run build`
 4. Preview with `npm run preview`
 5. Visit http://localhost:4173/ in a web browser
 
-The API files are generated in `/swagger/dist`
+The API files are generated in `/docs/dist`
