@@ -1,0 +1,40 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Announcement {
+  id          Int                @id @default(autoincrement())
+  updated     DateTime           @updatedAt @db.Timestamptz() @default(now())
+  title       String             @default("Champlain College Announcement")
+  description String             @default("")
+  type        AnnouncementType[] @default([WEB])
+  style       AnnouncementStyle  @default(INFO)
+}
+
+enum AnnouncementStyle {
+  EMERGENCY
+  INFO
+}
+
+enum AnnouncementType {
+  WEB
+  SHUTTLE
+  MOBILE
+}
+
+model Shuttle {
+  id        Int      @id @default(autoincrement())
+  updated   DateTime @updatedAt @db.Timestamptz()
+  lat       Int      @default(0)
+  lon       Int      @default(0)
+  mph       Int      @default(0)
+  direction Int      @default(0)
+}
