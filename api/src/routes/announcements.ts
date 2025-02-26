@@ -32,7 +32,9 @@ import express, {type Response, type Request} from "express"
 
 const router = express.Router()
 import prisma from "../prisma_client.ts"
-import {AnnouncementType} from "@prisma/client";
+import {Prisma} from '@prisma/client'
+import {requireAPIKeyScopes} from "../middleware/api-middleware.ts";
+import {AnnouncementType, APIKeyScopes} from "@prisma/client";
 
 router.use(express.json())
 router
@@ -64,17 +66,22 @@ router
                     }
                 }
             })
-        } catch {
-            res.status(500).json({error: "Unable to get announcements."})
-            return
+        } catch (e) {
+            if (e instanceof Prisma.PrismaClientKnownRequestError && e.meta != null) {
+                res.status(500).json({error: e.meta})
+                return
+            } else {
+                res.status(500).json({error: "Unable to get announcement."})
+                return
+            }
         }
         // Set the content-type header and return the announcements.
         res.json(announcements)
     })
     .get("/:id", async (req: Request, res: Response) => {
-        const id: number = Number(req.params.id)
+        const id = Number(req.params.id)
         if (isNaN(id)) {
-            res.status(400).json({error: "Invalid announcement id."})
+            res.status(404).json({error: "Invalid announcement id."})
             return
         }
         const announcement = await prisma.announcement.findFirst({
@@ -90,9 +97,10 @@ router
         res.setHeader("Content-Type", "application/json")
         res.json(announcement)
     })
-    .post("/", async (req: Request, res: Response) => {
-        const {title, description, type, style} = req.body
+    .post("/", requireAPIKeyScopes([APIKeyScopes.ANNOUNCEMENTS_EDIT]), async (req: Request, res: Response) => {
         res.setHeader("Content-Type", "application/json")
+
+        const {title, description, type, style} = req.body
 
         let announcement;
         try {
@@ -105,14 +113,18 @@ router
                 }
             })
         } catch (e) {
-            console.log(e)
-            res.status(400).json({error: "Unable to create announcement."})
-            return
+            if (e instanceof Prisma.PrismaClientKnownRequestError && e.meta != null) {
+                res.status(500).json({error: e.meta})
+                return
+            } else {
+                res.status(500).json({error: "Unable to create announcement."})
+                return
+            }
         }
         res.status(201).json(announcement)
         return
     })
-    .put("/:id", async (req: Request, res: Response) => {
+    .put("/:id", requireAPIKeyScopes([APIKeyScopes.ANNOUNCEMENTS_EDIT]), async (req: Request, res: Response) => {
         const id = Number(req.params.id)
         const {title, description, type, style} = req.body
         res.setHeader("Content-Type", "application/json")
@@ -135,14 +147,20 @@ router
 
                 }
             })
-        } catch {
-            res.status(404).json({error: "Invalid announcement id"})
+        } catch (e) {
+            if (e instanceof Prisma.PrismaClientKnownRequestError && e.meta != null) {
+                res.status(500).json({error: e.meta})
+                return
+            } else {
+                res.status(500).json({error: "Unable to edit announcement."})
+                return
+            }
         }
         res.status(200).json({announcement})
     })
 
-    .delete("/:id", async (req: Request, res: Response) => {
-        const id: number = Number(req.params.id)
+    .delete("/:id", requireAPIKeyScopes([APIKeyScopes.ANNOUNCEMENTS_EDIT]), async (req: Request, res: Response) => {
+        const id = Number(req.params.id)
         res.setHeader("Content-Type", "application/json")
         if (isNaN(id)) {
             res.status(404).json({error: "Invalid announcement id."})
@@ -155,9 +173,14 @@ router
                     id: id
                 }
             })
-        } catch {
-            res.status(400).json({error: "Unable to delete announcement. Check the id."})
-            return
+        } catch (e) {
+            if (e instanceof Prisma.PrismaClientKnownRequestError && e.meta != null) {
+                res.status(500).json({error: e.meta})
+                return
+            } else {
+                res.status(500).json({error: "Unable to delete announcement."})
+                return
+            }
         }
         res.status(200).send(announcement)
 

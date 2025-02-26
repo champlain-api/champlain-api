@@ -26,10 +26,12 @@
  *  Returns a 404 if the id is invalid.
  */
 
-import express, {type Response, type Request} from "express"
+import express, {type Response, type Request, type NextFunction} from "express"
 
 const router = express.Router()
 import prisma from "../prisma_client.js"
+import {requireAPIKeyScopes} from "../middleware/api-middleware.js";
+import {APIKeyScopes} from "@prisma/client";
 
 router.use(express.json())
 router
@@ -85,7 +87,7 @@ router
         res.status(200).json(shuttles)
 
     })
-    .put("/:id", async (req: Request, res: Response) => {
+    .put("/:id", requireAPIKeyScopes([APIKeyScopes.SHUTTLE_EDIT]), async (req: Request, res: Response) => {
         const {lat, lon, mph, direction} = req.body
         let shuttle;
         let id = Number(req.params.id)
@@ -117,7 +119,7 @@ router
         }
         res.status(200).json(shuttle)
     })
-    .delete("/:id", async (req: Request, res: Response) => {
+    .delete("/:id", requireAPIKeyScopes([APIKeyScopes.SHUTTLE_EDIT]), async (req: Request, res: Response) => {
         let shuttle;
         let id = Number(req.params.id)
         if (isNaN(id)) {
