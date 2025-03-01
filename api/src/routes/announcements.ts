@@ -37,6 +37,7 @@ import {requireAPIKeyScopes} from "../middleware/api-middleware.ts";
 import {AnnouncementType, APIKeyScopes} from "@prisma/client";
 
 router.use(express.json())
+
 router
     .get("/", async (req: Request, res: Response) => {
         // Fetch the announcements from the database

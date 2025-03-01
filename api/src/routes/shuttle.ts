@@ -34,6 +34,7 @@ import {requireAPIKeyScopes} from "../middleware/api-middleware.js";
 import {APIKeyScopes} from "@prisma/client";
 
 router.use(express.json())
+
 router
     .get("/", async (req: Request, res: Response) => {
         // Set our response's content type.

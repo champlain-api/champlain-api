@@ -7,29 +7,37 @@ export function requireAPIKeyScopes(requiredScopes: APIKeyScopes[]) {
     return async function (req: Request, res: Response, next: NextFunction) {
 
         const authHeader = req.headers.authorization
-        const apiKey = authHeader?.split("apikey ")[1]
-        if (authHeader == null || apiKey == null) {
-            res.status(403).json({error: "Invalid API key."})
+
+        /**
+         * The API key the user sends in the Auth header.
+         */
+        const sentAPIKey = authHeader?.split("Bearer ")[1]
+        if (authHeader == null || sentAPIKey == null) {
+            res.status(401).json({error: "Invalid API key."})
             return
         }
-        const givenAPIKey = await prisma.apiKey.findUnique({
+
+        /**
+         * The API key that prisma returns
+         */
+        const returnedAPIKey = await prisma.apiKey.findUnique({
             where: {
-                key: apiKey
+                key: sentAPIKey
             },
             select: {
                 scopes: true
             }
         })
 
-        if (givenAPIKey == null) {
-            res.status(403).json({error: "Invalid API key."})
+        if (returnedAPIKey == null) {
+            res.status(401).json({error: "Invalid API key."})
             return
         }
 
         // If every required scope is not included in the list of scopes
         // sent by the user, return 403.
-        if (!requiredScopes.every(el => givenAPIKey.scopes.includes(el))) {
-            res.status(403).json({error: "Missing scope."})
+        if (!requiredScopes.every(el => returnedAPIKey.scopes.includes(el))) {
+            res.status(403).json({error: "Missing required scope(s)."})
             return
         }
 
