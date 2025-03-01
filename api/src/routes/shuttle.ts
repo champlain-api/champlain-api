@@ -9,21 +9,30 @@
  *      Parameters:
  *          updatedWithin: Int - only show shuttles updated
  *                               within the past X hours. Defaults to 2.
- *  Returns a 400 if the updatedWithin are invalid.
+ *      Returns a 400 if the updatedWithin are invalid.
+ *      Returns a 500 if an error occurs
  * 
  * Request a specific shuttle given an ID
  *  GET /shuttles/:id
- *      Returns a 404 if the ID is invalid.
+ *      Returns a 404 if none can be found.
+ *      Returns a 400 if the ID is invalid
  *
- * Create/update a shuttle with
+ * Create a shuttle with
+ * the information JSON-encoded in
+ * the request body
+ *  POST /shuttle/:id
+ *      Returns a 400 or 500 if the shuttle cannot be created.
+ *
+ * Update a shuttle with
  * the information JSON-encoded in
  * the request body
  *  PUT /shuttle/:id
- *  Returns a 400 if the shuttle cannot be updated.
+ *      Returns a 400 or 500 if an error occurs.
  *
  * Delete a shuttle
  *  DELETE /shuttle/:id
- *  Returns a 404 if the id is invalid.
+ *      Returns a 400 if the id is invalid.
+ *      Returns a 400 or 500 if an error occurs.
  */
 
 import express, {type Response, type Request, type NextFunction} from "express"
@@ -31,7 +40,7 @@ import express, {type Response, type Request, type NextFunction} from "express"
 const router = express.Router()
 import prisma from "../prisma_client.js"
 import {requireAPIKeyScopes} from "../middleware/api-middleware.js";
-import {APIKeyScopes} from "@prisma/client";
+import {APIKeyScopes, Prisma} from "@prisma/client";
 
 router.use(express.json())
 
@@ -72,7 +81,7 @@ router
         res.setHeader("Content-Type", "application/json")
         const id: number = Number(req.params.id)
         if (isNaN(id)) {
-            res.status(404).json({error: "Invalid shuttle id."})
+            res.status(400).json({error: "Invalid shuttle id."})
             return
         }
         const shuttles = await prisma.shuttle.findMany({
@@ -93,7 +102,7 @@ router
         let shuttle;
         let id = Number(req.params.id)
         if (isNaN(id)) {
-            res.status(404).json({error: "Invalid shuttle id."})
+            res.status(400).json({error: "Invalid shuttle id."})
             return
         }
         try {
@@ -105,9 +114,16 @@ router
                     direction: direction || 0
                 }
             })
-        } catch {
-            res.status(400).json({error: "Unable to add shuttle."})
-            return
+        } catch (e) {
+            if (e instanceof Prisma.PrismaClientKnownRequestError && e.meta != null) {
+                res.status(400).json({error: e.meta})
+                return
+            } else if (e instanceof Prisma.PrismaClientValidationError) {
+                res.status(400).json({error: "Unable to create shuttle. Please check that all fields are valid."})
+                return
+            } else {
+                res.status(500).json({error: "Unable to create shuttle. " + e})
+            }
         }
         res.status(201).json(shuttle)
     })
@@ -116,7 +132,7 @@ router
         let shuttle;
         let id = Number(req.params.id)
         if (isNaN(id)) {
-            res.status(404).json({error: "Invalid shuttle id."})
+            res.status(400).json({error: "Invalid shuttle id."})
             return
         }
         try {
@@ -131,9 +147,16 @@ router
                     direction: direction || 0
                 }
             })
-        } catch {
-            res.status(400).json({error: "Unable to update shuttle."})
-            return
+        } catch (e) {
+            if (e instanceof Prisma.PrismaClientKnownRequestError && e.meta != null) {
+                res.status(400).json({error: e.meta})
+                return
+            } else if (e instanceof Prisma.PrismaClientValidationError) {
+                res.status(400).json({error: "Unable to update shuttle. Please check that all fields are valid."})
+                return
+            } else {
+                res.status(500).json({error: "Unable to update shuttle. " + e})
+            }
         }
         res.status(201).json(shuttle)
     })
@@ -141,7 +164,7 @@ router
         let shuttle;
         let id = Number(req.params.id)
         if (isNaN(id)) {
-            res.status(404).json({error: "Invalid shuttle id."})
+            res.status(400).json({error: "Invalid shuttle id."})
             return
         }
         try {
@@ -150,9 +173,13 @@ router
                     id: id
                 }
             })
-        } catch {
-            res.status(404).json({error: "Invalid shuttle id"})
-            return
+        } catch (e) {
+            if (e instanceof Prisma.PrismaClientKnownRequestError && e.meta != null) {
+                res.status(400).json({error: "Unable to delete: " + e.meta})
+                return
+            } else {
+                res.status(500).json({error: "Unable to delete shuttle. " + e})
+            }
         }
         res.status(200).json(shuttle)
     })
