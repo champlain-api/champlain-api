@@ -88,6 +88,29 @@ router
         res.status(200).json(shuttles)
 
     })
+    .post("/:id", requireAPIKeyScopes([APIKeyScopes.SHUTTLE_EDIT]), async (req: Request, res: Response) => {
+        const {lat, lon, mph, direction} = req.body
+        let shuttle;
+        let id = Number(req.params.id)
+        if (isNaN(id)) {
+            res.status(404).json({error: "Invalid shuttle id."})
+            return
+        }
+        try {
+            shuttle = await prisma.shuttle.create({
+                data: {
+                    lat: lat || 0,
+                    lon: lon || 0,
+                    mph: mph || 0,
+                    direction: direction || 0
+                }
+            })
+        } catch {
+            res.status(400).json({error: "Unable to add shuttle."})
+            return
+        }
+        res.status(201).json(shuttle)
+    })
     .put("/:id", requireAPIKeyScopes([APIKeyScopes.SHUTTLE_EDIT]), async (req: Request, res: Response) => {
         const {lat, lon, mph, direction} = req.body
         let shuttle;
@@ -97,17 +120,11 @@ router
             return
         }
         try {
-            shuttle = await prisma.shuttle.upsert({
+            shuttle = await prisma.shuttle.update({
                 where: {
                     id: id
                 },
-                update: {
-                    lat: lat || 0,
-                    lon: lon || 0,
-                    mph: mph || 0,
-                    direction: direction || 0
-                },
-                create: {
+                data: {
                     lat: lat || 0,
                     lon: lon || 0,
                     mph: mph || 0,
@@ -115,10 +132,10 @@ router
                 }
             })
         } catch {
-            res.status(400).json({error: "Unable to add/update shuttle."})
+            res.status(400).json({error: "Unable to update shuttle."})
             return
         }
-        res.status(200).json(shuttle)
+        res.status(201).json(shuttle)
     })
     .delete("/:id", requireAPIKeyScopes([APIKeyScopes.SHUTTLE_EDIT]), async (req: Request, res: Response) => {
         let shuttle;
