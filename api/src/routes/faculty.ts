@@ -5,8 +5,6 @@ import prisma from "../prisma_client.ts"
 import {Prisma, APIKeyScopes} from "@prisma/client";
 
 const router = express.Router();
-console.log(APIKeyScopes);
-
 
 router.use(express.json())
 // Route to get all faculty data
@@ -73,7 +71,7 @@ router
 })
 
 // Route to get faculty members by department
-.get("/department/?=departmentName", async (req: Request, res: Response) => {
+.get("/department/:departmentName", async (req: Request, res: Response) => {
     res.setHeader("Content-Type", "application/json");
     try{
     // Normalize the department name
