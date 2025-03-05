@@ -31,7 +31,7 @@ router
     const id = Number(req.params.id)
 
     if (isNaN(id)) {
-        res.status(400).json({error: "Invalid announcement id."})
+        res.status(400).json({error: "Invalid faculty id."})
         return
     }
     
@@ -129,7 +129,7 @@ router
     const {name, title, departments, imageURL} = req.body
     res.setHeader("Content-Type", "application/json")
     if (isNaN(id)) {
-        res.status(404).json({error: "Invalid announcement id."})
+        res.status(404).json({error: "Invalid faculty id."})
         return
     }
 
@@ -164,7 +164,7 @@ router
     const id: number = Number(req.params.id)
     res.setHeader("Content-Type", "application/json")
     if (isNaN(id)) {
-        res.status(404).json({error: "Invalid announcement id."})
+        res.status(404).json({error: "Invalid faculty id."})
         return
     }
     let faculty;
