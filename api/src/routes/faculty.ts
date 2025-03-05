@@ -47,26 +47,27 @@ router
  })
 
 // Route to get a specific faculty member by name
-.get("/:name", async (req: Request, res: Response) => {
+.get("/name/:name", async (req: Request, res: Response) => {
     try {
         res.setHeader("Content-Type", "application/json");
 
         const name = req.params.name.toLowerCase();
-        const facultyMember = await prisma.faculty.findMany({
+        const facultyMember = await prisma.faculty.findFirst({
             where: {
-                name: name
+                name: {
+                    equals: name,
+                    mode: "insensitive"
+                }
             }
-            
         });
 
-        if (facultyMember.length > 0) {
+        if (facultyMember) {
             res.json(facultyMember);
         } else {
             res.status(404).json({ "error": "Faculty member not found." });
         }
     } catch (error) {
         res.status(500).json({ error: "Error fetching faculty." });
-
     }
 })
 
