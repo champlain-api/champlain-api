@@ -1,4 +1,7 @@
 import prisma from "../src/prisma_client"
+import * as fs from 'fs';
+import * as path from 'path';
+import { Faculty } from '../src/types/faculty';
 
 async function addSeedData() {
     // Add example announcements
@@ -35,6 +38,30 @@ async function addSeedData() {
             updated: new Date(Date.now())
         }
     })
+
+    const jsonFilePath = path.join(__dirname, '../src/data/faculty.json');
+    const facultyJSON: Faculty[] = JSON.parse(fs.readFileSync(jsonFilePath, 'utf8'));
+ 
+    if(facultyJSON.length > 0) {
+        await prisma.faculty.deleteMany({});
+        let idCounter = 1;
+        for(const faculty of facultyJSON) {
+            const lowerCaseDepartments = faculty.departments.map((dept: string) => dept.toLowerCase());
+            console.log(`Inserting: ${faculty.name}, Departments:`, lowerCaseDepartments);
+ 
+            await prisma.faculty.create({
+                data: {
+                    id: idCounter++,
+                    name: faculty.name,
+                    title: faculty.title,
+                    departments: lowerCaseDepartments,
+                    imageURL: faculty.imageUrl,
+                    updated: new Date(Date.now())
+                    }
+            });
+        }
+
+    }
 
 }
 
