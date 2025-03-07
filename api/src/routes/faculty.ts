@@ -75,7 +75,6 @@ router
 .get("/department/:departmentName", async (req: Request, res: Response) => {
     res.setHeader("Content-Type", "application/json");
     try{
-    // Normalize the department name
         const departmentName = req.params.departmentName.trim().toLowerCase();
 
         const filteredFaculty = await prisma.faculty.findMany({
