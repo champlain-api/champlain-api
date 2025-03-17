@@ -10,6 +10,7 @@ app.get("/", (request: Request, response: Response) => {
     response.status(200).send("Champlain API");
 })
 
+
 app.use("/dining", diningRoute)
 app.use("/announcements", announcementsRoute)
 app.use("/shuttles", shuttleRoute)

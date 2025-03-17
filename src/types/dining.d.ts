@@ -1,11 +1,8 @@
-export type Badge = {
-    name: string;
-}
+
 
 export type MenuItem = {
     station: string;
     name: string;
-    badges: Badge[];
 }
 
 export type Meal = {
