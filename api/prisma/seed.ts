@@ -47,7 +47,6 @@ async function addSeedData() {
         let idCounter = 1;
         for(const faculty of facultyJSON) {
             const lowerCaseDepartments = faculty.departments.map((dept: string) => dept.toLowerCase());
-            console.log(`Inserting: ${faculty.name}, Departments:`, lowerCaseDepartments);
  
             await prisma.faculty.create({
                 data: {
