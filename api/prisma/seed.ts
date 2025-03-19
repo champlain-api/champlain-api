@@ -61,7 +61,54 @@ async function addSeedData() {
         }
 
     }
+   
 
-}
+    
+    await prisma.dailyMenu.upsert({
+        where: { id: 1 },
+        update: {},
+        create: {
+            dayofWeek: "Monday",
+            Meals: {
+                create: [
+                    {
+                        name: "Pancakes",
+                        station: ["THE_BREAKFAST_BAR"],
+                        type: ["BREAKFAST"],
+                    },
+                    {
+                        name: "Black Bean Burger",
+                        station: ["SIZZLE"],
+                        type: ["LUNCH"],
+                    },
+                ],
+            },
+        },
+    });
+
+    await prisma.dailyMenu.upsert({
+        where: { id: 2 },
+        update: {},
+        create: {
+            dayofWeek: "Tuesday",
+            Meals: {
+                create: [
+                    {
+                        name: "Grilled Cheese",
+                        station: ["SIZZLE"],
+                        type: ["LUNCH", "DINNER"],
+                    },
+                    {
+                        name: "Tomato Soup",
+                        station: ["SOUP"],
+                        type: ["LUNCH"],
+                    },
+                ],
+            },
+        },
+    });
+
+
 
 addSeedData()
+}
