@@ -108,7 +108,7 @@ async function addSeedData() {
         },
     });
 
-
+}
 
 addSeedData()
-}
+
