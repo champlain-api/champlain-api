@@ -145,7 +145,7 @@ router
                 }
             })
             res.status(201).json(shuttle)
-
+            return
         } catch (e) {
             if (e instanceof Prisma.PrismaClientKnownRequestError && e.meta != null) {
                 res.status(400).json({error: e.meta})
@@ -173,7 +173,7 @@ router
                 }
             })
             res.status(200).json(shuttle)
-
+            return
         } catch (e) {
             if (e instanceof Prisma.PrismaClientKnownRequestError && e.meta != null) {
                 res.status(400).json({error: "Unable to delete: " + e.meta})
