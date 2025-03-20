@@ -39,8 +39,8 @@ enum AnnouncementType {
 model Shuttle {
   id        Int      @id @default(autoincrement())
   updated   DateTime @updatedAt @db.Timestamptz()
-  lat       Int      @default(0)
-  lon       Int      @default(0)
+  lat       Float    @default(0)
+  lon       Float    @default(0)
   mph       Int      @default(0)
   direction Int      @default(0)
 }
@@ -60,6 +60,14 @@ model Faculty {
   title       String   @default("")
   departments String[] @default([])
   imageURL    String   @default("https://www.champlain.edu/app/uploads/2023/10/cc-people-placeholder-400x400.jpg")
+}
+
+model Building {
+  id       Int      @id @default(autoincrement())
+  name     String   @default("")
+  location String   @default("")
+  hours    Json
+  updated  DateTime @updatedAt @db.Timestamptz(6)
 }
 
 enum APIKeyScopes {

@@ -2,6 +2,7 @@ import prisma from "../src/prisma_client"
 import * as fs from 'fs';
 import * as path from 'path';
 import { Faculty } from '../src/types/faculty';
+import { Building } from '../src/types/building';
 
 async function addSeedData() {
     // Add example announcements
@@ -55,6 +56,27 @@ async function addSeedData() {
                     title: faculty.title,
                     departments: lowerCaseDepartments,
                     imageURL: faculty.imageUrl,
+                    updated: new Date(Date.now())
+                    }
+            });
+        }
+
+    }
+
+    const jsonBuildingPath = path.join(__dirname, '../src/data/building.json');
+    const buildingJSON: Building[] = JSON.parse(fs.readFileSync(jsonBuildingPath, 'utf8'));
+ 
+    if(buildingJSON.length > 0) {
+        await prisma.building.deleteMany({});
+        let idCounter = 1;
+        for(const building of buildingJSON) {
+ 
+            await prisma.building.create({
+                data: {
+                    id: idCounter++,
+                    name: building.name,
+                    location: building.location,
+                    hours: building.hours,
                     updated: new Date(Date.now())
                     }
             });
