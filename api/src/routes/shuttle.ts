@@ -20,7 +20,7 @@
  * Create a shuttle with
  * the information JSON-encoded in
  * the request body
- *  POST /shuttle/:id
+ *  POST /shuttle
  *      Returns a 400 or 500 if the shuttle cannot be created.
  *
  * Update a shuttle with
@@ -69,12 +69,13 @@ router
                     id: "asc"
                 }
             })
+            res.send(shuttles)
+
         } catch {
             res.status(500).json({error: "Unable to get shuttles."})
             return
         }
 
-        res.send(shuttles)
     })
     .get("/:id", async (req: Request, res: Response) => {
         // Set our response's content type.
@@ -97,16 +98,11 @@ router
         res.status(200).json(shuttles)
 
     })
-    .post("/:id", requireAPIKeyScopes([APIKeyScopes.SHUTTLE_EDIT]), async (req: Request, res: Response) => {
+    .post("/", requireAPIKeyScopes([APIKeyScopes.SHUTTLE_EDIT]), async (req: Request, res: Response) => {
         const {lat, lon, mph, direction} = req.body
-        let shuttle;
-        let id = Number(req.params.id)
-        if (isNaN(id)) {
-            res.status(400).json({error: "Invalid shuttle id."})
-            return
-        }
+
         try {
-            shuttle = await prisma.shuttle.create({
+            let shuttle = await prisma.shuttle.create({
                 data: {
                     lat: lat || 0,
                     lon: lon || 0,
@@ -114,6 +110,8 @@ router
                     direction: direction || 0
                 }
             })
+            res.status(200).json(shuttle)
+            return
         } catch (e) {
             if (e instanceof Prisma.PrismaClientKnownRequestError && e.meta != null) {
                 res.status(400).json({error: e.meta})
@@ -123,20 +121,19 @@ router
                 return
             } else {
                 res.status(500).json({error: "Unable to create shuttle. " + e})
+                return
             }
         }
-        res.status(201).json(shuttle)
     })
     .put("/:id", requireAPIKeyScopes([APIKeyScopes.SHUTTLE_EDIT]), async (req: Request, res: Response) => {
         const {lat, lon, mph, direction} = req.body
-        let shuttle;
         let id = Number(req.params.id)
         if (isNaN(id)) {
             res.status(400).json({error: "Invalid shuttle id."})
             return
         }
         try {
-            shuttle = await prisma.shuttle.update({
+            let shuttle = await prisma.shuttle.update({
                 where: {
                     id: id
                 },
@@ -147,6 +144,8 @@ router
                     direction: direction || 0
                 }
             })
+            res.status(201).json(shuttle)
+            return
         } catch (e) {
             if (e instanceof Prisma.PrismaClientKnownRequestError && e.meta != null) {
                 res.status(400).json({error: e.meta})
@@ -156,9 +155,9 @@ router
                 return
             } else {
                 res.status(500).json({error: "Unable to update shuttle. " + e})
+                return
             }
         }
-        res.status(201).json(shuttle)
     })
     .delete("/:id", requireAPIKeyScopes([APIKeyScopes.SHUTTLE_EDIT]), async (req: Request, res: Response) => {
         let shuttle;
@@ -168,19 +167,21 @@ router
             return
         }
         try {
-            shuttle = await prisma.shuttle.delete({
+            let shuttle = await prisma.shuttle.delete({
                 where: {
                     id: id
                 }
             })
+            res.status(200).json(shuttle)
+            return
         } catch (e) {
             if (e instanceof Prisma.PrismaClientKnownRequestError && e.meta != null) {
                 res.status(400).json({error: "Unable to delete: " + e.meta})
                 return
             } else {
                 res.status(500).json({error: "Unable to delete shuttle. " + e})
+                return
             }
         }
-        res.status(200).json(shuttle)
     })
 export default router
