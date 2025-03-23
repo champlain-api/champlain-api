@@ -144,7 +144,7 @@ router
                     direction: direction || 0
                 }
             })
-            res.status(201).json(shuttle)
+            res.status(200).json(shuttle)
             return
         } catch (e) {
             if (e instanceof Prisma.PrismaClientKnownRequestError && e.meta != null) {

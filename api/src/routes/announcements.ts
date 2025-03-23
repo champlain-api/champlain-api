@@ -131,7 +131,7 @@ router
                 res.status(500).json({error: "Unable to create announcement. " + e})
             }
         }
-        res.status(201).json(announcement)
+        res.status(200).json(announcement)
         return
     })
     .put("/:id", requireAPIKeyScopes([APIKeyScopes.ANNOUNCEMENTS_EDIT]), async (req: Request, res: Response) => {

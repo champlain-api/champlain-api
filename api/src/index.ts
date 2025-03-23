@@ -14,3 +14,5 @@ app.use("/faculty", facultyRoute)
 app.listen(3000, () => {
     console.log("API running on :3000!")
 })
+
+export {app}
