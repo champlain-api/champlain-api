@@ -67,3 +67,40 @@ enum APIKeyScopes {
   SHUTTLE_EDIT
   FACULTY_EDIT
 }
+
+model DailyMenu {
+  id        Int    @id @default(autoincrement())
+  dayofWeek String @default("Monday")
+  Meals     Meal[]
+}
+
+enum station {
+  SIZZLE
+  SLICES
+  BAKERY
+  RISE
+  SAVORY
+  THE_BREAKFAST_BAR
+  SALAD_BAR
+  SHOWCASE
+  VEGETABLE
+  RUSTIC_ROOTS
+  SOUP
+}
+
+enum mealType {
+  DINNER
+  LATE_NIGHT
+  BREAKFAST
+  LUNCH
+  MORNING_BREAK
+  BRUNCH
+}
+
+model Meal {
+  id        Int         @id @default(autoincrement())
+  name      String      @default("Test")
+  station   station[]
+  type      mealType[]
+  DailyMenu DailyMenu[]
+}
