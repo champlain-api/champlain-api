@@ -18,6 +18,7 @@ tags:
     description: Endpoints relating to announcements.
   - name: faculty
     description: Endpoints related to faculty.
+
 paths:
   "/shuttles":
     get:
@@ -25,6 +26,14 @@ paths:
         - shuttle
       summary: "Get information relating to all shuttles"
       security: []
+      parameters:
+        - in: path
+          name: updatedWithin
+          description: Only show shuttles updated within the specified integer.
+          required: true
+          schema:
+            type: integer
+            minimum: 0
       responses:
         200:
           description: "OK"
@@ -32,6 +41,10 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/shuttle"
+        404:
+          description: "`updatedWithin` is invalid."
+        500:
+          description: "An error occured."
 
   "/shuttles/{shuttleId}":
     get:
@@ -49,7 +62,9 @@ paths:
             minimum: 0
       responses:
         404:
-          description: "Invalid shuttleId"
+          description: "Shuttle cannot be found."
+        400:
+          description: "Invalid shuttle ID specified."
         200:
           # TODO: Make schema for specific shuttle
           description: "OK"
@@ -57,6 +72,108 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/shuttle"
+
+  "/shuttle":
+    post:
+      tags:
+        - shuttle
+      summary: "Create a new shuttle."
+      description: "Requires the `SHUTTLE_EDIT` scope."
+      security:
+        - ApiKey: []
+      parameters:
+        - in: query
+          name: lat
+          description: "Latitude of the shuttle."
+          required: false
+          schema:
+            type: integer
+            default: 0
+        - in: query
+          name: lon
+          description: "Longitude of the shuttle."
+          required: false
+          schema:
+            type: integer
+            default: 0
+        - in: query
+          name: mph
+          description: "MPH of the shuttle."
+          required: false
+          schema:
+            type: integer
+            default: 0
+        - in: query
+          name: direction
+          description: "Direction of the shuttle."
+          schema:
+            type: string
+            default: "0"
+      responses:
+        500:
+          description: "Unable to create shuttle."
+        400:
+          description: "Unable to create shuttle. Please check that all fields are valid."
+        200:
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/shuttle"
+    put:
+      tags:
+        - shuttle
+      summary: "Update a shuttle."
+      description: "Requires the `SHUTTLE_EDIT` scope."
+      security:
+        - ApiKey: []
+      parameters:
+        - in: query
+          name: lat
+          description: "Latitude of the shuttle."
+          required: false
+          schema:
+            type: integer
+            default: 0
+        - in: query
+          name: lon
+          description: "Longitude of the shuttle."
+          required: false
+          schema:
+            type: integer
+            default: 0
+        - in: query
+          name: mph
+          description: "MPH of the shuttle."
+          required: false
+          schema:
+            type: integer
+            default: 0
+        - in: query
+          name: direction
+          description: "Direction of the shuttle."
+          schema:
+            type: string
+            default: "0"
+    delete:
+      tags:
+        - shuttle
+      summary: "Delete a shuttle."
+      description: "Requires the `SHUTTLE_EDIT` scope."
+      security:
+        - ApiKey: []
+      parameters:
+        - in: query
+          name: shuttleId
+          description: "ID of the shuttle"
+          required: true
+          schema:
+            type: integer
+      responses:
+        400:
+          description: "Invalid shuttleId."
+        500:
+          description: "An error occured."
 
   "/announcements":
     get:
