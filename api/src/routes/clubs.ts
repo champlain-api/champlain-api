@@ -47,21 +47,6 @@ router.get("/:clubName", async (req: Request, res: Response) => {
         res.status(500).json({ error: "Error retrieving club", details: error });
     }
 });
-// router.get("/:clubName", async (req: Request, res: Response) => {
-//     try {
-//         const club = await prisma.club.findUnique({
-//             where: { name: req.params.clubName }
-//         });
-// ``
-//         if (!club) {
-//             res.status(404).json({ error: "Club not found" });
-//         }
-
-//         res.json(club);
-//     } catch (error) {
-//         res.status(500).json({ error: "Error retrieving club", details: error });
-//     }
-// });
 
 // Route to create a new club
 router.post("/", async (req: Request, res: Response) => {
@@ -105,20 +90,5 @@ router.post("/", async (req: Request, res: Response) => {
         res.status(500).json({ error: "Error creating club", details: error });
     }
 });
-
-// // Route to create a new club
-// router.post("/", async (req: Request, res: Response) => {
-//     try {
-//         const { name, category, description, meetingTime, contactEmail } = req.body;
-
-//         const newClub = await prisma.club.create({
-//             data: { name, category, description, meetingTime, contactEmail }
-//         });
-
-//         res.json(newClub);
-//     } catch (error) {
-//         res.status(500).json({ error: "Error creating club", details: error });
-//     }
-// });
 
 export default router;
