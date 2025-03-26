@@ -29,12 +29,42 @@ describe("/shuttles", () => {
 
         });
 
-        test.todo("GET / with invalid updatedWithin parameter", async () => {
+        test("GET / with missing updatedWithin value", async () => {
+            let req = await fetch("http://localhost:3000/shuttles?updatedWithin=")
+
+            expect(req.status).toEqual(400)
+        })
+
+        test("GET / with invalid updatedWithin value (NaN)", async () => {
+            let req = await fetch("http://localhost:3000/shuttles?updatedWithin=invalid")
+
+            expect(req.status).toEqual(400)
+            expect(await req.json()).toMatchObject({error: expect.any(String)})
 
         })
 
-        test.todo("GET / with valid updatedWithin parameter", async () => {
+        test("GET / with invalid updatedWithin value (out of range)", async () => {
+            let req = await fetch("http://localhost:3000/shuttles?updatedWithin=600")
 
+            expect(req.status).toEqual(400)
+            expect(await req.json()).toMatchObject({error: expect.any(String)})
+
+        })
+
+        test("GET / with valid updatedWithin parameter", async () => {
+            let req = await fetch("http://localhost:3000/shuttles?updatedWithin=2")
+
+            expect(req.status).toEqual(200)
+            let receivedShuttle = await req.json() as Shuttle[]
+
+            expect(req.status).toEqual(200)
+            expect(receivedShuttle[0]).toEqual(expect.objectContaining({
+                direction: expect.any(Number),
+                id: expect.any(Number),
+                lat: expect.any(Number),
+                lon: expect.any(Number),
+                mph: expect.any(Number),
+            }))
         })
 
         test("GET /:id to return a specific shuttle", async () => {
