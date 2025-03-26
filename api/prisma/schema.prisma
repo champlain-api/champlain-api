@@ -67,3 +67,31 @@ enum APIKeyScopes {
   SHUTTLE_EDIT
   FACULTY_EDIT
 }
+
+
+model Club {
+  id            Int       @id @default(autoincrement())
+  updated       DateTime  @updatedAt @db.Timestamptz()
+  name          String    @unique
+  description   String
+  email         String
+  primaryContact String
+  clubInfo      ClubInfo?
+}
+
+model ClubInfo {
+  id        Int       @id @default(autoincrement())
+  type      String
+  semester  String[]
+  clubId    Int       @unique
+  club      Club      @relation(fields: [clubId], references: [id])
+  officers  Officer[]
+}
+
+model Officer {
+  id         Int       @id @default(autoincrement())
+  name       String
+  title      String
+  clubInfo   ClubInfo  @relation(fields: [clubInfoId], references: [id])
+  clubInfoId Int
+}
