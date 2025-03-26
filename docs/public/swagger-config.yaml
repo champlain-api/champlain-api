@@ -25,7 +25,7 @@ paths:
       tags:
         - shuttle
       summary: "Get information relating to all shuttles"
-      security: []
+      security: [ ]
       parameters:
         - in: path
           name: updatedWithin
@@ -33,7 +33,8 @@ paths:
           required: true
           schema:
             type: integer
-            minimum: 0
+            minimum: 1
+            maximum: 168
       responses:
         200:
           description: "OK"
@@ -51,7 +52,7 @@ paths:
       tags:
         - shuttle
       summary: "Get information relating to specific shuttle."
-      security: []
+      security: [ ]
       parameters:
         - in: path
           name: shuttleId
@@ -80,7 +81,7 @@ paths:
       summary: "Create a new shuttle"
       description: "Requires the `SHUTTLE_EDIT` scope."
       security:
-        - ApiKey: []
+        - ApiKey: [ ]
       parameters:
         - in: query
           name: lat
@@ -173,7 +174,7 @@ paths:
       summary: "Delete a shuttle."
       description: "Requires the `SHUTTLE_EDIT` scope."
       security:
-        - ApiKey: []
+        - ApiKey: [ ]
       parameters:
         - in: path
           name: shuttleId
@@ -190,7 +191,7 @@ paths:
       tags:
         - announcements
       summary: "Get current announcements."
-      security: []
+      security: [ ]
       parameters:
         - in: query
           name: type
@@ -224,7 +225,7 @@ paths:
       summary: "Make a new announcement"
       description: "Requires the `ANNOUNCEMENTS_EDIT` scope."
       security:
-        - ApiKey: []
+        - ApiKey: [ ]
       responses:
         200:
           description: "OK"
@@ -248,12 +249,12 @@ paths:
     get:
       tags:
         - announcements
-      summary: "Get current announcement by ID."
+      summary: "Get current announcement by id."
       security: [ ]
       parameters:
         - in: path
           name: id
-          description: "Announcement ID."
+          description: "Announcement id."
           schema:
             type: integer
             required: true
@@ -273,18 +274,18 @@ paths:
                     items:
                       $ref: "#/components/schemas/announcements"
         404:
-            description: "Invalid ID."
+          description: "Invalid id."
     put:
       tags:
         - announcements
       summary: "Edit an announcement"
       description: "Requires the `ANNOUNCEMENTS_EDIT` scope."
       security:
-        - ApiKey: []
+        - ApiKey: [ ]
       parameters:
         - in: path
           name: id
-          description: "Announcement ID."
+          description: "Announcement id."
           required: true
           schema:
             type: integer
@@ -309,11 +310,11 @@ paths:
       summary: "Delete an announcement"
       description: "Requires the `ANNOUNCEMENTS_EDIT` scope."
       security:
-        - ApiKey: []
+        - ApiKey: [ ]
       parameters:
         - in: path
           name: id
-          description: "Announcement ID."
+          description: "Announcement id."
           required: true
           schema:
             type: integer
@@ -333,14 +334,14 @@ paths:
                     items:
                       $ref: "#/components/schemas/announcements"
         404:
-          description: "Invalid ID."
+          description: "Invalid id."
 
   "/faculty":
     get:
       tags:
         - faculty
       summary: "Get all faculty data."
-      security: []
+      security: [ ]
       description: "Returns a JSON list of all faculty members, including their title, departments, and photo URL."
       responses:
         200:
@@ -349,13 +350,115 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/faculty"
+    post:
+      tags:
+        - faculty
+      summary: "Add a faculty member."
+      description: "Requires the `FACULTY_EDIT` scope."
+      security:
+        - ApiKey: [ ]
+      parameters:
+        - in: query
+          name: name
+          description: "Faculty member name"
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: title
+          description: "The faculty member's title"
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: department
+          description: "The faculty member's department"
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: imageURL
+          description: "The faculty member's image"
+          schema:
+            type: string
+          required: true
+      responses:
+        201:
+          description: "Created"
+        400:
+          description: "Unable to create faculty member. Please verify that all fields are valid."
+        500:
+          description: "Unable to create faculty member."
+    put:
+      tags:
+        - faculty
+      summary: "Update a faculty member."
+      description: "Requires the `FACULTY_EDIT` scope."
+      security:
+        - ApiKey: [ ]
+      parameters:
+        - in: query
+          name: name
+          description: "Faculty member name"
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: title
+          description: "The faculty member's title"
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: department
+          description: "The faculty member's department"
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: imageURL
+          description: "The faculty member's image"
+          schema:
+            type: string
+          required: true
+      responses:
+        201:
+          description: "Created"
+        400:
+          description: "Unable to create faculty member. Please verify that all fields are valid."
+        500:
+          description: "Unable to create faculty member."
+  "/faculty/{id}":
+    delete:
+      tags:
+        - faculty
+      summary: "Add a faculty member."
+      description: "Requires the `FACULTY_EDIT` scope."
+      security:
+        - ApiKey: [ ]
+      parameters:
+        - in: path
+          name: id
+          description: "Faculty member id"
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          description: "OK"
+        400:
+          description: "An error occurred."
+        404:
+            description: "Invalid faculty id."
+        500:
+          description: "Unable to delete faculty member."
 
   "/faculty/{name}":
     get:
       tags:
         - faculty
       summary: "Get a faculty member by name."
-      security: []
+      security: [ ]
       description: "Returns a faculty member including their title, departments, and photo URL."
       parameters:
         - in: path
@@ -387,7 +490,7 @@ paths:
       tags:
         - faculty
       summary: "Get faculty members by department."
-      security: []
+      security: [ ]
       description: "Returns all faculty members within a department including their title and photo URL."
       parameters:
         - in: path
