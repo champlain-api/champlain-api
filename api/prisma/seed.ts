@@ -2,6 +2,7 @@ import prisma from "../src/prisma_client"
 import * as fs from 'fs';
 import * as path from 'path';
 import { Faculty } from '../src/types/faculty';
+import { Housing } from '../src/types/housing';
 
 async function addSeedData() {
     // Add example announcements
@@ -47,6 +48,7 @@ async function addSeedData() {
         let idCounter = 1;
         for(const faculty of facultyJSON) {
             const lowerCaseDepartments = faculty.departments.map((dept: string) => dept.toLowerCase());
+            console.log(`Inserting: ${faculty.name}, Departments:`, lowerCaseDepartments);
  
             await prisma.faculty.create({
                 data: {
@@ -62,6 +64,28 @@ async function addSeedData() {
 
     }
 
-}
+    const housingPath = path.join(__dirname, '../src/data/housingData.json');
+    const housingJSON: Housing[] = JSON.parse(fs.readFileSync("src/data/housingData.json", "utf8"));
 
+    if (housingJSON.length > 0) {
+        await prisma.housing.deleteMany();
+        let idCounter = 1;
+        for(const housing of housingJSON) {
+            console.log(`Inserting: ${housing.name}`);
+            await prisma.housing.createMany({
+                data: {
+                    id: idCounter++,
+                    name: housing.name,
+                    type: housing.type,
+                    students: housing.students,
+                    distance: housing.distance,
+                    address: housing.address,
+                    imageURL: housing.imageUrl,
+                    updated: new Date(Date.now())
+                    }
+            });
+        }
+    }
+
+}
 addSeedData()
