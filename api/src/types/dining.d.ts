@@ -1,3 +1,5 @@
+import type { mealType } from "@prisma/client";
+
 export type MenuItem = {
     station: string;
     name: string;
@@ -29,4 +31,10 @@ export type DailyMenu = {
 export type WeeklyMenu = {
     date: string;
     menu: DailyMenu;
+}
+
+export type MealData = {
+    name: string;
+    type: { set: mealType[] };
+    station: { set: station[] };
 }

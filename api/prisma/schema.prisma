@@ -66,6 +66,7 @@ enum APIKeyScopes {
   ANNOUNCEMENTS_EDIT
   SHUTTLE_EDIT
   FACULTY_EDIT
+  DINING_EDIT
 }
 
 model DailyMenu {
@@ -86,6 +87,9 @@ enum station {
   VEGETABLE
   RUSTIC_ROOTS
   SOUP
+  CEREAL
+  DELI
+  STARCH
 }
 
 enum mealType {
@@ -99,7 +103,7 @@ enum mealType {
 
 model Meal {
   id        Int         @id @default(autoincrement())
-  name      String      @default("Test")
+  name      String      @default("")
   station   station[]
   type      mealType[]
   DailyMenu DailyMenu[]
