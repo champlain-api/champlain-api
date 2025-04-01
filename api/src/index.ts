@@ -1,4 +1,4 @@
-import express, {} from "express";
+import express, {type Request, type Response} from "express";
 import announcementsRoute from "./routes/announcements.ts"
 import shuttleRoute from "./routes/shuttle.ts"
 import facultyRoute from "./routes/faculty.ts"
