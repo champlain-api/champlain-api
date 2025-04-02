@@ -67,3 +67,31 @@ enum APIKeyScopes {
   SHUTTLE_EDIT
   FACULTY_EDIT
 }
+
+model Course {
+  id              Int      @id @default(autoincrement())
+  title           String   @default("")
+  number          String   @default("")
+  credit          Int      @default(0)
+  openseats       Int      @default(0)
+  days            String   @default("")
+  times           String   @default("")
+  instructor_name String   @default("")
+  description     String   @default("")
+  room            String   @default("")
+  subject         String   @default("")
+  type            String   @default("")
+  prereq          String   @default("")
+  start_date      DateTime @db.Timestamptz()
+  end_date        DateTime @db.Timestamptz()
+  semesterId      Int
+  semester        Semester @relation(fields: [semesterId], references: [id])
+}
+
+model Semester {
+  id      Int      @id @default(autoincrement())
+  name    String   @default("")
+  year    String   @default("")
+  date    String   @default("")
+  courses Course[]
+}

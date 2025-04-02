@@ -62,6 +62,46 @@ async function addSeedData() {
 
     }
 
+
+    const rawData = fs.readFileSync("src/data/semesters_and_courses.json", "utf8");
+    const semestersData = JSON.parse(rawData);
+
+    for (const semesterData of semestersData) {
+        // Create semester first
+        const semester = await prisma.semester.create({
+            data: {
+                name: semesterData.name,
+                year: semesterData.year,
+                date: semesterData.date, // Storing as a string
+            }
+        });
+
+        // Insert courses linked to this semester
+        for (const courseData of semesterData.courses) {
+            await prisma.course.create({
+                data: {
+                    title: courseData.title,
+                    number: courseData.number,
+                    credit: courseData.credit,
+                    openseats: courseData.openseats,
+                    days: courseData.days,
+                    times: courseData.times,
+                    instructor_name: courseData.instructor_name,
+                    description: courseData.description,
+                    room: courseData.room,
+                    subject: courseData.subject,
+                    type: courseData.type,
+                    prereq: courseData.prereq,
+                    start_date: courseData.start_date, // Keeping as string
+                    end_date: courseData.end_date, // Keeping as string
+                    semesterId: semester.id, // Linking course to semester
+                }
+            });
+        }
+    }
+
+    console.log("✅ Database seeding completed!");
+
 }
 
 addSeedData()
