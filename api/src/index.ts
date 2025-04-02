@@ -11,6 +11,7 @@ app.use("/", rootRoute)
 app.use("/announcements", announcementsRoute)
 app.use("/shuttles", shuttleRoute)
 app.use("/faculty", facultyRoute)
+app.use("/course", courseRoutes);
 
 app.listen(3000, () => {
     console.log("API running on :3000!")
