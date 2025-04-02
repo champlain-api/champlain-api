@@ -73,7 +73,7 @@ router
  * @param {string} semesterId - The ID of the semester to fetch courses for. * @returns {JSON} List of courses.
  * @returns {JSON} List of courses. 
 */
-    .get("/semester", async (req: Request, res: Response) => {
+    .get("/:semesterId", async (req: Request, res: Response) => {
         res.setHeader("Content-Type", "application/json");
 
         const semesterId = parseInt(req.params.semesterId, 10);
@@ -113,7 +113,7 @@ router
  * @param {string} courseNumber - The course number to fetch (e.g., "CSI-240").
  * @returns {JSON} The course details with its semester.
  */
-    .get("/courseNumber", async (req: Request, res: Response) => {
+    .get("/:courseNumber", async (req: Request, res: Response) => {
         res.setHeader("Content-Type", "application/json");
 
         const courseNumber = req.params.courseNumber;
@@ -173,6 +173,12 @@ router
         // Validate required fields
         if (!title || !number || !semesterId) {
             res.status(400).json({ error: "Missing required fields: title, number, or semesterId." });
+            return;
+        }
+
+        // Validate dates
+        if (isNaN(Date.parse(start_date)) || isNaN(Date.parse(end_date))) {
+            res.status(400).json({ error: "Invalid start_date or end_date." });
             return;
         }
 
