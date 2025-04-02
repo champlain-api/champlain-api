@@ -38,30 +38,15 @@ async function addSeedData() {
         }
     })
 
-    const jsonFilePath = path.join(__dirname, '../src/data/faculty.json');
-    const facultyJSON: Faculty[] = JSON.parse(fs.readFileSync(jsonFilePath, 'utf8'));
-
-    if (facultyJSON.length > 0) {
-        await prisma.faculty.deleteMany({});
-        let idCounter = 1;
-        for (const faculty of facultyJSON) {
-            const lowerCaseDepartments = faculty.departments.map((dept: string) => dept.toLowerCase());
-
-            await prisma.faculty.upsert({
-                where: {id: idCounter},
-                update: {},
-                create: {
-                    name: faculty.name,
-                    title: faculty.title,
-                    departments: lowerCaseDepartments,
-                    imageURL: faculty.imageUrl,
-                    updated: new Date(Date.now())
-                }
-            });
-            idCounter++;
+    await prisma.faculty.create({
+        data: {
+            name: "Dave Kopec",
+            title: "Associate Professor, Co-Program Director of Computer Science",
+            departments: ["CSIN", "ITS"],
+            imageURL: "https://www.champlain.edu/app/uploads/2024/03/Kopec_David-800x800.jpg",
         }
+    });
 
-    }
 
     // Add example API key and user
 
@@ -83,6 +68,14 @@ async function addSeedData() {
         data: {
             key: "shuttle-edit",
             scopes: ["SHUTTLE_EDIT"],
+            userID: 1
+        }
+    })
+
+    await prisma.apiKey.create({
+        data: {
+            key: "announcement-edit",
+            scopes: ["ANNOUNCEMENTS_EDIT"],
             userID: 1
         }
     })

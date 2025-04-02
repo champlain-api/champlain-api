@@ -2,93 +2,99 @@ import {expect, test, describe, beforeAll} from "bun:test";
 import type {Shuttle} from "../types/shuttle.d.ts"
 import request from "supertest"
 import {app} from "../index.ts"
+import type {Announcement, AnnouncementStyle} from "../types/announcement.ts";
 
 beforeAll(async () => {
     request(app)
 })
 
 
-describe("/shuttles", () => {
+describe("/announcements", () => {
+
+    // TODO: see if the style and types are valid enums
     // @ts-ignore -- ignoring the updated property
-    const mockShuttle: Shuttle = {
-        direction: expect.any(Number),
+    const mockAnnouncement: Announcement = {
         id: expect.any(Number),
-        lat: expect.any(Number),
-        lon: expect.any(Number),
-        mph: expect.any(Number),
+        title: expect.any(String),
+        description: expect.any(String),
+        type: expect.any(Array),
+        style: expect.any(String)
     }
+
 
     describe("GET requests", () => {
 
         test("GET / to return a 200", async () => {
-            let req = await fetch("http://localhost:3000/shuttles")
+            let req = await fetch("http://localhost:3000/announcements")
 
             expect(req.status).toEqual(200)
         });
 
-        test("GET / with missing updatedWithin value", async () => {
-            let req = await fetch("http://localhost:3000/shuttles?updatedWithin=")
+        test("GET / with missing type value", async () => {
+            let req = await fetch("http://localhost:3000/announcements?type[]=")
 
             expect(req.status).toEqual(400)
         })
 
-        test("GET / with invalid updatedWithin value (NaN)", async () => {
-            let req = await fetch("http://localhost:3000/shuttles?updatedWithin=invalid")
-
-            expect(req.status).toEqual(400)
-            expect(await req.json()).toMatchObject({error: expect.any(String)})
-
-        })
-
-        test("GET / with invalid updatedWithin value (out of range)", async () => {
-            let req = await fetch("http://localhost:3000/shuttles?updatedWithin=600")
+        test("GET / with invalid type value", async () => {
+            let req = await fetch("http://localhost:3000/announcements?type=TEST")
 
             expect(req.status).toEqual(400)
             expect(await req.json()).toMatchObject({error: expect.any(String)})
 
         })
 
-        test("GET / with valid updatedWithin parameter", async () => {
-            let req = await fetch("http://localhost:3000/shuttles?updatedWithin=2")
+        test("GET / with invalid type value (not array)", async () => {
+            let req = await fetch("http://localhost:3000/announcements?type=WEB")
+
+            expect(req.status).toEqual(400)
+            expect(await req.json()).toMatchObject({error: expect.any(String)})
+
+        })
+
+        test("GET / with valid type value", async () => {
+            let req = await fetch("http://localhost:3000/announcements?type[]=WEB")
 
             expect(req.status).toEqual(200)
-            let receivedShuttle = await req.json() as Shuttle[]
+            let receivedAnnouncement = await req.json() as Shuttle[]
 
             expect(req.status).toEqual(200)
         })
 
-        test("GET /:id to return a specific shuttle", async () => {
-            let req = await fetch("http://localhost:3000/shuttles/1")
-            let receivedShuttle = await req.json() as Shuttle[]
+        test("GET /:id to return a specific announcement", async () => {
+            let req = await fetch("http://localhost:3000/announcements/1")
+            let receivedAnnouncement = await req.json() as Announcement
 
             expect(req.status).toEqual(200)
-            expect(receivedShuttle[0]).toEqual(expect.objectContaining({
-                direction: expect.any(Number),
+            expect(receivedAnnouncement).toEqual(expect.objectContaining({
                 id: 1,
-                lat: expect.any(Number),
-                lon: expect.any(Number),
-                mph: expect.any(Number),
+                updated: expect.any(String),
+                title: expect.any(String),
+                description: expect.any(String),
+                type: expect.any(Array),
+                style: expect.any(String)
             }))
         });
 
         test("GET /:invalid-id to return an 400", async () => {
-            let req = await fetch("http://localhost:3000/shuttles/2s")
+            let req = await fetch("http://localhost:3000/announcements/2s")
 
             expect(req.status).toEqual(400)
             expect(await req.json()).toMatchObject({error: expect.any(String)})
         });
 
         test("GET /:unknown-id to return an 404", async () => {
-            let req = await fetch("http://localhost:3000/shuttles/100")
+            let req = await fetch("http://localhost:3000/announcements/100")
 
             expect(req.status).toEqual(404)
             expect(await req.json()).toMatchObject({error: expect.any(String)})
         });
     })
+
     describe("Invalid Authorization header", () => {
         // No Authorization header
         test("POST / (no API key) to return an 401", async () => {
-            let req = await fetch("http://localhost:3000/shuttles", {
+            let req = await fetch("http://localhost:3000/announcements", {
                 method: "POST"
             })
             expect(req.status).toEqual(401)
@@ -96,7 +102,7 @@ describe("/shuttles", () => {
         });
 
         test("PUT / (no API key) to return an 401", async () => {
-            let req = await fetch("http://localhost:3000/shuttles/162499", {
+            let req = await fetch("http://localhost:3000/announcements/162499", {
                 method: "PUT"
             })
             expect(req.status).toEqual(401)
@@ -104,7 +110,7 @@ describe("/shuttles", () => {
         });
 
         test("DELETE / (no API key) to return an 401", async () => {
-            let req = await fetch("http://localhost:3000/shuttles/162499", {
+            let req = await fetch("http://localhost:3000/announcements/162499", {
                 method: "DELETE"
             })
             expect(req.status).toEqual(401)
@@ -113,7 +119,7 @@ describe("/shuttles", () => {
 
         // Sent with header, but invalid key
         test("POST / (header, no key) to return an 401", async () => {
-            let req = await fetch("http://localhost:3000/shuttles", {
+            let req = await fetch("http://localhost:3000/announcements", {
                 method: "POST",
                 headers: {
                     "Authorization": "",
@@ -125,7 +131,7 @@ describe("/shuttles", () => {
         });
 
         test("PUT / (header, no key) to return an 401", async () => {
-            let req = await fetch("http://localhost:3000/shuttles/162499", {
+            let req = await fetch("http://localhost:3000/announcements/162499", {
                 method: "PUT",
                 headers: {
                     "Authorization": "",
@@ -137,7 +143,7 @@ describe("/shuttles", () => {
         });
 
         test("DELETE / (header, no key) to return an 401", async () => {
-            let req = await fetch("http://localhost:3000/shuttles/162499", {
+            let req = await fetch("http://localhost:3000/announcements/162499", {
                 method: "DELETE",
                 headers: {
                     "Authorization": "",
@@ -149,7 +155,7 @@ describe("/shuttles", () => {
         });
 
         test("POST / (header + method, no key) to return an 401", async () => {
-            let req = await fetch("http://localhost:3000/shuttles", {
+            let req = await fetch("http://localhost:3000/announcements", {
                 method: "POST",
                 headers: {
                     "Authorization": "Bearer",
@@ -161,7 +167,7 @@ describe("/shuttles", () => {
         });
 
         test("PUT / (header + method, no key) to return an 401", async () => {
-            let req = await fetch("http://localhost:3000/shuttles/162499", {
+            let req = await fetch("http://localhost:3000/announcements/162499", {
                 method: "PUT",
                 headers: {
                     "Authorization": "Bearer",
@@ -173,7 +179,7 @@ describe("/shuttles", () => {
         });
 
         test("DELETE / (header + method, no key) to return an 401", async () => {
-            let req = await fetch("http://localhost:3000/shuttles/162499", {
+            let req = await fetch("http://localhost:3000/announcements/162499", {
                 method: "DELETE",
                 headers: {
                     "Authorization": "Bearer",
@@ -186,79 +192,104 @@ describe("/shuttles", () => {
 
     })
 
-    describe("Valid Authorization header + key", () => {
-        test("POST / to return an 200 and the new shuttle", async () => {
-            let req = await fetch("http://localhost:3000/shuttles", {
+
+    describe("Invalid body data", () => {
+        test("POST / to return an 400 and an error", async () => {
+            let req = await fetch("http://localhost:3000/announcements", {
                 method: "POST",
                 headers: {
-                    "Authorization": "Bearer shuttle-edit",
+                    "Authorization": "Bearer announcement-edit",
                     "Content-type": "application/json",
                 },
                 body: JSON.stringify({
-                    direction: 0,
-                    mph: 15,
-                    lat: -42,
-                    lon: 72
+                    title: "valid title",
+                    description: 20,
+                    type: ["WEB"],
+                    style: "INFO"
+                })
+            })
+            expect(req.status).toEqual(400)
+            expect(await req.json()).toMatchObject({error: expect.any(String)})
+        });
+    })
+
+
+    describe("Valid Authorization header + key", () => {
+        test("POST / to return an 200 and the new announcement", async () => {
+            let req = await fetch("http://localhost:3000/announcements", {
+                method: "POST",
+                headers: {
+                    "Authorization": "Bearer announcement-edit",
+                    "Content-type": "application/json",
+                },
+                body: JSON.stringify({
+                    title: "valid title",
+                    description: "valid description",
+                    type: ["WEB"],
+                    style: "INFO"
+                })
+            })
+            let jsonResponse = await req.json() as Announcement
+            expect(req.status).toEqual(200)
+            expect(jsonResponse).toMatchObject(mockAnnouncement)
+        });
+
+        test("PUT / to return an 200 and the new announcement", async () => {
+            let req = await fetch("http://localhost:3000/announcements/3", {
+                method: "PUT",
+                headers: {
+                    "Authorization": "Bearer announcement-edit",
+                    "Content-type": "application/json",
+                },
+                body: JSON.stringify({
+                    title: "new title",
+                    description: "new description",
+                    type: ["WEB"],
+                    style: "INFO"
                 })
             })
             expect(req.status).toEqual(200)
             expect(await req.json()).toMatchObject({
-                id: expect.any(Number),
-                direction: expect.any(Number),
-                mph: expect.any(Number),
-                lat: expect.any(Number),
-                lon: expect.any(Number),
-                updated: expect.any(String)
+                announcement: {
+                    title: "new title",
+                    description: "new description",
+                    type: ["WEB"],
+                    style: "INFO"
+                }
             })
         });
 
-        test("PUT / to return an 200 and the shuttle", async () => {
-            let req = await fetch("http://localhost:3000/shuttles/2", {
-                method: "PUT",
-                headers: {
-                    "Authorization": "Bearer shuttle-edit",
-                    "Content-type": "application/json",
-                },
-                body: JSON.stringify({
-                    direction: 200,
-                    id: 2,
-                    lat: 101,
-                    lon: 120,
-                    mph: 2,
-                })
-            })
-            let receivedShuttle = await req.json() as Shuttle
-            expect(req.status).toEqual(200)
-
-            expect(receivedShuttle).toMatchObject({
-                direction: 200,
-                id: 2,
-                lat: 101,
-                lon: 120,
-                mph: 2,
-                updated: expect.any(String)
-            })
-        });
-
-        test("DELETE / to return an 200", async () => {
-            let req = await fetch("http://localhost:3000/shuttles/2", {
+        test("DELETE / to return an 200 and the new announcement", async () => {
+            let req = await fetch("http://localhost:3000/announcements/3", {
                 method: "DELETE",
                 headers: {
-                    "Authorization": "Bearer shuttle-edit",
+                    "Authorization": "Bearer announcement-edit",
                     "Content-type": "application/json",
                 }
             })
             expect(req.status).toEqual(200)
             expect(await req.json()).toMatchObject({
-                direction: 200,
-                id: 2,
-                lat: 101,
-                lon: 120,
-                mph: 2
+
+                title: "new title",
+                description: "new description",
+                type: ["WEB"],
+                style: "INFO"
+
             })
         });
-    })
 
+        test("GET deleted announcement and return a 404", async () => {
+            let req = await fetch("http://localhost:3000/announcements/3", {
+                method: "GET",
+                headers: {
+                    "Authorization": "Bearer announcement-edit",
+                    "Content-type": "application/json",
+                }
+            })
+            expect(req.status).toEqual(404)
+        });
+
+    })
 
 });
 
