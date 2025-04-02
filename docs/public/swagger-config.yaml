@@ -8,8 +8,6 @@ info:
     url: "https://github.com/champlain-api/"
 servers:
   - url: "http://localhost:3000/"
-security:
-  - ApiKey: []
 
 tags:
   - name: shuttle
@@ -25,12 +23,12 @@ paths:
       tags:
         - shuttle
       summary: "Get information relating to all shuttles"
-      security: [ ]
+      security: []
       parameters:
-        - in: path
+        - in: query
           name: updatedWithin
           description: Only show shuttles updated within the specified integer.
-          required: true
+          required: false
           schema:
             type: integer
             minimum: 1
@@ -52,7 +50,7 @@ paths:
       tags:
         - shuttle
       summary: "Get information relating to specific shuttle."
-      security: [ ]
+      security: []
       parameters:
         - in: path
           name: shuttleId
@@ -81,35 +79,14 @@ paths:
       summary: "Create a new shuttle"
       description: "Requires the `SHUTTLE_EDIT` scope."
       security:
-        - ApiKey: [ ]
-      parameters:
-        - in: query
-          name: lat
-          description: "Latitude of the shuttle."
-          required: false
-          schema:
-            type: integer
-            default: 0
-        - in: query
-          name: lon
-          description: "Longitude of the shuttle."
-          required: false
-          schema:
-            type: integer
-            default: 0
-        - in: query
-          name: mph
-          description: "MPH of the shuttle."
-          required: false
-          schema:
-            type: integer
-            default: 0
-        - in: query
-          name: direction
-          description: "Direction of the shuttle."
-          schema:
-            type: string
-            default: "0"
+        - bearerAuth: []
+      requestBody:
+        description: "A shuttle object."
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/shuttle"
       responses:
         500:
           description: "Unable to create shuttle."
@@ -124,57 +101,30 @@ paths:
 
   "/shuttle/{shuttleId}":
     put:
+      summary: "Update an existing shuttle."
       tags:
         - shuttle
-      summary: "Update a shuttle."
-      description: "Requires the `SHUTTLE_EDIT` scope."
       security:
-        - ApiKey: [ ]
-      parameters:
-        - in: path
-          name: shuttleId
-          description: "ID of the shuttle. Any number is accepted starting from 0."
-          required: true
-          schema:
-            type: integer
-            minimum: 0
-        - in: query
-          name: lat
-          description: "Latitude of the shuttle."
-          required: false
-          schema:
-            type: integer
-            default: 0
-        - in: query
-          name: lon
-          description: "Longitude of the shuttle."
-          required: false
-          schema:
-            type: integer
-            default: 0
-        - in: query
-          name: mph
-          description: "MPH of the shuttle."
-          required: false
-          schema:
-            type: integer
-            default: 0
-        - in: query
-          name: direction
-          description: "Direction of the shuttle."
-          schema:
-            type: string
-            default: "0"
+      - bearerAuth: []
+      requestBody:
+        description: "A shuttle object."
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/shuttle"
       responses:
         400:
           description: "The shuttle cannot be updated."
+        200:
+          description: OK
     delete:
       tags:
         - shuttle
       summary: "Delete a shuttle."
       description: "Requires the `SHUTTLE_EDIT` scope."
       security:
-        - ApiKey: [ ]
+        - bearerAuth: []
       parameters:
         - in: path
           name: shuttleId
@@ -191,7 +141,7 @@ paths:
       tags:
         - announcements
       summary: "Get current announcements."
-      security: [ ]
+      security: []
       parameters:
         - in: query
           name: type
@@ -225,7 +175,7 @@ paths:
       summary: "Make a new announcement"
       description: "Requires the `ANNOUNCEMENTS_EDIT` scope."
       security:
-        - ApiKey: [ ]
+        - bearerAuth: []
       responses:
         200:
           description: "OK"
@@ -250,7 +200,7 @@ paths:
       tags:
         - announcements
       summary: "Get current announcement by id."
-      security: [ ]
+      security: []
       parameters:
         - in: path
           name: id
@@ -281,7 +231,7 @@ paths:
       summary: "Edit an announcement"
       description: "Requires the `ANNOUNCEMENTS_EDIT` scope."
       security:
-        - ApiKey: [ ]
+        - bearerAuth: []
       parameters:
         - in: path
           name: id
@@ -310,7 +260,7 @@ paths:
       summary: "Delete an announcement"
       description: "Requires the `ANNOUNCEMENTS_EDIT` scope."
       security:
-        - ApiKey: [ ]
+        - bearerAuth: []
       parameters:
         - in: path
           name: id
@@ -341,7 +291,7 @@ paths:
       tags:
         - faculty
       summary: "Get all faculty data."
-      security: [ ]
+      security: []
       description: "Returns a JSON list of all faculty members, including their title, departments, and photo URL."
       responses:
         200:
@@ -356,7 +306,7 @@ paths:
       summary: "Add a faculty member."
       description: "Requires the `FACULTY_EDIT` scope."
       security:
-        - ApiKey: [ ]
+        - bearerAuth: []
       parameters:
         - in: query
           name: name
@@ -395,7 +345,7 @@ paths:
       summary: "Update a faculty member."
       description: "Requires the `FACULTY_EDIT` scope."
       security:
-        - ApiKey: [ ]
+        - bearerAuth: []
       parameters:
         - in: query
           name: name
@@ -435,7 +385,7 @@ paths:
       summary: "Add a faculty member."
       description: "Requires the `FACULTY_EDIT` scope."
       security:
-        - ApiKey: [ ]
+        - bearerAuth: []
       parameters:
         - in: path
           name: id
@@ -449,7 +399,7 @@ paths:
         400:
           description: "An error occurred."
         404:
-            description: "Invalid faculty id."
+          description: "Invalid faculty id."
         500:
           description: "Unable to delete faculty member."
 
@@ -458,7 +408,7 @@ paths:
       tags:
         - faculty
       summary: "Get a faculty member by name."
-      security: [ ]
+      security: []
       description: "Returns a faculty member including their title, departments, and photo URL."
       parameters:
         - in: path
@@ -490,7 +440,7 @@ paths:
       tags:
         - faculty
       summary: "Get faculty members by department."
-      security: [ ]
+      security: []
       description: "Returns all faculty members within a department including their title and photo URL."
       parameters:
         - in: path
@@ -518,12 +468,14 @@ paths:
                     type: string
                     example: "No faculty members found for this department."
 
+
+
 components:
   securitySchemes:
-    API_KEY:
-      type: apiKey
-      in: header
-      name: X-CHAMPLAIN-API-KEY
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
   schemas:
     announcements:
       type: object
@@ -588,3 +540,5 @@ components:
         imageUrl:
           type: string
           format: uri
+  security:
+  - bearerAuth: []
