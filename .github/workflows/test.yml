@@ -15,5 +15,9 @@ jobs:
         run: bun install
       - name: TSC Compile
         run: bunx tsc --noEmit
+      - name: Primsa migrations
+        run: bunx prisma migrate deploy
+      - name: Prisma seed
+        run: bunx prisma db seed
       - name: Run Tests
         run: bun test
