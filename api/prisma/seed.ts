@@ -99,9 +99,6 @@ async function addSeedData() {
             });
         }
     }
-
-    console.log("✅ Database seeding completed!");
-
 }
 
 addSeedData()
