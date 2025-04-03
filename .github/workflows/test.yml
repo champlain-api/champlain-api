@@ -4,8 +4,27 @@ on:
       - main
 
 jobs:
+  defaults:
+    run:
+      working-directory: ./api
   build:
     name: Build API & run tests
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: user
+          POSTGRES_PASSWORD: my-pass
+          POSTGRES_DB: champlain-api
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - "5432:5432"
+    env:
+      DATABASE_URL: "postgresql://user:my-pass@localhost:5432/champlain-api?schema=public&connection_limit=1"
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
