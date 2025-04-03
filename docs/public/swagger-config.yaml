@@ -32,6 +32,7 @@ paths:
           schema:
             type: integer
             minimum: 1
+            default: 2
             maximum: 168
       responses:
         200:
@@ -118,6 +119,8 @@ paths:
           description: "The shuttle cannot be updated."
         200:
           description: OK
+        401:
+          description: "Not authorized."
     delete:
       tags:
         - shuttle
@@ -133,8 +136,8 @@ paths:
           schema:
             type: integer
       responses:
-        404:
-          description: "Invalid shuttleId."
+        401:
+          description: "Not authorized."
 
   "/announcements":
     get:
@@ -495,8 +498,8 @@ components:
         type:
           type: string
           enum:
-            - Mobile
-            - Shuttle
+            - MOBILE
+            - SHUTTLE
             - WWW
     shuttle:
       type: object
