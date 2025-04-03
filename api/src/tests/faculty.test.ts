@@ -18,7 +18,6 @@ import {expect, test, describe, beforeAll} from "bun:test";
 import request from "supertest"
 import {app} from "../index.ts"
 import type {Faculty} from "../types/faculty.d.ts";
-import {mock} from "node:test";
 
 beforeAll(async () => {
     request(app)
