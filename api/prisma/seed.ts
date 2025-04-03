@@ -1,3 +1,20 @@
+/*
+   Copyright 2025 Champlain API Authors
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
+*/
+
 import prisma from "../src/prisma_client"
 import * as fs from 'fs';
 import * as path from 'path';
@@ -42,8 +59,17 @@ async function addSeedData() {
         data: {
             name: "Dave Kopec",
             title: "Associate Professor, Co-Program Director of Computer Science",
-            departments: ["CSIN", "ITS"],
+            departments: ["csin", "its"],
             imageURL: "https://www.champlain.edu/app/uploads/2024/03/Kopec_David-800x800.jpg",
+        }
+    });
+
+    await prisma.faculty.create({
+        data: {
+            name: "Ryan Gillen",
+            title: "Leahy Center Manager",
+            departments: ["leahy center"],
+            imageURL: "https://www.champlain.edu/app/uploads/2024/05/Gillen_Ryan-400x400.jpg",
         }
     });
 
@@ -64,21 +90,7 @@ async function addSeedData() {
             userID: 1
         }
     })
-    await prisma.apiKey.create({
-        data: {
-            key: "shuttle-edit",
-            scopes: ["SHUTTLE_EDIT"],
-            userID: 1
-        }
-    })
 
-    await prisma.apiKey.create({
-        data: {
-            key: "announcement-edit",
-            scopes: ["ANNOUNCEMENTS_EDIT"],
-            userID: 1
-        }
-    })
 
 }
 

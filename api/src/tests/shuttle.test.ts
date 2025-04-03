@@ -1,3 +1,19 @@
+/*
+   Copyright 2025 Champlain API Authors
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
+*/
 import {expect, test, describe, beforeAll} from "bun:test";
 import type {Shuttle} from "../types/shuttle.d.ts"
 import request from "supertest"
@@ -191,7 +207,7 @@ describe("/shuttles", () => {
             let req = await fetch("http://localhost:3000/shuttles", {
                 method: "POST",
                 headers: {
-                    "Authorization": "Bearer shuttle-edit",
+                    "Authorization": "Bearer all-scopes",
                     "Content-type": "application/json",
                 },
                 body: JSON.stringify({
@@ -216,7 +232,7 @@ describe("/shuttles", () => {
             let req = await fetch("http://localhost:3000/shuttles/2", {
                 method: "PUT",
                 headers: {
-                    "Authorization": "Bearer shuttle-edit",
+                    "Authorization": "Bearer all-scopes",
                     "Content-type": "application/json",
                 },
                 body: JSON.stringify({
@@ -244,7 +260,7 @@ describe("/shuttles", () => {
             let req = await fetch("http://localhost:3000/shuttles/2", {
                 method: "DELETE",
                 headers: {
-                    "Authorization": "Bearer shuttle-edit",
+                    "Authorization": "Bearer all-scopes",
                     "Content-type": "application/json",
                 }
             })
