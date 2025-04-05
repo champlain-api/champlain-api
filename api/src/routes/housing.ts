@@ -141,7 +141,7 @@ router
     res.status(200).json({housing})
 })
 
-.delete("/:id", requireAPIKeyScopes([APIKeyScopes.FACULTY_EDIT]), async (req: Request, res: Response) => {
+.delete("/:id", requireAPIKeyScopes([APIKeyScopes.HOUSING_EDIT]), async (req: Request, res: Response) => {
     const id: number = Number(req.params.id)
     res.setHeader("Content-Type", "application/json")
     if (isNaN(id)) {
