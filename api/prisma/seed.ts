@@ -1,7 +1,24 @@
+/*
+   Copyright 2025 Champlain API Authors
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
+*/
+
 import prisma from "../src/prisma_client"
 import * as fs from 'fs';
 import * as path from 'path';
-import { Faculty } from '../src/types/faculty';
+import type {Faculty} from '../src/types/faculty.d.ts';
 
 async function addSeedData() {
     // Add example announcements
@@ -31,36 +48,49 @@ async function addSeedData() {
         where: {id: 1},
         update: {},
         create: {
-            direction: 0,
-            lat: 44.47394871475691,
-            lon: -73.20577978477449,
+            direction: 20,
+            lat: 44.4743,
+            lon: -73.2067,
             mph: 20,
-            updated: new Date(Date.now())
         }
     })
 
-    const jsonFilePath = path.join(__dirname, '../src/data/faculty.json');
-    const facultyJSON: Faculty[] = JSON.parse(fs.readFileSync(jsonFilePath, 'utf8'));
- 
-    if(facultyJSON.length > 0) {
-        await prisma.faculty.deleteMany({});
-        let idCounter = 1;
-        for(const faculty of facultyJSON) {
-            const lowerCaseDepartments = faculty.departments.map((dept: string) => dept.toLowerCase());
- 
-            await prisma.faculty.create({
-                data: {
-                    id: idCounter++,
-                    name: faculty.name,
-                    title: faculty.title,
-                    departments: lowerCaseDepartments,
-                    imageURL: faculty.imageUrl,
-                    updated: new Date(Date.now())
-                    }
-            });
+    await prisma.faculty.create({
+        data: {
+            name: "Dave Kopec",
+            title: "Associate Professor, Co-Program Director of Computer Science",
+            departments: ["csin", "its"],
+            imageURL: "https://www.champlain.edu/app/uploads/2024/03/Kopec_David-800x800.jpg",
         }
+    });
 
-    }
+    await prisma.faculty.create({
+        data: {
+            name: "Ryan Gillen",
+            title: "Leahy Center Manager",
+            departments: ["leahy center"],
+            imageURL: "https://www.champlain.edu/app/uploads/2024/05/Gillen_Ryan-400x400.jpg",
+        }
+    });
+
+
+    // Add example API key and user
+
+    await prisma.user.create({
+        data: {
+            email: "tester@example.invalid",
+            id: 1
+        }
+    })
+
+    await prisma.apiKey.create({
+        data: {
+            key: "all-scopes",
+            scopes: ["ANNOUNCEMENTS_EDIT", "FACULTY_EDIT", "SHUTTLE_EDIT"],
+            userID: 1
+        }
+    })
+
 
 }
 
