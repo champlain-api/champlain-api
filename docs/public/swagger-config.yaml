@@ -27,7 +27,7 @@ paths:
       parameters:
         - in: query
           name: updatedWithin
-          description: Only show shuttles updated within the specified integer.
+          description: Only show shuttles updated within the the last x hours.
           required: false
           schema:
             type: integer
