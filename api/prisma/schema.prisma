@@ -74,8 +74,17 @@ model Faculty {
   imageURL    String   @default("https://www.champlain.edu/app/uploads/2023/10/cc-people-placeholder-400x400.jpg")
 }
 
+model Building {
+  id       Int      @id @default(autoincrement())
+  name     String   @default("")
+  location String   @default("")
+  hours    Json
+  updated  DateTime @updatedAt @db.Timestamptz(6)
+}
+
 enum APIKeyScopes {
   ANNOUNCEMENTS_EDIT
   SHUTTLE_EDIT
   FACULTY_EDIT
+  BUILDING_EDIT
 }

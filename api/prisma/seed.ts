@@ -16,9 +16,6 @@
 */
 
 import prisma from "../src/prisma_client"
-import * as fs from 'fs';
-import * as path from 'path';
-import type {Faculty} from '../src/types/faculty.d.ts';
 
 async function addSeedData() {
     // Add example announcements
@@ -90,7 +87,6 @@ async function addSeedData() {
             userID: 1
         }
     })
-
 
 }
 
