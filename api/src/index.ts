@@ -3,7 +3,7 @@ import announcementsRoute from "./routes/announcements.ts"
 import shuttleRoute from "./routes/shuttle.ts"
 import facultyRoute from "./routes/faculty.ts"
 import rootRoute from "./routes/root.ts"
-import courseRoutes from "./routes/courses2.ts"
+import courseRoutes from "./routes/courses.ts"
 
 const app = express()
 
