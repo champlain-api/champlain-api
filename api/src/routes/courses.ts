@@ -78,7 +78,7 @@ router
     .get("/:semesterId", async (req: Request, res: Response) => {
         res.setHeader("Content-Type", "application/json");
 
-        const semesterId = parseInt(req.params.semesterId, 10);
+        const semesterId = req.params.semesterId;
         if (isNaN(semesterId)) {
             res.status(400).json({ error: "Invalid semester ID." });
             return;
