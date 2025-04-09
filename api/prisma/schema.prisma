@@ -1,20 +1,24 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
+
 generator client {
   provider = "prisma-client-js"
 }
+
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
+
 model User {
   id      Int      @id @default(autoincrement())
   email   String
   apiKeys apiKey[]
 }
+
 
 model Announcement {
   id          Int                @id @default(autoincrement())
@@ -25,16 +29,19 @@ model Announcement {
   style       AnnouncementStyle  @default(INFO)
 }
 
+
 enum AnnouncementStyle {
   EMERGENCY
   INFO
 }
+
 
 enum AnnouncementType {
   WEB
   SHUTTLE
   MOBILE
 }
+
 
 model Shuttle {
   id        Int      @id @default(autoincrement())
@@ -45,6 +52,7 @@ model Shuttle {
   direction Int      @default(0)
 }
 
+
 model apiKey {
   id     Int            @id @default(autoincrement())
   key    String         @unique
@@ -52,6 +60,7 @@ model apiKey {
   user   User           @relation(fields: [userID], references: [id])
   userID Int
 }
+
 
 model Faculty {
   id          Int      @id @default(autoincrement())
@@ -62,6 +71,7 @@ model Faculty {
   imageURL    String   @default("https://www.champlain.edu/app/uploads/2023/10/cc-people-placeholder-400x400.jpg")
 }
 
+
 enum APIKeyScopes {
   ANNOUNCEMENTS_EDIT
   SHUTTLE_EDIT
@@ -69,11 +79,13 @@ enum APIKeyScopes {
   DINING_EDIT
 }
 
+
 model DailyMenu {
   id        Int    @id @default(autoincrement())
   dayofWeek String @default("Monday")
   Meals     Meal[]
 }
+
 
 enum station {
   SIZZLE
@@ -90,7 +102,13 @@ enum station {
   CEREAL
   DELI
   STARCH
+  OMELET
+  ENTREE
+  BREAKFAST
+  APPETIZER
+  HAVE_A_NICE_DAY
 }
+
 
 enum mealType {
   DINNER
@@ -101,6 +119,7 @@ enum mealType {
   BRUNCH
 }
 
+
 model Meal {
   id        Int         @id @default(autoincrement())
   name      String      @default("")
@@ -108,3 +127,6 @@ model Meal {
   type      mealType[]
   DailyMenu DailyMenu[]
 }
+
+
+  
