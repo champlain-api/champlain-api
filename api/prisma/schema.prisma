@@ -71,18 +71,18 @@ enum APIKeyScopes {
 
 model Course {
   id              Int      @id @default(autoincrement())
-  title           String   @default("")
-  number          String   @default("")
+  title           String   @default("") @db.Text
+  number          String   @default("") @db.Text
   credit          Int      @default(0)
   openseats       Int      @default(0)
-  days            String   @default("")
-  times           String   @default("")
-  instructor_name String   @default("")
-  description     String   @default("")
-  room            String   @default("")
-  subject         String   @default("")
-  type            String   @default("")
-  prereq          String   @default("")
+  days            String?  @db.Text // Allow NULL
+  times           String?  @db.Text // Allow NULL
+  instructor_name String?  @db.Text // Allow NULL
+  description     String?  @db.Text // Allow NULL
+  room            String?  @db.Text // Allow NULL
+  subject         String?  @db.Text // Allow NULL
+  type            String?  @db.Text // Allow NULL
+  prereq          String?  @db.Text // Allow NULL
   start_date      DateTime @db.Timestamptz()
   end_date        DateTime @db.Timestamptz()
   semesterId      Int
@@ -91,8 +91,8 @@ model Course {
 
 model Semester {
   id      Int      @id @default(autoincrement())
-  name    String   @default("")
-  year    String   @default("")
-  date    String   @default("")
+  name    String   @default("") @db.Text
+  year    String   @default("") @db.Text
+  date    String   @default("") @db.Text
   courses Course[]
 }

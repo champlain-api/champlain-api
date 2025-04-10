@@ -65,7 +65,6 @@ CREATE TABLE "Faculty" (
 CREATE TABLE "Semester" (
     "id" SERIAL PRIMARY KEY,
     "name" TEXT NOT NULL DEFAULT '',
-    "year" TEXT NOT NULL DEFAULT '',
     "date" TEXT NOT NULL DEFAULT ''
 );
 
@@ -95,4 +94,7 @@ CREATE UNIQUE INDEX "apiKey_key_key" ON "apiKey"("key");
 
 -- AddForeignKey
 ALTER TABLE "apiKey" ADD CONSTRAINT "apiKey_userID_fkey" FOREIGN KEY ("userID") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- constraint for semester table
+ALTER TABLE "Semester" ADD CONSTRAINT "Semester_name_key" UNIQUE ("name");
 

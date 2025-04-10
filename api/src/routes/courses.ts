@@ -70,46 +70,6 @@ router
     })
 
 /**
- * @route GET /courses/:semester
- * @description Fetch all courses of a specific semester
- * @param {string} semesterId - The ID of the semester to fetch courses for.
- * @returns {JSON} List of courses. 
-*/
-    .get("/:semesterId", async (req: Request, res: Response) => {
-        res.setHeader("Content-Type", "application/json");
-
-        const semesterId = req.params.semesterId;
-        if (isNaN(semesterId)) {
-            res.status(400).json({ error: "Invalid semester ID." });
-            return;
-        }
-
-        let semester: Semester | null;
-        try {
-            semester = await prisma.semester.findUnique({
-                where: {
-                    id: semesterId
-                },
-                include: {
-                    courses: {
-                        orderBy: {
-                            number: "asc"
-                        }
-                    }
-                }
-            });
-        if (!semester) {
-            res.status(404).json({ error: "Semester not found." });
-            return;
-        }
-        } catch (error) {
-            res.status(500).json({ error: "Unable to get courses for the specified semester." });
-            return;
-        }
-        res.json(semester);
-    })
-
-/**
  * @route GET /courses/:courseNumber
  * @description Fetch a course by its course number, nested inside semesters
  * @param {string} courseNumber - The course number to fetch (e.g., "CSI-240").
