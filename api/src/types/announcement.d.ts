@@ -14,23 +14,22 @@
    limitations under the License.
 
 */
-import express, {type Request, type Response} from "express";
-import announcementsRoute from "./routes/announcements.ts"
-import shuttleRoute from "./routes/shuttle.ts"
-import facultyRoute from "./routes/faculty.ts"
-import rootRoute from "./routes/root.ts"
-import courseRoutes from "./routes/courses.ts"
+export type Announcement = {
+    id: number,
+    updated: Date,
+    title: string,
+    description: string,
+    type: AnnouncementType[]
+    style: AnnouncementStyle
+}
 
-const app = express()
+export enum AnnouncementType {
+    "EMERGENCY",
+    "INFO"
+}
 
-app.use("/", rootRoute)
-app.use("/announcements", announcementsRoute)
-app.use("/shuttles", shuttleRoute)
-app.use("/faculty", facultyRoute)
-app.use("/course", courseRoutes);
-
-app.listen(3000, () => {
-    console.log("API running on :3000!")
-})
-
-export {app}
+export enum AnnouncementStyle {
+    "WEB",
+    "SHUTTLE",
+    "MOBILE"
+}
