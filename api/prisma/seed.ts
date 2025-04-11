@@ -73,6 +73,28 @@ async function addSeedData() {
         }
     });
 
+   
+    await prisma.housing.create({
+        data: {
+            name: "South House",
+            type: "Victorian-Era Mansion",
+            students: "47",
+            distance: "2 blocks",
+            address: "363 S. Willard St, Burlington, VT 05401",
+            imageURL: "https://www.champlain.edu/app/uploads/2023/08/South-House-2-800x450.jpg"
+        }
+    });
+
+    await prisma.housing.create({
+        data: {
+            name: "Summit Hall",
+            type: "Victorian-Era Mansion",
+            students: "48",
+            distance: "2 blocks",
+            address: "322 Maple St, Burlington, VT 05401",
+            imageURL: "https://www.champlain.edu/app/uploads/2023/08/Summit-Hall_res-hall-dorm-residence-2-800x450.jpg"
+        }
+    });
 
     // Add example API key and user
 
