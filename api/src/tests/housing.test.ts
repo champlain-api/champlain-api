@@ -51,7 +51,7 @@ describe("/housing", () => {
 
             expect(req.status).toEqual(200)
             expect(await req.json()).toMatchObject({
-                id: 1,
+                id: 2,
                 name: expect.any(String),
                 type: expect.any(String),
                 students: expect.any(String),
@@ -77,7 +77,7 @@ describe("/housing", () => {
             expect(await req.json()).toMatchObject({error: expect.any(String)})
         });
 
-        test("GET /name/:name)", async () => {
+        test("GET /name/:name", async () => {
             let req = await fetch("http://localhost:3000/housing/name/South%House")
 
             expect(req.status).toEqual(200)
@@ -375,7 +375,7 @@ describe("/housing", () => {
             expect(req.status).toEqual(200)
             expect(await req.json()).toMatchObject({
                 name: "New name",
-                title: "New type",
+                type: "New type",
                 students: "new-students",
                 distance: "new distance",
                 address: "new address",
