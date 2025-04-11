@@ -78,7 +78,7 @@ describe("/housing", () => {
         });
 
         test("GET /name/:name", async () => {
-            let req = await fetch("http://localhost:3000/housing/name/South%House")
+            let req = await fetch("http://localhost:3000/housing/name/south%20house")
 
             expect(req.status).toEqual(200)
             expect(await req.json()).toMatchObject(mockHousing)
