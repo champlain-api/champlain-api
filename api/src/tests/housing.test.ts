@@ -329,7 +329,7 @@ describe("/housing", () => {
                     imageURL: "123.img",
                 })
             })
-            let jsonResponse = await req.json() as Housing
+            let jsonResponse = await req.json() as House
             expect(req.status).toEqual(201)
             expect(jsonResponse).toMatchObject(mockHousing)
         });
