@@ -29,9 +29,9 @@ router.use(express.json())
 router
 .get("/", async (req: Request, res: Response) => {
     res.setHeader("Content-Type", "application/json");
-    let housingGet;
+    let houseGet;
     try {
-        housingGet = await prisma.housing.findMany ({
+        houseGet = await prisma.housing.findMany ({
             orderBy: {
                 id: "asc"
             }
@@ -40,7 +40,7 @@ router
         res.status(500).json({error: "Unable to get housing data."})
         return
     }
-    res.json(housingGet)
+    res.json(houseGet)
 
  })
 
@@ -53,17 +53,17 @@ router
         return
     }
 
-    const housing = await prisma.housing.findFirst ({
+    const house = await prisma.housing.findFirst ({
         where: {
             id: id
         }
     })
-    if (housing == null) {
+    if (house == null) {
         res.status(404).json({error: "No house found with that id."})
         return
     }
     res.setHeader("Content-Type", "application/json")
-    res.json(housing)
+    res.json(house)
 })
 
 .get("/name/:name", async (req: Request, res: Response) => {
@@ -71,7 +71,7 @@ router
         res.setHeader("Content-Type", "application/json")
 
         const name = req.params.name.toLowerCase();
-        const housingInfo = await prisma.housing.findFirst({
+        const houseInfo = await prisma.housing.findFirst({
             where: {
                 name: {
                     equals: name,
@@ -79,10 +79,10 @@ router
                 }
             }
         });
-        if (housingInfo) {
-            res.json(housingInfo)
+        if (houseInfo) {
+            res.json(houseInfo)
         } else {
-            res.status(404).json({ "error": "Housing info not found." });
+            res.status(404).json({ "error": "House info not found." });
         }
     } catch (error) {
         res.status(500).json({ error: "Error fetching housing." });
@@ -93,9 +93,9 @@ router
     const {name, type, students, distance, address, imageURL} = req.body
     res.setHeader("Content-Type", "application/json")
 
-    let housing;
+    let house;
     try {
-        housing = await prisma.housing.create({
+        house = await prisma.housing.create({
             data: {
                 name: name,
                 type: type,
@@ -116,7 +116,7 @@ router
             res.status(500).json({error: "Unable to create housing. " + e})
         }
     }
-    res.status(201).json(housing)
+    res.status(201).json(house)
     return
 }) 
 
