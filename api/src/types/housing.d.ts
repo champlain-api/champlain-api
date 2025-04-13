@@ -19,7 +19,7 @@
  * All the Info that is being returned.
  */
 
-export type Housing = {
+export type House = {
     id: number;
     name: string;
     type: string;
