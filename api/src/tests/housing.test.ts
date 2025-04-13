@@ -17,7 +17,7 @@
 import {expect, test, describe, beforeAll} from "bun:test";
 import request from "supertest"
 import {app} from "../index.ts"
-import type {Housing} from "../types/housing.d.ts";
+import type {House} from "../types/housing.d.ts";
 
 beforeAll(async () => {
     request(app)
@@ -26,7 +26,7 @@ beforeAll(async () => {
 
 describe("/housing", () => {
 
-    const mockHousing: Housing = {
+    const mockHousing: House = {
         id: expect.any(Number),
         name: expect.any(String),
         type: expect.any(String),
