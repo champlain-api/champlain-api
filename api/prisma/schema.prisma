@@ -80,7 +80,7 @@ model Housing {
   updated  DateTime @updatedAt @db.Timestamptz(6)
   name     String   @default("")
   type     String   @default("")
-  students String   @default("")
+  students Int      @default(0)
   distance String   @default("")
   address  String   @default("")
   imageURL String   @default("")
