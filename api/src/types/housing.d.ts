@@ -23,7 +23,7 @@ export type House = {
     id: number;
     name: string;
     type: string;
-    students: string;
+    students: int;
     distance: string;
     address: string;
     imageURL: string;
