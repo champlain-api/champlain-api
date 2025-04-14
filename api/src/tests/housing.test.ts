@@ -54,7 +54,7 @@ describe("/housing", () => {
                 id: 2,
                 name: expect.any(String),
                 type: expect.any(String),
-                students: expect.any(String),
+                students: expect.any(Number),
                 distance: expect.any(String),
                 address: expect.any(String),
                 imageURL: expect.any(String),
