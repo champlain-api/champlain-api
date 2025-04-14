@@ -30,7 +30,7 @@ describe("/housing", () => {
         id: expect.any(Number),
         name: expect.any(String),
         type: expect.any(String),
-        students: expect.any(String),
+        students: expect.any(Number),
         distance: expect.any(String),
         address: expect.any(String),
         imageURL: expect.any(String),
@@ -200,7 +200,7 @@ describe("/housing", () => {
                 body: JSON.stringify({
                     name: 1110,
                     type: "Housing 1 type",
-                    students: "i32",
+                    students: 32,
                     distance: "1 block",
                     address: "49 road lane drive",
                     imageURL: "picture.img",
@@ -220,7 +220,7 @@ describe("/housing", () => {
                 body: JSON.stringify({
                     name: "Juniper Hall",
                     type: 20,
-                    students: "31",
+                    students: 31,
                     distance: "1 block",
                     address: "49 road lane drive",
                     imageURL: "picture.img",
@@ -240,7 +240,7 @@ describe("/housing", () => {
                 body: JSON.stringify({
                     name: "Juniper Hall",
                     type: "Dorm Style",
-                    students: 20,
+                    students: "hey",
                     distance: "1 block",
                     address: "49 road lane drive",
                     imageURL: "picture.img",
@@ -260,7 +260,7 @@ describe("/housing", () => {
                 body: JSON.stringify({
                     name: "Juniper Hall",
                     type: "Dorm Style",
-                    students: "20",
+                    students: 20,
                     distance: 1,
                     address: "49 road lane drive",
                     imageURL: "picture.img",
@@ -280,7 +280,7 @@ describe("/housing", () => {
                 body: JSON.stringify({
                     name: "Juniper Hall",
                     type: "Dorm Style",
-                    students: "20",
+                    students: 20,
                     distance: "1 block",
                     address: 49,
                     imageURL: "picture.img",
@@ -300,7 +300,7 @@ describe("/housing", () => {
                 body: JSON.stringify({
                     name: "Juniper Hall",
                     type: "Dorm Style",
-                    students: "20",
+                    students: 20,
                     distance: "1 block",
                     address: "49 road lane drive",
                     imageURL: 123,
@@ -323,7 +323,7 @@ describe("/housing", () => {
                 body: JSON.stringify({
                     name: "Juniper Hall",
                     type: "Dorm Style",
-                    students: "39",
+                    students: 39,
                     distance: "1 block",
                     address: "49 road lane drive",
                     imageURL: "123.img",
@@ -344,7 +344,7 @@ describe("/housing", () => {
                 body: JSON.stringify({
                     name: "New name",
                     type: "New type",
-                    students: "new-students",
+                    students: 0,
                     distance: "new distance",
                     address: "new address",
                     imageURL: "new img",
@@ -355,7 +355,7 @@ describe("/housing", () => {
                 housing: {
                     name: "New name",
                     type: "New type",
-                    students: "new-students",
+                    students: 0,
                     distance: "new distance",
                     address: "new address",
                     imageURL: "new img",
@@ -376,7 +376,7 @@ describe("/housing", () => {
             expect(await req.json()).toMatchObject({
                 name: "New name",
                 type: "New type",
-                students: "new-students",
+                students: 0,
                 distance: "new distance",
                 address: "new address",
                 imageURL: "new img",
