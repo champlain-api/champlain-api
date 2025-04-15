@@ -83,7 +83,7 @@ model Competencies {
   information String   @default("")
 }
 
-model House {
+model Housing {
   id       Int      @id @default(autoincrement())
   updated  DateTime @updatedAt @db.Timestamptz(6)
   name     String   @default("")
