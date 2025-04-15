@@ -30,13 +30,14 @@
 
 
 
-import express, { type Response, type Request } from "express"
-
-const router = express.Router()
+import express from "express";
+import type { Response, Request } from "express";
+import {requireAPIKeyScopes} from "../middleware/api-middleware.ts";
 import prisma from "../prisma_client.ts"
-import { requireAPIKeyScopes } from "../middleware/api-middleware.ts";
-import { APIKeyScopes, Prisma } from "@prisma/client";
+import {Prisma, APIKeyScopes} from "@prisma/client";
 
+
+const router = express.Router();
 router.use(express.json())
 
 router.get("/", async (req: Request, res: Response) => {
@@ -74,7 +75,7 @@ router.get("/", async (req: Request, res: Response) => {
         res.setHeader("Content-Type", "application/json")
         res.json(building)
     })
-    .put("/:id", async (req: Request, res: Response) => {
+    .put("/:id", requireAPIKeyScopes([APIKeyScopes.BUILDING_EDIT]), async (req: Request, res: Response) => {
         res.setHeader("Content-Type", "application/json")
         const id = Number(req.params.id)
         const { name, location, hours } = req.body;
@@ -104,7 +105,7 @@ router.get("/", async (req: Request, res: Response) => {
         res.status(200).json(building)
         return
     })
-    .post("/", async (req: Request, res: Response) => {
+    .post("/", requireAPIKeyScopes([APIKeyScopes.BUILDING_EDIT]), async (req: Request, res: Response) => {
         res.setHeader("Content-Type", "application/json")
         const { name, location, hours } = req.body
         let building;
