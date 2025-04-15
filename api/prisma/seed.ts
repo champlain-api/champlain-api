@@ -109,7 +109,6 @@ async function addSeedData() {
         }
     })
 
-
     // Add example API key and user
 
     await prisma.user.create({
