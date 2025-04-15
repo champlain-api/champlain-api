@@ -50,10 +50,10 @@ describe("/Competencies", () => {
             expect(req.status).toEqual(200)
             expect(await req.json()).toMatchObject({
                 id: 1,
-                name: expect.any(String),
-                title: expect.any(String),
-                departments: expect.any(Array),
-                imageURL: expect.any(String),
+                competency: expect.any(String),
+                description: expect.any(String),
+                criteria: expect.any(Array),
+                information: expect.any(String),
                 updated: expect.any(String),
             })
         })
@@ -74,18 +74,10 @@ describe("/Competencies", () => {
         });
 
         test("GET /name/:name)", async () => {
-            let req = await fetch("http://localhost:3000/competencies/name/Dave%20Kopec")
+            let req = await fetch("http://localhost:3000/competencies/competency/Analysis")
 
             expect(req.status).toEqual(200)
             expect(await req.json()).toMatchObject(mockCompetencies)
-
-        })
-
-        test("GET /department/:department)", async () => {
-            let req = await fetch("http://localhost:3000/competencies/department/CSIN")
-
-            expect(req.status).toEqual(200)
-            expect(await req.json()).toMatchObject([mockCompetencies])
 
         })
 
