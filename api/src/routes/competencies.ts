@@ -43,8 +43,6 @@ router
     res.json(competencyGet)
 
  })
-
- //Getting dorm by name
  .get("/:id", async (req: Request, res: Response) => {
     const id = Number(req.params.id)
     
