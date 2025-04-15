@@ -34,8 +34,8 @@ import express, { type Response, type Request } from "express"
 
 const router = express.Router()
 import prisma from "../prisma_client.ts"
-import { Prisma } from '@prisma/client'
 import { requireAPIKeyScopes } from "../middleware/api-middleware.ts";
+import { APIKeyScopes, Prisma } from "@prisma/client";
 
 router.use(express.json())
 
@@ -74,12 +74,16 @@ router.get("/", async (req: Request, res: Response) => {
         res.setHeader("Content-Type", "application/json")
         res.json(building)
     })
-    .post("/", async (req: Request, res: Response) => {
+    .put("/:id", async (req: Request, res: Response) => {
         res.setHeader("Content-Type", "application/json")
+        const id = Number(req.params.id)
         const { name, location, hours } = req.body;
         let building;
         try {
-            building = await prisma.building.create({
+            building = await prisma.building.update({
+                where: {
+                    id: id
+                },
                 data: {
                     name: name,
                     location: location,
@@ -100,27 +104,55 @@ router.get("/", async (req: Request, res: Response) => {
         res.status(200).json(building)
         return
     })
-    .put("/:id", async (req: Request, res: Response) => {
+    .post("/", async (req: Request, res: Response) => {
         res.setHeader("Content-Type", "application/json")
-        const id = Number(req.params.id)
-        const {name, location, hours} = req.body
-        if (isNaN(id)) {
-            res.status(400).json({ error: "Invalid announcement id." })
-            return
-        }
+        const { name, location, hours } = req.body
         let building;
         try {
-            building = await prisma.building.update({
-                where: {
-                    id: id
-                },
+            building = await prisma.building.create({
                 data: {
                     name, location, hours
                 }
             })
         } catch (e) {
-
+                    if (e instanceof Prisma.PrismaClientKnownRequestError && e.meta != null) {
+                        res.status(400).json({error: e.meta})
+                        return
+                    } else if (e instanceof Prisma.PrismaClientValidationError) {
+                        res.status(400).json({error: "Unable to create building. Please check that all fields are valid."})
+                        return
+                    } else {
+                        res.status(500).json({error: "Unable to create building. " + e})
+                    }
+                }
+        res.status(201).json(building)
+        return
+    })
+    .delete("/:id", requireAPIKeyScopes([APIKeyScopes.BUILDING_EDIT]), async (req: Request, res: Response) => {
+        const id = Number(req.params.id)
+        res.setHeader("Content-Type", "application/json")
+        if (isNaN(id)) {
+            res.status(400).json({ error: "Invalid building id." })
+            return
         }
+        let building;
+        try {
+            building = await prisma.building.delete({
+                where: {
+                    id: id
+                }
+            })
+        } catch (e) {
+            if (e instanceof Prisma.PrismaClientKnownRequestError && e.meta != null) {
+                res.status(400).json({ error: e.meta })
+                return
+            } else {
+                res.status(500).json({ error: "Unable to delete building. " + e })
+                return
+            }
+        }
+        res.status(200).send(building)
+
     })
 
 export default router

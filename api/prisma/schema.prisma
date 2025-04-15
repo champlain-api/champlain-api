@@ -79,7 +79,6 @@ model Building {
   name     String   @default("")
   location String   @default("")
   hours    Json
-  updated  DateTime @updatedAt @db.Timestamptz(6)
 }
 
 enum APIKeyScopes {
