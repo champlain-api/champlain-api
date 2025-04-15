@@ -273,7 +273,7 @@ describe("/Competencies", () => {
                     competency: "Competency 1",
                     description: "competency 1 description",
                     criteria: ["Look at it"],
-                    information: ["info.pdf"],
+                    information: "info.pdf",
                 })
             })
             let jsonResponse = await req.json() as Competencies
@@ -292,7 +292,7 @@ describe("/Competencies", () => {
                     competency: " new Competency",
                     description: " new competency description",
                     criteria: ["new"],
-                    information: ["new.pdf"]
+                    information: "new.pdf"
                 })
             })
             expect(req.status).toEqual(200)
@@ -301,7 +301,7 @@ describe("/Competencies", () => {
                     competency: " new Competency",
                     description: " new competency description",
                     criteria: ["new"],
-                    information: ["new.pdf"]
+                    information: "new.pdf"
                 }
             })
         });
@@ -319,7 +319,7 @@ describe("/Competencies", () => {
                 competency: " new Competency",
                 description: " new competency description",
                 criteria: ["new"],
-                information: ["new.pdf"]
+                information: "new.pdf"
 
             })
         });
