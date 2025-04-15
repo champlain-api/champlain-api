@@ -1,9 +1,3 @@
-/*
-  Warnings:
-
-  - You are about to drop the `Housing` table. If the table is not empty, all the data it contains will be lost.
-
-*/
 -- AlterEnum
 ALTER TYPE "APIKeyScopes" ADD VALUE 'COMPETENCIES_EDIT';
 
