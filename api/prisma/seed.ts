@@ -103,15 +103,33 @@ async function addSeedData() {
             email: "tester@example.invalid",
             id: 1
         }
-    })
+    });
 
     await prisma.apiKey.create({
         data: {
             key: "all-scopes",
-            scopes: ["ANNOUNCEMENTS_EDIT", "FACULTY_EDIT", "SHUTTLE_EDIT", "HOUSING_EDIT"],
+            scopes: ["ANNOUNCEMENTS_EDIT", "FACULTY_EDIT", "SHUTTLE_EDIT", "HOUSING_EDIT", "COMPETENCIES_EDIT"],
             userID: 1
         }
-    })
+    });
+
+   await prisma.competencies.create({
+        data: {
+            competency: "Analysis",
+            description: "The ability to separate and organize complex topics or issues into their component parts, and through a systematic process, to identify and differentiate those components to gain an understanding of the topic or issue.",
+            criteria: [ "Understand Purpose", "Select Appropriate Modes", "Consider Ethical Implication", "Examines Conclusion" ],
+            information: "https://drive.google.com/file/d/1o702L4R3oIJ7-z479-u6bdgI-wWb_-zg/view"
+        }
+    });
+
+    await prisma.competencies.create({
+        data: {
+            competency: "Collaboration",
+            description: "The ability to work inclusively and productively with a group toward a collective outcome; the ability to create an environment where each perspective is considered for the cooperative purpose of making progress toward common goals.",
+            criteria: [ "Cohesive Vision", "Role Identification", "Inclusive Atmosphere", "Coordination", "Accountability" ],
+            information: "https://drive.google.com/file/d/11CSZel1qZQQ3fTSy-DOWP28c7aKjEMNK/view"
+        }
+    });
 
 
 }
