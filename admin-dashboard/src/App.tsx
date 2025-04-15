@@ -1,10 +1,23 @@
-import React, { useState } from 'react';
+
+// import React, { useState } from 'react';
+// import axios from 'axios'; // npm install axios (frontend library makes HTTP requests from browser)
+import { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import clubsData from './clubs.json';
+import facultyData from './faculty.json';
 
 import { Container, Typography, Button, Box, Menu, MenuItem, Stack} from "@mui/material";
 
-function DropdownMenu({ title, options }: { title: string; options: string[] }) {
+function DropdownMenu({
+  title,
+  options,
+  onAction
+}: {
+  title: string;
+  options: string[];
+  onAction: (action: string) => void;
+}) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -17,7 +30,7 @@ function DropdownMenu({ title, options }: { title: string; options: string[] }) 
   };
 
   const handleAction = (action: string) => {
-    console.log(`${action} ${title}`);
+    onAction(action); // Use the prop
     handleClose();
   };
 
@@ -38,6 +51,34 @@ function DropdownMenu({ title, options }: { title: string; options: string[] }) 
 }
 
 export default function MyApp() {
+  const [clubs, setClubs] = useState<string[]>([]);
+  const [showClubs, setShowClubs] = useState(false);
+
+  const [faculty, setFaculty] = useState<string[]>([]);
+  const [showFaculty, setShowFaculty] = useState(false);
+
+
+  const handleClubAction = (action: string) => {
+    if (action === 'Get') {
+      const names = clubsData.map((club: any) => club.clubName);
+      setClubs(names);
+      setShowClubs(true);
+    } else {
+      setShowClubs(false);
+      console.log(`${action} clicked`);
+    }
+  };
+
+  const handleFacultyAction = (action: string) => {
+    if(action === 'Get') {
+      const names = facultyData.map((faculty: any) => faculty.name);
+      setFaculty(names); 
+      setShowFaculty(true); 
+    } else { 
+      setShowFaculty(false);
+    }
+  };
+
   return (
     <Container>
       <Box mt={4} sx={{ textAlign: 'center' }}>
@@ -48,12 +89,46 @@ export default function MyApp() {
 
         <Box mt={2} sx={{ display: 'flex', justifyContent: 'flex-start' }}>
         <Stack spacing={2} direction="row">
-          <DropdownMenu title="Club" options={["Add", "Delete", "Edit", "Get"]} />
-          <DropdownMenu title="Faculty" options={["Add", "Delete", "Edit", "Get"]} />
-          <DropdownMenu title="Announcement" options={["Add", "Delete", "Edit", "Get"]} />
+        <DropdownMenu
+          title="Club"
+          options={["Add", "Delete", "Edit", "Get"]}
+          onAction={handleClubAction}
+        />
+        <DropdownMenu
+          title="Faculty"
+          options={["Add", "Delete", "Edit", "Get"]}
+          onAction={handleFacultyAction} 
+        />
+        <DropdownMenu 
+          title="Announcement" 
+          options={["Add", "Delete", "Edit", "Get"]} 
+          onAction={()=>{}} 
+        />
         </Stack>
       </Box>
-         
+
+      {showClubs && (
+        <Box mt={4}>
+          <Typography variant="h6">Available Clubs:</Typography>
+          <ul>
+            {clubs.map((club, idx) => (
+              <li key={idx}>{club}</li>
+            ))}
+          </ul>
+        </Box>
+      )}
+
+      {showFaculty && (
+        <Box mt={4}>
+          <Typography variant="h6">Current Faculty:</Typography>
+          <ul>
+            {faculty.map((faculty, idx) => (
+              <li key={idx}>{faculty}</li>
+            ))}
+          </ul>
+        </Box>
+      )}
+ 
       <Box
         sx={{
           position: "absolute",
