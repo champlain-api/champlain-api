@@ -59,7 +59,7 @@ router.get("/", async (req: Request, res: Response) => {
     .get("/:id", async (req: Request, res: Response) => {
         const id = Number(req.params.id)
         if (isNaN(id)) {
-            res.status(400).json({ error: "Invalid announcement id." })
+            res.status(400).json({ error: "Invalid building id." })
             return
         }
         const building = await prisma.building.findFirst({
