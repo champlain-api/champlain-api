@@ -1,5 +1,0 @@
--- AlterEnum
-ALTER TYPE "APIKeyScopes" ADD VALUE 'DINING_EDIT';
-
--- AlterTable
-ALTER TABLE "Meal" ALTER COLUMN "name" SET DEFAULT '';
