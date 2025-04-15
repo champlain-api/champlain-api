@@ -181,9 +181,9 @@ describe("/building", () => {
                     "Content-type": "application/json",
                 },
                 body: JSON.stringify({
-                    name: 1110,
-                    title: "Faculty 1 title",
-                    departments: ["its"]
+                    name: "Miller Information Common",
+                    location: "95 Summit Street, Burlington, Vermont 05401",
+                    hours: [{ "day": "monday", "hours": "24/7" }, { "day": "tuesday", "hours": "24/7" }, { "day": "wednesday", "hours": "24/7" }, { "day": "thursday", "hours": "24/7" }, { "day": "friday", "hours": "24/7" }, { "day": "saturday", "hours": "24/7" }, { "day": "sunday", "hours": "24/7" }]
                 })
             })
             expect(req.status).toEqual(400)
@@ -198,26 +198,9 @@ describe("/building", () => {
                     "Content-type": "application/json",
                 },
                 body: JSON.stringify({
-                    name: "Prof. Ian",
-                    title: 20,
-                    departments: ["its"]
-                })
-            })
-            expect(req.status).toEqual(400)
-            expect(await req.json()).toMatchObject({ error: expect.any(String) })
-        });
-
-        test("POST / invalid department", async () => {
-            let req = await fetch("http://localhost:3000/building", {
-                method: "POST",
-                headers: {
-                    "Authorization": "Bearer all-scopes",
-                    "Content-type": "application/json",
-                },
-                body: JSON.stringify({
-                    name: "Prof. Ian",
-                    title: "Professor",
-                    departments: 20
+                    name: "Miller Information Common",
+                    location: 20,
+                    hours: [{ "day": "monday", "hours": "24/7" }, { "day": "tuesday", "hours": "24/7" }, { "day": "wednesday", "hours": "24/7" }, { "day": "thursday", "hours": "24/7" }, { "day": "friday", "hours": "24/7" }, { "day": "saturday", "hours": "24/7" }, { "day": "sunday", "hours": "24/7" }]
                 })
             })
             expect(req.status).toEqual(400)
@@ -304,16 +287,16 @@ describe("/building", () => {
             expect(req.status).toEqual(200)
             expect(await req.json()).toMatchObject({
                 name: "Joyce Hall",
-                    location: "Campus",
-                    hours: [
-                        { "day": "monday", "hours": "24/7" },
-                        { "day": "tuesday", "hours": "24/7" },
-                        { "day": "wednesday", "hours": "24/7" },
-                        { "day": "thursday", "hours": "24/7" },
-                        { "day": "friday", "hours": "24/7" },
-                        { "day": "saturday", "hours": "24/7" },
-                        { "day": "sunday", "hours": "24/7" },
-                    ]
+                location: "Campus",
+                hours: [
+                    { "day": "monday", "hours": "24/7" },
+                    { "day": "tuesday", "hours": "24/7" },
+                    { "day": "wednesday", "hours": "24/7" },
+                    { "day": "thursday", "hours": "24/7" },
+                    { "day": "friday", "hours": "24/7" },
+                    { "day": "saturday", "hours": "24/7" },
+                    { "day": "sunday", "hours": "24/7" },
+                ]
 
             })
         });
