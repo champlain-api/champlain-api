@@ -29,16 +29,16 @@
  */
 
 
+import express, { type Response, type Request } from "express"
 
-import express from "express";
-import type { Response, Request } from "express";
-import {requireAPIKeyScopes} from "../middleware/api-middleware.ts";
+const router = express.Router()
 import prisma from "../prisma_client.ts"
-import {Prisma, APIKeyScopes} from "@prisma/client";
+import { Prisma } from '@prisma/client'
+import { requireAPIKeyScopes } from "../middleware/api-middleware.ts";
+import { APIKeyScopes } from "@prisma/client";
 
-
-const router = express.Router();
 router.use(express.json())
+
 
 router.get("/", async (req: Request, res: Response) => {
     res.setHeader("Content-Type", "application/json")
@@ -102,30 +102,32 @@ router.get("/", async (req: Request, res: Response) => {
                 res.status(500).json({ error: "Unable to create building. " + e })
             }
         }
-        res.status(200).json(building)
+        res.status(200).send(building)
         return
     })
     .post("/", requireAPIKeyScopes([APIKeyScopes.BUILDING_EDIT]), async (req: Request, res: Response) => {
         res.setHeader("Content-Type", "application/json")
-        const { name, location, hours } = req.body
+        const { name, location, hours } = req.body;
         let building;
         try {
             building = await prisma.building.create({
                 data: {
-                    name, location, hours
+                    name: name,
+                    location: location,
+                    hours: hours
                 }
             })
         } catch (e) {
-                    if (e instanceof Prisma.PrismaClientKnownRequestError && e.meta != null) {
-                        res.status(400).json({error: e.meta})
-                        return
-                    } else if (e instanceof Prisma.PrismaClientValidationError) {
-                        res.status(400).json({error: "Unable to create building. Please check that all fields are valid."})
-                        return
-                    } else {
-                        res.status(500).json({error: "Unable to create building. " + e})
-                    }
-                }
+            if (e instanceof Prisma.PrismaClientKnownRequestError && e.meta != null) {
+                res.status(400).json({ error: e.meta })
+                return
+            } else if (e instanceof Prisma.PrismaClientValidationError) {
+                res.status(400).json({ error: "Unable to create building. Please check that all fields are valid." + e })
+                return
+            } else {
+                res.status(500).json({ error: "Unable to create building. " + e })
+            }
+        }
         res.status(201).json(building)
         return
     })

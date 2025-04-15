@@ -182,7 +182,7 @@ describe("/building", () => {
                 },
                 body: JSON.stringify({
                     name: "Miller Information Common",
-                    location: "95 Summit Street, Burlington, Vermont 05401",
+                    location: 20,
                     hours: [{ "day": "monday", "hours": "24/7" }, { "day": "tuesday", "hours": "24/7" }, { "day": "wednesday", "hours": "24/7" }, { "day": "thursday", "hours": "24/7" }, { "day": "friday", "hours": "24/7" }, { "day": "saturday", "hours": "24/7" }, { "day": "sunday", "hours": "24/7" }]
                 })
             })
@@ -198,7 +198,7 @@ describe("/building", () => {
                     "Content-type": "application/json",
                 },
                 body: JSON.stringify({
-                    name: "Miller Information Common",
+                    name: 20,
                     location: 20,
                     hours: [{ "day": "monday", "hours": "24/7" }, { "day": "tuesday", "hours": "24/7" }, { "day": "wednesday", "hours": "24/7" }, { "day": "thursday", "hours": "24/7" }, { "day": "friday", "hours": "24/7" }, { "day": "saturday", "hours": "24/7" }, { "day": "sunday", "hours": "24/7" }]
                 })
@@ -221,13 +221,7 @@ describe("/building", () => {
                     name: "Joyce Hall",
                     location: "Campus",
                     hours: [
-                        { "day": "monday", "hours": "24/7" },
-                        { "day": "tuesday", "hours": "24/7" },
-                        { "day": "wednesday", "hours": "24/7" },
-                        { "day": "thursday", "hours": "24/7" },
-                        { "day": "friday", "hours": "24/7" },
-                        { "day": "saturday", "hours": "24/7" },
-                        { "day": "sunday", "hours": "24/7" },
+                        { "day": "monday", "hours": "24/7" }, { "day": "tuesday", "hours": "24/7" }, { "day": "wednesday", "hours": "24/7" }, { "day": "thursday", "hours": "24/7" }, { "day": "friday", "hours": "24/7" }, { "day": "saturday", "hours": "24/7" }, { "day": "sunday", "hours": "24/7" }
                     ]
                 })
             })
@@ -247,19 +241,13 @@ describe("/building", () => {
                     name: "Joyce Hall",
                     location: "Campus",
                     hours: [
-                        { "day": "monday", "hours": "24/7" },
-                        { "day": "tuesday", "hours": "24/7" },
-                        { "day": "wednesday", "hours": "24/7" },
-                        { "day": "thursday", "hours": "24/7" },
-                        { "day": "friday", "hours": "24/7" },
-                        { "day": "saturday", "hours": "24/7" },
-                        { "day": "sunday", "hours": "24/7" },
+                        { "day": "monday", "hours": "24/7" }, { "day": "tuesday", "hours": "24/7" }, { "day": "wednesday", "hours": "24/7" }, { "day": "thursday", "hours": "24/7" }, { "day": "friday", "hours": "24/7" }, { "day": "saturday", "hours": "24/7" }, { "day": "sunday", "hours": "24/7" }
                     ]
                 })
             })
             expect(req.status).toEqual(200)
             expect(await req.json()).toMatchObject({
-                building: {
+                    id: 2,
                     name: "Joyce Hall",
                     location: "Campus",
                     hours: [
@@ -269,10 +257,8 @@ describe("/building", () => {
                         { "day": "thursday", "hours": "24/7" },
                         { "day": "friday", "hours": "24/7" },
                         { "day": "saturday", "hours": "24/7" },
-                        { "day": "sunday", "hours": "24/7" },
+                        { "day": "sunday", "hours": "24/7" }
                     ]
-                }
-
             })
         });
 
@@ -295,7 +281,7 @@ describe("/building", () => {
                     { "day": "thursday", "hours": "24/7" },
                     { "day": "friday", "hours": "24/7" },
                     { "day": "saturday", "hours": "24/7" },
-                    { "day": "sunday", "hours": "24/7" },
+                    { "day": "sunday", "hours": "24/7" }
                 ]
 
             })
