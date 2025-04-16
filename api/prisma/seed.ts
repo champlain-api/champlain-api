@@ -18,12 +18,11 @@
 import prisma from "../src/prisma_client"
 import * as fs from 'fs';
 import * as path from 'path';
-import type {Faculty} from '../src/types/faculty.d.ts';
 
 async function addSeedData() {
     // Add example announcements
     await prisma.announcement.upsert({
-        where: {id: 1},
+        where: { id: 1 },
         update: {},
         create: {
             title: "Shuttle service suspended",
@@ -33,7 +32,7 @@ async function addSeedData() {
         }
     })
     await prisma.announcement.upsert({
-        where: {id: 2},
+        where: { id: 2 },
         update: {},
         create: {
             title: "Campus Closure",
@@ -45,7 +44,7 @@ async function addSeedData() {
 
     // Add example shuttle.
     await prisma.shuttle.upsert({
-        where: {id: 1},
+        where: { id: 1 },
         update: {},
         create: {
             direction: 20,
@@ -74,6 +73,44 @@ async function addSeedData() {
     });
 
 
+    await prisma.housing.create({
+        data: {
+            name: "South House",
+            type: "Victorian-Era Mansion",
+            students: 47,
+            distance: "2 blocks",
+            address: "363 S. Willard St, Burlington, VT 05401",
+            imageURL: "https://www.champlain.edu/app/uploads/2023/08/South-House-2-800x450.jpg"
+        }
+    });
+
+    await prisma.housing.create({
+        data: {
+            name: "Summit Hall",
+            type: "Victorian-Era Mansion",
+            students: 48,
+            distance: "2 blocks",
+            address: "322 Maple St, Burlington, VT 05401",
+            imageURL: "https://www.champlain.edu/app/uploads/2023/08/Summit-Hall_res-hall-dorm-residence-2-800x450.jpg"
+        }
+    });
+
+    await prisma.building.create({
+        data: {
+            name: "Miller Information Commons",
+            location: "95 Summit Street, Burlington, Vermont 05401",
+            hours: [
+                { "day": "monday", "hours": "8 AM - 11 PM" },
+                { "day": "tuesday", "hours": "8 AM - 11 PM" },
+                { "day": "wednesday", "hours": "8 AM - 11 PM" },
+                { "day": "thursday", "hours": "8 AM - 11 PM" },
+                { "day": "friday", "hours": "8 AM - 12:00 AM" },
+                { "day": "saturday", "hours": "12 PM - 12 AM" },
+                { "day": "sunday", "hours": "10 AM - 12 AM" }
+            ]
+        }
+    })
+
     // Add example API key and user
 
     await prisma.user.create({
@@ -81,11 +118,37 @@ async function addSeedData() {
             email: "tester@example.invalid",
             id: 1
         }
-    })
+    });
 
     await prisma.apiKey.create({
         data: {
             key: "all-scopes",
+            scopes: ["ANNOUNCEMENTS_EDIT", "FACULTY_EDIT", "SHUTTLE_EDIT", "HOUSING_EDIT", "BUILDING_EDIT", "COMPETENCIES_EDIT"],
+            userID: 1
+        }
+    });
+
+   await prisma.competencies.create({
+        data: {
+            competency: "Analysis",
+            description: "The ability to separate and organize complex topics or issues into their component parts, and through a systematic process, to identify and differentiate those components to gain an understanding of the topic or issue.",
+            criteria: [ "Understand Purpose", "Select Appropriate Modes", "Consider Ethical Implication", "Examines Conclusion" ],
+            information: "https://drive.google.com/file/d/1o702L4R3oIJ7-z479-u6bdgI-wWb_-zg/view"
+        }
+    });
+
+    await prisma.competencies.create({
+        data: {
+            competency: "Collaboration",
+            description: "The ability to work inclusively and productively with a group toward a collective outcome; the ability to create an environment where each perspective is considered for the cooperative purpose of making progress toward common goals.",
+            criteria: [ "Cohesive Vision", "Role Identification", "Inclusive Atmosphere", "Coordination", "Accountability" ],
+            information: "https://drive.google.com/file/d/11CSZel1qZQQ3fTSy-DOWP28c7aKjEMNK/view"
+        }
+    });
+
+
+}
+
             scopes: ["ANNOUNCEMENTS_EDIT", "FACULTY_EDIT", "SHUTTLE_EDIT"],
             userID: 1
         }
@@ -250,4 +313,4 @@ async function addSeedData() {
     }
 }
 
-addSeedData();
+addSeedData()

@@ -14,11 +14,17 @@
    limitations under the License.
 
 */
-import SwaggerUI from "swagger-ui"
-import "swagger-ui/dist/swagger-ui.css"
-import docYAML from "/swagger-config.yaml?url"
 
-SwaggerUI({
-    dom_id: '#app',
-    url: `${docYAML}`
-})
+/**
+ * @description This is the competency object.
+ * All the Info that is being returned.
+ */
+
+export type Competencies = {
+    id: number;
+    competency: string;
+    description: string;
+    criteria: string;
+    information: string;
+    updated: Date;
+}

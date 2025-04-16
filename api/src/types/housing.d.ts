@@ -14,11 +14,18 @@
    limitations under the License.
 
 */
-import SwaggerUI from "swagger-ui"
-import "swagger-ui/dist/swagger-ui.css"
-import docYAML from "/swagger-config.yaml?url"
+/**
+ * @description This is the housing object.
+ * All the Info that is being returned.
+ */
 
-SwaggerUI({
-    dom_id: '#app',
-    url: `${docYAML}`
-})
+export type House = {
+    id: number;
+    name: string;
+    type: string;
+    students: int;
+    distance: string;
+    address: string;
+    imageURL: string;
+    updated: Date;
+}

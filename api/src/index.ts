@@ -20,6 +20,9 @@ import shuttleRoute from "./routes/shuttle.ts"
 import facultyRoute from "./routes/faculty.ts"
 import rootRoute from "./routes/root.ts"
 import courseRoutes from "./routes/courses.ts"
+import buildingRoute from "./routes/building.ts"
+import housingRoute from "./routes/housing.ts"
+import competenciesRoute from "./routes/competencies.ts"
 
 const app = express()
 
@@ -28,6 +31,9 @@ app.use("/announcements", announcementsRoute)
 app.use("/shuttles", shuttleRoute)
 app.use("/faculty", facultyRoute)
 app.use("/course", courseRoutes);
+app.use("/building", buildingRoute)
+app.use("/housing", housingRoute)
+app.use("/competencies", competenciesRoute)
 
 app.listen(3000, () => {
     console.log("API running on :3000!")

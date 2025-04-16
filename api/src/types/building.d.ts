@@ -14,11 +14,10 @@
    limitations under the License.
 
 */
-import SwaggerUI from "swagger-ui"
-import "swagger-ui/dist/swagger-ui.css"
-import docYAML from "/swagger-config.yaml?url"
 
-SwaggerUI({
-    dom_id: '#app',
-    url: `${docYAML}`
-})
+export type Building = {
+    id: Number;
+    name: string;
+    location: string;
+    hours: array[];
+}
