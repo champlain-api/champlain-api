@@ -1,40 +1,25 @@
-import type { mealType } from "@prisma/client";
-
-export type MenuItem = {
-    station: string;
-    name: string;
-}
-
+import type { mealType, station } from "@prisma/client";
 
 export type Meal = {
-    menuItems: any;
-    morningBreak?: MenuItem[];
-    brunch?: MenuItem[];
-    dinner?: MenuItem[];
-    breakfast?: MenuItem[];
-    lunch?: MenuItem[];
-    lateNight?: MenuItem[];
+  id?: number;
+  name: string;
+  station: station[];
+  type: mealType[];
 }
-
 
 export type DailyMenu = {
-    sunday?: Meal;
-    monday?: Meal;
-    tuesday?: Meal;
-    wednesday?: Meal;
-    thursday?: Meal;
-    friday?: Meal;
-    saturday?: Meal;
+  id?: number;
+  dayofWeek: string;
+  Meals: Meal[];
 }
 
-
 export type WeeklyMenu = {
-    date: string;
-    menu: DailyMenu;
+  date?: string;
+  dailyMenus: DailyMenu[];
 }
 
 export type MealData = {
-    name: string;
-    type: { set: mealType[] };
-    station: { set: station[] };
+  name: string;
+  type: { set: mealType[] };
+  station: { set: station[] };
 }

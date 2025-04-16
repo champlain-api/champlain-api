@@ -30,7 +30,7 @@ router.get('/', async (req: Request, res: Response) => {
 });
 
 
-router.get('/dayofWeek/:dayofWeek', async (req: Request, res: Response) => {
+router.get('/:dayofWeek', async (req: Request, res: Response) => {
     res.setHeader('Content-Type', 'application/json');
 
 
