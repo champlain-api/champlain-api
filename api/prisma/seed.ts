@@ -16,14 +16,11 @@
 */
 
 import prisma from "../src/prisma_client"
-import * as fs from 'fs';
-import * as path from 'path';
-import type {Faculty} from '../src/types/faculty.d.ts';
 
 async function addSeedData() {
     // Add example announcements
     await prisma.announcement.upsert({
-        where: {id: 1},
+        where: { id: 1 },
         update: {},
         create: {
             title: "Shuttle service suspended",
@@ -33,7 +30,7 @@ async function addSeedData() {
         }
     })
     await prisma.announcement.upsert({
-        where: {id: 2},
+        where: { id: 2 },
         update: {},
         create: {
             title: "Campus Closure",
@@ -45,7 +42,7 @@ async function addSeedData() {
 
     // Add example shuttle.
     await prisma.shuttle.upsert({
-        where: {id: 1},
+        where: { id: 1 },
         update: {},
         create: {
             direction: 20,
@@ -96,6 +93,22 @@ async function addSeedData() {
         }
     });
 
+    await prisma.building.create({
+        data: {
+            name: "Miller Information Commons",
+            location: "95 Summit Street, Burlington, Vermont 05401",
+            hours: [
+                { "day": "monday", "hours": "8 AM - 11 PM" },
+                { "day": "tuesday", "hours": "8 AM - 11 PM" },
+                { "day": "wednesday", "hours": "8 AM - 11 PM" },
+                { "day": "thursday", "hours": "8 AM - 11 PM" },
+                { "day": "friday", "hours": "8 AM - 12:00 AM" },
+                { "day": "saturday", "hours": "12 PM - 12 AM" },
+                { "day": "sunday", "hours": "10 AM - 12 AM" }
+            ]
+        }
+    })
+
     // Add example API key and user
 
     await prisma.user.create({
@@ -108,7 +121,7 @@ async function addSeedData() {
     await prisma.apiKey.create({
         data: {
             key: "all-scopes",
-            scopes: ["ANNOUNCEMENTS_EDIT", "FACULTY_EDIT", "SHUTTLE_EDIT", "HOUSING_EDIT", "COMPETENCIES_EDIT"],
+            scopes: ["ANNOUNCEMENTS_EDIT", "FACULTY_EDIT", "SHUTTLE_EDIT", "HOUSING_EDIT", "BUILDING_EDIT", "COMPETENCIES_EDIT"],
             userID: 1
         }
     });

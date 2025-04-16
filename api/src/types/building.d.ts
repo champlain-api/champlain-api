@@ -14,18 +14,10 @@
    limitations under the License.
 
 */
-/**
- * @description This is the housing object.
- * All the Info that is being returned.
- */
 
-export type House = {
-    id: number;
+export type Building = {
+    id: Number;
     name: string;
-    type: string;
-    students: int;
-    distance: string;
-    address: string;
-    imageURL: string;
-    updated: Date;
+    location: string;
+    hours: array[];
 }
