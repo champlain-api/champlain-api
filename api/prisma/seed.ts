@@ -16,6 +16,8 @@
 */
 
 import prisma from "../src/prisma_client"
+import { mealType, station} from "@prisma/client";
+import { MealData } from "../src/types/dining";
 
 async function addSeedData() {
     // Add example announcements
@@ -108,7 +110,96 @@ async function addSeedData() {
             ]
         }
     })
-
+    async function createMealsForDay(dayMenu) {
+        const meals: MealData[] = [];
+     
+        for (const [mealTypeKey, mealItems] of Object.entries(dayMenu)) {
+          if (!Array.isArray(mealItems)) {
+            console.warn(`Skipping ${mealTypeKey} because it is not an array or it is missing.`);
+            continue;
+          }
+     
+         
+          const mealTypeEnum = mealType[mealTypeKey.toUpperCase().replace(' ', '_')] as mealType;
+     
+          // Iterate over each meal item for the current mealType
+          for (const meal of mealItems) {
+            let stationEnums: station[] = [];
+     
+            if (Array.isArray(meal.station)) {
+              stationEnums = meal.station.map((stationName: string) => {
+                const stationEnum = station[stationName.toUpperCase().replace(' ', '_')];
+                if (!stationEnum) {
+                  console.warn(`Invalid station: ${stationName}`);
+                  return undefined; // If the station doesn't exist we return undefined
+                }
+                return stationEnum;
+              }).filter((stationEnum) => stationEnum !== undefined);
+            } else {
+             
+              const formattedStationName = meal.station.trim().toUpperCase().replace(/ /g, '_');
+              const stationEnum = station[formattedStationName];
+              if (!stationEnum) {
+                console.warn(`Invalid station: ${meal.station}`);
+              }
+              stationEnums = stationEnum ? [stationEnum] : []; // If invalid we skip adding to the array
+            }
+     
+            if (stationEnums.length > 0) {
+             
+              meals.push({
+                name: meal.name,
+                type: { set: [mealTypeEnum] },
+                station: { set: stationEnums },
+              });
+            } else {
+              console.warn(`Skipping meal '${meal.name}' due to invalid stations.`);
+            }
+          }
+        }
+     
+        return meals;
+      }
+     
+      async function fetchMenuData() {
+        try {
+          const response = await fetch('https://search.champlain.edu/js/menu.js');
+          if (!response.ok) {
+            throw new Error(`Error fetching data: ${response.statusText}`);
+          }
+     
+          const data = await response.json();
+          return data;
+        } catch (error) {
+          console.error('Error fetching menu data:', error);
+          throw error;
+        }
+      }
+     
+        try {
+          const menuData = await fetchMenuData();
+          const { date, menu } = menuData;
+     
+          // Loop through each day of the week
+          for (const [day, meals] of Object.entries(menu)) {
+            // Create a DailyMenu record for each day of the week
+            const dailyMenu = await prisma.dailyMenu.create({
+              data: {
+                dayofWeek: day.charAt(0).toUpperCase() + day.slice(1),
+                Meals: {
+                  create: await createMealsForDay(meals),
+                },
+              },
+            });
+     
+            console.log(`Daily menu for ${day} created with ID: ${dailyMenu.id}`);
+          }
+     
+          console.log('Menu data has been successfully added to the database.');
+        } catch (error) {
+          console.error('Error adding seed data:', error);
+        }
+        
     // Add example API key and user
 
     await prisma.user.create({
@@ -121,7 +212,7 @@ async function addSeedData() {
     await prisma.apiKey.create({
         data: {
             key: "all-scopes",
-            scopes: ["ANNOUNCEMENTS_EDIT", "FACULTY_EDIT", "SHUTTLE_EDIT", "HOUSING_EDIT", "BUILDING_EDIT", "COMPETENCIES_EDIT"],
+            scopes: ["ANNOUNCEMENTS_EDIT", "FACULTY_EDIT", "SHUTTLE_EDIT", "HOUSING_EDIT", "BUILDING_EDIT", "COMPETENCIES_EDIT", "DINING_EDIT"],
             userID: 1
         }
     });
@@ -146,5 +237,9 @@ async function addSeedData() {
 
 
 }
+   
+    addSeedData();
 
-addSeedData()
+
+
+

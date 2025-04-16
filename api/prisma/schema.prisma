@@ -74,7 +74,6 @@ model Faculty {
   imageURL    String   @default("https://www.champlain.edu/app/uploads/2023/10/cc-people-placeholder-400x400.jpg")
 }
 
-
 model Competencies {
   id          Int      @id @default(autoincrement())
   updated     DateTime @updatedAt @db.Timestamptz(6)
@@ -96,9 +95,9 @@ model Housing {
 }
 
 model Building {
-  id       Int      @id @default(autoincrement())
-  name     String   @default("")
-  location String   @default("")
+  id       Int    @id @default(autoincrement())
+  name     String @default("")
+  location String @default("")
   hours    Json
 }
 
@@ -109,4 +108,52 @@ enum APIKeyScopes {
   BUILDING_EDIT
   HOUSING_EDIT
   COMPETENCIES_EDIT
+  DINING_EDIT
+}
+
+model DailyMenu {
+  id        Int    @id @default(autoincrement())
+  dayofWeek String @default("Monday")
+  Meals     Meal[]
+}
+
+enum station {
+  SIZZLE
+  SLICES
+  BAKERY
+  RISE
+  SAVORY
+  THE_BREAKFAST_BAR
+  SALAD_BAR
+  SHOWCASE
+  VEGETABLE
+  RUSTIC_ROOTS
+  SOUP
+  CEREAL
+  DELI
+  STARCH
+  OMELET
+  ENTREE
+  BREAKFAST
+  APPETIZER
+  HAVE_A_NICE_DAY
+  WAFFLE_BAR
+  PIZZA
+}
+
+enum mealType {
+  DINNER
+  LATE_NIGHT
+  BREAKFAST
+  LUNCH
+  MORNING_BREAK
+  BRUNCH
+}
+
+model Meal {
+  id        Int         @id @default(autoincrement())
+  name      String      @default("")
+  station   station[]
+  type      mealType[]
+  DailyMenu DailyMenu[]
 }
