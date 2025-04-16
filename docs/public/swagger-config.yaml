@@ -31,6 +31,8 @@ tags:
     description: Endpoints relating to announcements
   - name: faculty
     description: Endpoints related to faculty
+  - name: building
+    description: Endpoints related to buildings
 
 paths:
   "/shuttles":
@@ -485,6 +487,20 @@ paths:
                   error:
                     type: string
                     example: "No faculty members found for this department."
+  "/building":
+    get:
+      tags:
+        - building
+      summary: "Get all buildings and their information."
+      description: "Returns all buildings with their name, location, and hours."
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/building"
+
 
 
 
@@ -558,5 +574,7 @@ components:
         imageUrl:
           type: string
           format: uri
+    building:
+      type: object
   security:
     - bearerAuth: [ ]
