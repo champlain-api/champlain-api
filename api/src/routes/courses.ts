@@ -7,11 +7,6 @@ Request all courses
  *  GET /courses
  *      Returns a 500 if an error occurs.
  * 
-Request a specific semesters worth of courses
- * GET /courses/:semester
- *     Returns a 404 if the semester is not found.
- *     Returns a 500 if an error occurs.
- * 
 Request a specific course
  * GET /courses/:courseNumber
  *     Returns a 400 if the course number is not provided.
