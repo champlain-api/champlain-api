@@ -147,8 +147,6 @@ async function addSeedData() {
     });
 
 
-}
-
     // Example data for semesters and courses
     const semestersData = [
         {
