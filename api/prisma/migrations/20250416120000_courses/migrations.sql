@@ -1,3 +1,8 @@
+-- AlterEnum
+ALTER TYPE "APIKeyScopes" ADD VALUE 'COURSES_EDIT';
+-- AlterEnum
+ALTER TYPE "APIKeyScopes" ADD VALUE 'SEMESTER_EDIT';
+
 -- CreateTable for Semester
 CREATE TABLE "Semester" (
     "id" SERIAL PRIMARY KEY,

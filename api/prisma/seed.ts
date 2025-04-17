@@ -123,7 +123,7 @@ async function addSeedData() {
     await prisma.apiKey.create({
         data: {
             key: "all-scopes",
-            scopes: ["ANNOUNCEMENTS_EDIT", "FACULTY_EDIT", "SHUTTLE_EDIT", "HOUSING_EDIT", "BUILDING_EDIT", "COMPETENCIES_EDIT", "COURSES_EDIT", "SEMESTERS_EDIT"],
+            scopes: ["ANNOUNCEMENTS_EDIT", "FACULTY_EDIT", "SHUTTLE_EDIT", "HOUSING_EDIT", "BUILDING_EDIT", "COMPETENCIES_EDIT", ],
             userID: 1
         }
     });
