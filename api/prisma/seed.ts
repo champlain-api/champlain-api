@@ -123,7 +123,7 @@ async function addSeedData() {
     await prisma.apiKey.create({
         data: {
             key: "all-scopes",
-            scopes: ["ANNOUNCEMENTS_EDIT", "FACULTY_EDIT", "SHUTTLE_EDIT", "HOUSING_EDIT", "BUILDING_EDIT", "COMPETENCIES_EDIT"],
+            scopes: ["ANNOUNCEMENTS_EDIT", "FACULTY_EDIT", "SHUTTLE_EDIT", "HOUSING_EDIT", "BUILDING_EDIT", "COMPETENCIES_EDIT", "COURSES_EDIT", "SEMESTERS_EDIT"],
             userID: 1
         }
     });
@@ -148,11 +148,6 @@ async function addSeedData() {
 
 
 }
-
-            scopes: ["ANNOUNCEMENTS_EDIT", "FACULTY_EDIT", "SHUTTLE_EDIT"],
-            userID: 1
-        }
-    })
 
     // Example data for semesters and courses
     const semestersData = [
