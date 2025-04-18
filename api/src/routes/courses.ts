@@ -19,6 +19,20 @@ Post a specific course
  *    Returns a 404 if the semester is not found.
  *    Returns a 500 if an error occurs.
  *    Returns a 201 if the course is created successfully.
+ * 
+Change a specific course
+ * PUT /courses/:courseId
+ *    Returns a 400 if the course ID is not provided.
+ *    Returns a 404 if the course is not found.
+ *    Returns a 500 if an error occurs.
+ *    Returns a 200 if the course is updated successfully.
+ * 
+Delete a specific course
+ * DELETE /courses/:courseId
+ *    Returns a 400 if the course ID is not provided.
+ *    Returns a 404 if the course is not found.
+ *    Returns a 500 if an error occurs.
+ *    Returns a 200 if the course is deleted successfully.
 */
 
 
@@ -175,6 +189,116 @@ router
         } catch (error) {
             res.status(500).json({ error: "Unable to create the course." });
         }
-    });
+    })
+
+/**
+ * @route PUT /courses/:courseId
+ * @description Updates an existing course by its ID
+ * @param {number} courseId - The ID of the course to update.
+ * @returns {JSON} The updated course.
+ */
+router.put("/courses/:courseId", requireAPIKeyScopes([APIKeyScopes.COURSES_EDIT]), async (req: Request, res: Response) => {
+    res.setHeader("Content-Type", "application/json");
+
+    const courseId = parseInt(req.params.courseId, 10);
+    const {
+        title,
+        number,
+        credit,
+        openseats,
+        days,
+        times,
+        instructor_name,
+        description,
+        room,
+        subject,
+        type,
+        prereq,
+        start_date,
+        end_date,
+        semesterId
+    } = req.body;
+
+    if (isNaN(courseId)) {
+        res.status(400).json({ error: "Invalid course ID." });
+        return;
+    }
+
+    try {
+        // Check if the course exists
+        const existingCourse = await prisma.course.findUnique({
+            where: { id: courseId },
+        });
+
+        if (!existingCourse) {
+            res.status(404).json({ error: "Course not found." });
+            return;
+        }
+
+        // Update the course
+        const updatedCourse = await prisma.course.update({
+            where: { id: courseId },
+            data: {
+                title,
+                number,
+                credit,
+                openseats,
+                days,
+                times,
+                instructor_name,
+                description,
+                room,
+                subject,
+                type,
+                prereq,
+                start_date: start_date ? new Date(start_date) : undefined,
+                end_date: end_date ? new Date(end_date) : undefined,
+                semesterId,
+            },
+        });
+
+        res.status(200).json(updatedCourse);
+    } catch (error) {
+        res.status(500).json({ error: "Unable to update the course." });
+    }
+});
+
+/**
+ * @route DELETE /courses/:courseId
+ * @description Deletes a course by its ID
+ * @param {number} courseId - The ID of the course to delete.
+ * @returns {JSON} A success message or an error.
+ */
+router.delete("/courses/:courseId", requireAPIKeyScopes([APIKeyScopes.COURSES_EDIT]), async (req: Request, res: Response) => {
+    res.setHeader("Content-Type", "application/json");
+
+    const courseId = parseInt(req.params.courseId, 10);
+
+    if (isNaN(courseId)) {
+        res.status(400).json({ error: "Invalid course ID." });
+        return;
+    }
+
+    try {
+        // Check if the course exists
+        const existingCourse = await prisma.course.findUnique({
+            where: { id: courseId },
+        });
+
+        if (!existingCourse) {
+            res.status(404).json({ error: "Course not found." });
+            return;
+        }
+
+        // Delete the course
+        await prisma.course.delete({
+            where: { id: courseId },
+        });
+
+        res.status(200).json({ message: "Course deleted successfully." });
+    } catch (error) {
+        res.status(500).json({ error: "Unable to delete the course." });
+    }
+});
 
 export default router
