@@ -202,3 +202,125 @@ describe("Courses API", () => {
         });
     });
 });
+
+
+
+describe("Semester API", () => {
+    const mockSemester = {
+        id: expect.any(Number),
+        name: expect.any(String),
+        year: expect.any(String),
+        date: expect.any(String),
+    };
+
+    describe("GET requests", () => {
+        test("GET /semester should return a 200 and a list of semesters", async () => {
+            const response = await request(app).get("/semester").send();
+            expect(response.status).toBe(200);
+            expect(response.body).toBeInstanceOf(Array);
+            expect(response.body.length).toBeGreaterThan(0);
+            expect(response.body[0]).toMatchObject(mockSemester);
+        });
+
+        test("GET /semester/:id should return a 200 and a specific semester", async () => {
+            const response = await request(app).get("/semester/1").send();
+            expect(response.status).toBe(200);
+            expect(response.body).toMatchObject(mockSemester);
+        });
+
+        test("GET /semester/:invalid-id should return a 400", async () => {
+            const response = await request(app).get("/semester/invalid-id").send();
+            expect(response.status).toBe(400);
+            expect(response.body).toMatchObject({ error: expect.any(String) });
+        });
+
+        test("GET /semester/:unknown-id should return a 404", async () => {
+            const response = await request(app).get("/semester/9999").send();
+            expect(response.status).toBe(404);
+            expect(response.body).toMatchObject({ error: expect.any(String) });
+        });
+    });
+
+    describe("POST requests", () => {
+        test("POST /semester with valid data should return a 201 and the new semester", async () => {
+            const response = await request(app)
+                .post("/semester")
+                .send({
+                    name: "Spring",
+                    year: "2025",
+                    date: "January 13th - May 2nd",
+                });
+            expect(response.status).toBe(201);
+            expect(response.body).toMatchObject(mockSemester);
+        });
+
+        test("POST /semester with missing required fields should return a 400", async () => {
+            const response = await request(app)
+                .post("/semester")
+                .send({
+                    name: "Spring",
+                    // Missing `year` and `date`
+                });
+            expect(response.status).toBe(400);
+            expect(response.body).toMatchObject({ error: expect.any(String) });
+        });
+    });
+
+    describe("PUT requests", () => {
+        test("PUT /semester/:id with valid data should return a 200 and the updated semester", async () => {
+            const response = await request(app)
+                .put("/semester/1")
+                .send({
+                    name: "Updated Semester Name",
+                    year: "2026",
+                    date: "Updated Date Range",
+                });
+            expect(response.status).toBe(200);
+            expect(response.body).toMatchObject({
+                name: "Updated Semester Name",
+                year: "2026",
+                date: "Updated Date Range",
+            });
+        });
+
+        test("PUT /semester/:id with invalid id should return a 400", async () => {
+            const response = await request(app)
+                .put("/semester/invalid-id")
+                .send({
+                    name: "Updated Semester Name",
+                });
+            expect(response.status).toBe(400);
+            expect(response.body).toMatchObject({ error: expect.any(String) });
+        });
+
+        test("PUT /semester/:unknown-id should return a 404", async () => {
+            const response = await request(app)
+                .put("/semester/9999")
+                .send({
+                    name: "Updated Semester Name",
+                });
+            expect(response.status).toBe(404);
+            expect(response.body).toMatchObject({ error: expect.any(String) });
+        });
+    });
+
+    describe("DELETE requests", () => {
+        test("DELETE /semester/:id should return a 200 and delete the semester", async () => {
+            const response = await request(app).delete("/semester/1").send();
+            expect(response.status).toBe(200);
+            expect(response.body).toMatchObject({ message: "Semester deleted successfully." });
+        });
+
+        test("DELETE /semester/:invalid-id should return a 400", async () => {
+            const response = await request(app).delete("/semester/invalid-id").send();
+            expect(response.status).toBe(400);
+            expect(response.body).toMatchObject({ error: expect.any(String) });
+        });
+
+        test("DELETE /semester/:unknown-id should return a 404", async () => {
+            const response = await request(app).delete("/semester/9999").send();
+            expect(response.status).toBe(404);
+            expect(response.body).toMatchObject({ error: expect.any(String) });
+        });
+    });
+});
