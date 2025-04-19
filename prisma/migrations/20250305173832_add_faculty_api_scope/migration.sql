@@ -1,0 +1,2 @@
+-- AlterEnum
+ALTER TYPE "APIKeyScopes" ADD VALUE 'FACULTY_EDIT';
