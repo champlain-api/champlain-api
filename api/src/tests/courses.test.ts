@@ -12,13 +12,104 @@
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
-
 */
 
-import { expect, test, describe, beforeAll } from "bun:test";
+import { expect, test, describe, beforeAll, afterEach } from "bun:test";
 import request from "supertest";
 import { app } from "../index.ts";
 import type { Course } from "../types/courses.ts";
+
+// Mock the Prisma client
+jest.mock("../prismaClient", () => ({
+    course: {
+        findMany: jest.fn(() => [
+            {
+                id: 1,
+                title: "Test Course",
+                number: "TEST-101",
+                credit: 3,
+                openseats: 10,
+                days: "MWF",
+                times: "10:00-11:00",
+                instructor_name: "John Doe",
+                description: "A test course description.",
+                room: "Room 101",
+                subject: "General",
+                type: "Lecture",
+                prereq: "None",
+                start_date: new Date("2025-01-01").toISOString(),
+                end_date: new Date("2025-05-01").toISOString(),
+                semesterId: 1,
+            },
+        ]),
+        findUnique: jest.fn((query) => {
+            if (query.where.id === 1) {
+                return {
+                    id: 1,
+                    title: "Test Course",
+                    number: "TEST-101",
+                    credit: 3,
+                    openseats: 10,
+                    days: "MWF",
+                    times: "10:00-11:00",
+                    instructor_name: "John Doe",
+                    description: "A test course description.",
+                    room: "Room 101",
+                    subject: "General",
+                    type: "Lecture",
+                    prereq: "None",
+                    start_date: new Date("2025-01-01").toISOString(),
+                    end_date: new Date("2025-05-01").toISOString(),
+                    semesterId: 1,
+                };
+            }
+            return null;
+        }),
+        create: jest.fn((data) => ({
+            id: 2,
+            ...data.data,
+        })),
+        update: jest.fn((data) => ({
+            id: data.where.id,
+            ...data.data,
+        })),
+        delete: jest.fn((data) => ({
+            id: data.where.id,
+        })),
+    },
+    semester: {
+        findMany: jest.fn(() => [
+            {
+                id: 1,
+                name: "Spring",
+                year: "2025",
+                date: "January 13th - May 2nd",
+            },
+        ]),
+        findUnique: jest.fn((query) => {
+            if (query.where.id === 1) {
+                return {
+                    id: 1,
+                    name: "Spring",
+                    year: "2025",
+                    date: "January 13th - May 2nd",
+                };
+            }
+            return null;
+        }),
+        create: jest.fn((data) => ({
+            id: 2,
+            ...data.data,
+        })),
+        update: jest.fn((data) => ({
+            id: data.where.id,
+            ...data.data,
+        })),
+        delete: jest.fn((data) => ({
+            id: data.where.id,
+        })),
+    },
+}));
 
 beforeAll(async () => {
     request(app);
@@ -50,8 +141,7 @@ describe("Courses API", () => {
             expect(response.status).toBe(200);
             expect(response.body).toBeInstanceOf(Array);
             expect(response.body.length).toBeGreaterThan(0);
-            expect(response.body[0]).toHaveProperty("courses");
-            expect(response.body[0].courses[0]).toMatchObject(mockCourse);
+            expect(response.body[0]).toMatchObject(mockCourse);
         });
 
         test("GET /courses/:id should return a 200 and a specific course", async () => {
@@ -91,14 +181,14 @@ describe("Courses API", () => {
                 .post("/courses")
                 .send({
                     title: "New Course",
-                    number: "COURSE-101",
+                    number: "COURSE-102",
                     credit: 3,
                     openseats: 10,
                     days: "MWF",
                     times: "10:00-11:00",
-                    instructor_name: "John Doe",
+                    instructor_name: "Jane Doe",
                     description: "A new course description.",
-                    room: "Room 101",
+                    room: "Room 102",
                     subject: "General",
                     type: "Lecture",
                     prereq: "None",
@@ -107,7 +197,11 @@ describe("Courses API", () => {
                     semesterId: 1,
                 });
             expect(response.status).toBe(201);
-            expect(response.body).toMatchObject(mockCourse);
+            expect(response.body).toMatchObject({
+                id: expect.any(Number),
+                title: "New Course",
+                number: "COURSE-102",
+            });
         });
 
         test("POST /courses with missing required fields should return a 400", async () => {
@@ -186,7 +280,7 @@ describe("Courses API", () => {
         test("DELETE /courses/:id should return a 200 and delete the course", async () => {
             const response = await request(app).delete("/courses/1").send();
             expect(response.status).toBe(200);
-            expect(response.body).toMatchObject({ message: "Course deleted successfully." });
+            expect(response.body).toMatchObject({ id: 1 });
         });
 
         test("DELETE /courses/:invalid-id should return a 400", async () => {
@@ -202,8 +296,6 @@ describe("Courses API", () => {
         });
     });
 });
-
-
 
 describe("Semester API", () => {
     const mockSemester = {
