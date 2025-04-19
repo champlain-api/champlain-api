@@ -50,7 +50,8 @@ describe("Courses API", () => {
             expect(response.status).toBe(200);
             expect(response.body).toBeInstanceOf(Array);
             expect(response.body.length).toBeGreaterThan(0);
-            expect(response.body[0]).toMatchObject(mockCourse);
+            expect(response.body[0]).toHaveProperty("courses");
+            expect(response.body[0].courses[0]).toMatchObject(mockCourse);
         });
 
         test("GET /courses/:id should return a 200 and a specific course", async () => {
@@ -70,10 +71,22 @@ describe("Courses API", () => {
             expect(response.status).toBe(404);
             expect(response.body).toMatchObject({ error: expect.any(String) });
         });
+
+        test("GET /courses/:courseNumber should return a 200 and a specific course", async () => {
+            const response = await request(app).get("/courses/CSI-240").send();
+            expect(response.status).toBe(200);
+            expect(response.body).toMatchObject(mockCourse);
+        });
+
+        test("GET /courses/:invalid-courseNumber should return a 404", async () => {
+            const response = await request(app).get("/courses/INVALID").send();
+            expect(response.status).toBe(404);
+            expect(response.body).toMatchObject({ error: expect.any(String) });
+        });
     });
 
     describe("POST requests", () => {
-        test("POST /courses with valid data should return a 200 and the new course", async () => {
+        test("POST /courses with valid data should return a 201 and the new course", async () => {
             const response = await request(app)
                 .post("/courses")
                 .send({
@@ -93,7 +106,7 @@ describe("Courses API", () => {
                     end_date: "2025-05-01",
                     semesterId: 1,
                 });
-            expect(response.status).toBe(200);
+            expect(response.status).toBe(201);
             expect(response.body).toMatchObject(mockCourse);
         });
 
