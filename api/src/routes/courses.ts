@@ -96,7 +96,7 @@ router
     })
 
 /**
- * @route GET /courses/:courseNumber
+ * @route GET /:courseNumber
  * @description Fetch a course by its course number, nested inside semesters
  * @param {string} courseNumber - The course number to fetch (e.g., "CSI-240").
  * @returns {JSON} The course details with its semester.
@@ -135,7 +135,7 @@ router
 /**
  * @route POST /courses
  * @description Adds a new course to a specific semester
- * @returns {JSON} The created course.
+ * @returns {JSON} A success message with the updated course or an error.
  */
     .post("/courses", requireAPIKeyScopes([APIKeyScopes.COURSES_EDIT]), async (req: Request, res: Response) => {
         res.setHeader("Content-Type", "application/json");
@@ -209,10 +209,10 @@ router
     })
 
 /**
- * @route PUT /courses/:courseId
+ * @route PUT /:courseId
  * @description Updates an existing course by its ID
  * @param {number} courseId - The ID of the course to update.
- * @returns {JSON} The updated course.
+ * @returns {JSON} A success message with the updated course or an error.
  */
 router.put("/courses/:courseId", requireAPIKeyScopes([APIKeyScopes.COURSES_EDIT]), async (req: Request, res: Response) => {
     res.setHeader("Content-Type", "application/json");
@@ -281,7 +281,7 @@ router.put("/courses/:courseId", requireAPIKeyScopes([APIKeyScopes.COURSES_EDIT]
 });
 
 /**
- * @route DELETE /courses/:courseId
+ * @route DELETE /:courseId
  * @description Deletes a course by its ID
  * @param {number} courseId - The ID of the course to delete.
  * @returns {JSON} A success message or an error.
@@ -315,6 +315,181 @@ router.delete("/courses/:courseId", requireAPIKeyScopes([APIKeyScopes.COURSES_ED
         res.status(200).json({ message: "Course deleted successfully." });
     } catch (error) {
         res.status(500).json({ error: "Unable to delete the course." });
+    }
+});
+
+
+
+/**
+ * the semesters will all start with /semester/... simply for clarity
+ */
+
+
+
+/**
+ * @route POST /semester
+ * @description Adds a new semester
+ * @returns {JSON} A success message or an error.
+ */
+router.post("/semester", requireAPIKeyScopes([APIKeyScopes.COURSES_EDIT]), async (req: Request, res: Response) => {
+    res.setHeader("Content-Type", "application/json");
+
+    const { name, year, date } = req.body;
+
+    // Validate required fields
+    if (!name || !year || !date) {
+        res.status(400).json({ error: "Missing required fields: name, year, or date." });
+        return;
+    }
+
+    try {
+        // Create the new semester
+        const newSemester = await prisma.semester.create({
+            data: {
+                name,
+                year,
+                date,
+            },
+        });
+
+        res.status(201).json(newSemester);
+    } catch (error) {
+        res.status(500).json({ error: "Unable to create the semester." });
+    }
+});
+
+/**
+ * @route PUT /semester/:semesterId
+ * @description Updates an existing semester by its ID
+ * @param {number} semesterId - The ID of the semester to update.
+ * @returns {JSON} A success message or an error.
+ */
+router.put("/semester/:semesterId", requireAPIKeyScopes([APIKeyScopes.COURSES_EDIT]), async (req: Request, res: Response) => {
+    res.setHeader("Content-Type", "application/json");
+
+    const semesterId = parseInt(req.params.semesterId, 10);
+    const { name, year, date } = req.body;
+
+    if (isNaN(semesterId)) {
+        res.status(400).json({ error: "Invalid semester ID." });
+        return;
+    }
+
+    try {
+        // Check if the semester exists
+        const existingSemester = await prisma.semester.findUnique({
+            where: { id: semesterId },
+        });
+
+        if (!existingSemester) {
+            res.status(404).json({ error: "Semester not found." });
+            return;
+        }
+
+        // Update the semester
+        const updatedSemester = await prisma.semester.update({
+            where: { id: semesterId },
+            data: {
+                name,
+                year,
+                date,
+            },
+        });
+
+        res.status(200).json(updatedSemester);
+    } catch (error) {
+        res.status(500).json({ error: "Unable to update the semester." });
+    }
+});
+
+/**
+ * @route GET /semester
+ * @description Returns all existing semesters
+ * @returns {JSON} A list of semesters or an error.
+ */
+router.get("/semester", async (req: Request, res: Response) => {
+    res.setHeader("Content-Type", "application/json");
+
+    try {
+        const semesters = await prisma.semester.findMany({
+            orderBy: {
+                id: "asc",
+            },
+        });
+
+        res.status(200).json(semesters);
+    } catch (error) {
+        res.status(500).json({ error: "Unable to fetch semesters." });
+    }
+});
+
+/**
+ * @route GET /semester/:semesterId
+ * @description Returns an existing semester by its ID
+ * @param {number} semesterId - The ID of the semester to fetch.
+ * @returns {JSON} The semester details or an error.
+ */
+router.get("/semester/:semesterId", async (req: Request, res: Response) => {
+    res.setHeader("Content-Type", "application/json");
+
+    const semesterId = parseInt(req.params.semesterId, 10);
+
+    if (isNaN(semesterId)) {
+        res.status(400).json({ error: "Invalid semester ID." });
+        return;
+    }
+
+    try {
+        const semester = await prisma.semester.findUnique({
+            where: { id: semesterId },
+        });
+
+        if (!semester) {
+            res.status(404).json({ error: "Semester not found." });
+            return;
+        }
+
+        res.status(200).json(semester);
+    } catch (error) {
+        res.status(500).json({ error: "Unable to fetch the semester." });
+    }
+});
+
+/**
+ * @route DELETE /semester/:semesterId
+ * @description Deletes a semester by its ID
+ * @param {number} semesterId - The ID of the semester to delete.
+ * @returns {JSON} A success message or an error.
+ */
+router.delete("/semester/:semesterId", requireAPIKeyScopes([APIKeyScopes.COURSES_EDIT]), async (req: Request, res: Response) => {
+    res.setHeader("Content-Type", "application/json");
+
+    const semesterId = parseInt(req.params.semesterId, 10);
+
+    if (isNaN(semesterId)) {
+        res.status(400).json({ error: "Invalid semester ID." });
+        return;
+    }
+
+    try {
+        // Check if the semester exists
+        const existingSemester = await prisma.semester.findUnique({
+            where: { id: semesterId },
+        });
+
+        if (!existingSemester) {
+            res.status(404).json({ error: "Semester not found." });
+            return;
+        }
+
+        // Delete the semester
+        await prisma.semester.delete({
+            where: { id: semesterId },
+        });
+
+        res.status(200).json({ message: "Semester deleted successfully." });
+    } catch (error) {
+        res.status(500).json({ error: "Unable to delete the semester." });
     }
 });
 
