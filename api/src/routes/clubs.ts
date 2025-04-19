@@ -5,10 +5,13 @@ import prisma from "../prisma_client.ts";
 const router = express.Router();
 router.use(express.json())
 
-// Route to get all clubs
+
+// GET all clubs (including officers)
 router.get("/", async (req: Request, res: Response) => {
     try {
-        const clubs = await prisma.club.findMany();
+        const clubs = await prisma.club.findMany({
+            include: { officers: true }
+        });
         res.json(clubs);
     } catch (error) {
         res.status(500).json({ error: "Error retrieving clubs: " + error });
@@ -17,18 +20,12 @@ router.get("/", async (req: Request, res: Response) => {
 
 // Route to get a specific club by name
 router.get("/:clubName", async (req: Request, res: Response) => {
-    try {    
+    try {
         const club = await prisma.club.findUnique({
             where: { name: req.params.clubName },
-            include: {
-                clubInfo: {
-                    include: {
-                        officers: true
-                    }
-                }
-            }
+            include: { officers: true }
         });
-``
+
         if (!club) {
             res.status(404).json({ error: "Club not found" });
         }
@@ -40,71 +37,116 @@ router.get("/:clubName", async (req: Request, res: Response) => {
 });
 
 // to update a club 
-router.put("/:clubId", async (req, res) =>{
+router.put("/:clubId", async (req: Request, res: Response) => {
     const { clubId } = req.params;
     const data = req.body;
+
     try {
-        const updated = await prisma.club.update({
-          where: { id: parseInt(clubId) },
-          data,
+        const updatedClub = await prisma.club.update({
+            where: { id: parseInt(clubId) },
+            data,
+            include: { officers: true }
         });
-        res.json(updated);
+
+        res.json(updatedClub);
     } catch (error) {
-        res.status(500).json({ error: "Error updating club: " + error});
+        res.status(500).json({ error: "Error updating club: " + error });
     }
 });
 
 // Route to create a new club
 router.post("/", async (req: Request, res: Response) => {
     try {
-        const { name, 
-            clubInfo, //  type, semester (array), officers (array of name/title)
+        const {
+            name,
+            type,
+            semester,
             primaryContact,
             email,
             description,
-           } = req.body;
+            officers // expects array of { name, title }
+        } = req.body;
 
         const newClub = await prisma.club.create({
             data: {
                 name,
-                description,
+                type,
+                semester,
                 primaryContact,
                 email,
-                clubInfo: {
-                    create: {
-                        type: clubInfo.type,
-                        semester: { set: clubInfo.semester }, // string[]
-                        officers: {
-                            createMany: {
-                                data: clubInfo.officers
-                            }
-                        }
-                    }
+                description,
+                officers: {
+                    create: officers
                 }
             },
-            include: {
-                clubInfo: {
-                    include: {
-                        officers: true
-                    }
-                }
-            }
+            include: { officers: true }
         });
 
-        res.json(newClub);
+        res.status(201).json(newClub);
     } catch (error) {
         res.status(500).json({ error: "Error creating club", details: error });
     }
 });
 
-// to delete a club 
-router.delete("/:clubId", async (req, res) => {
+// to delete a club by id
+router.delete("/:clubId", async (req: Request, res: Response) => {
     const { clubId } = req.params;
+
     try {
-      await prisma.club.delete({ where: { id: parseInt(clubId) } });
-      res.json({ message: "Club deleted" });
+        // Delete officers first to avoid FK constraint
+        await prisma.officer.deleteMany({
+            where: { id: parseInt(clubId) }
+        });
+
+        await prisma.club.delete({
+            where: { id: parseInt(clubId) }
+        });
+
+        res.json({ message: "Club deleted" });
     } catch (error) {
-      res.status(500).json({ error: "Error deleting club: " + error });
+        res.status(500).json({ error: "Error deleting club: " + error });
+    }
+});
+
+// GET all officers
+router.get("/officers", async (req: Request, res: Response) => {
+    try {
+      const officers = await prisma.officer.findMany();
+      res.json(officers);
+    } catch (error) {
+      res.status(500).json({ error: "Error retrieving officers: " + error });
+    }
+  });
+
+  //  route to update an officer 
+  router.put("/officers/:officerId", async (req: Request, res: Response) => {
+    const { officerId } = req.params;
+    const { name, title } = req.body;
+  
+    try {
+      const updatedOfficer = await prisma.officer.update({
+        where: { id: parseInt(officerId) },
+        data: { name, title }
+      });
+  
+      res.json(updatedOfficer);
+    } catch (error) {
+      res.status(500).json({ error: "Error updating officer: " + error });
+    }
+  });
+
+  // route delete an officer 
+  router.delete("/officers/:officerId", async (req: Request, res: Response) => {
+    const { officerId } = req.params;
+  
+    try {
+      await prisma.officer.delete({
+        where: { id: parseInt(officerId) }
+      });
+  
+      res.json({ message: "Officer deleted" });
+    } catch (error) {
+      res.status(500).json({ error: "Error deleting officer: " + error });
     }
   });
 
