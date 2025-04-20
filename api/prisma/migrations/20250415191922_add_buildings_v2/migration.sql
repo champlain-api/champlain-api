@@ -10,3 +10,4 @@ CREATE TABLE "Building" (
 
     CONSTRAINT "Building_pkey" PRIMARY KEY ("id")
 );
+

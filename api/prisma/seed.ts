@@ -16,6 +16,8 @@
 */
 
 import prisma from "../src/prisma_client"
+import * as fs from 'fs';
+import * as path from 'path';
 
 async function addSeedData() {
     // Add example announcements
@@ -70,7 +72,7 @@ async function addSeedData() {
         }
     });
 
-   
+
     await prisma.housing.create({
         data: {
             name: "South House",
@@ -121,7 +123,7 @@ async function addSeedData() {
     await prisma.apiKey.create({
         data: {
             key: "all-scopes",
-            scopes: ["ANNOUNCEMENTS_EDIT", "FACULTY_EDIT", "SHUTTLE_EDIT", "HOUSING_EDIT", "BUILDING_EDIT", "COMPETENCIES_EDIT"],
+            scopes: ["ANNOUNCEMENTS_EDIT", "FACULTY_EDIT", "SHUTTLE_EDIT", "HOUSING_EDIT", "BUILDING_EDIT", "COMPETENCIES_EDIT", ],
             userID: 1
         }
     });
@@ -145,6 +147,105 @@ async function addSeedData() {
     });
 
 
+    // Create the first semester
+    const springSemester = await prisma.semester.create({
+        data: {
+            name: "spring",
+            year: "2025",
+            date: "January 13th - May 2nd",
+        },
+    });
+
+    // Add courses for the spring semester
+    await prisma.course.create({
+        data: {
+            title: "CYBR Pol Analysis & Implement",
+            number: "CYBR 420-45",
+            credit: 3,
+            openseats: 6,
+            days: "Online",
+            times: "Online",
+            instructor_name: "Charles Kelliher",
+            description: "In order to function effectively, businesses need to have policies that guide them and their employees. Information security policies are essential to provide guidance to the operations teams who would be expected to ensure the policies and standards have been implemented. Policies are guided by business needs, regulations and laws. Students will learn the difference between policies, standards, guidelines and procedures. This knowledge will help even technical professionals understand the needs of the business to be able to make risk-based decisions that will help the business achieve its aims.",
+            room: "",
+            subject: "Cybersecurity",
+            type: "Accelerated",
+            prereq: "CYBR-335",
+            start_date: new Date("2025-03-10T00:00:00"),
+            end_date: new Date("2025-04-25T00:00:00"),
+            semesterId: springSemester.id, // Link to the spring semester
+        },
+    });
+
+    await prisma.course.create({
+        data: {
+            title: "The Writing Process",
+            number: "ENGL 100-40B",
+            credit: 3,
+            openseats: 5,
+            days: "Online",
+            times: "Online",
+            instructor_name: "Mark Wolzenburg",
+            description: "This course introduces students to the foundational concepts needed to communicate effectively in writing for academic study and professional development. Students will also learn to read critically to evaluate an author's message. Students will be introduced to rhetorical modes and their role in the development of written communication. Students will also learn how to use revision strategies to create written communication that meets its intended purpose for its intended audience.",
+            room: "",
+            subject: "English - CPS",
+            type: "Accelerated",
+            prereq: "",
+            start_date: new Date("2025-01-13T00:00:00"),
+            end_date: new Date("2025-02-28T00:00:00"),
+            semesterId: springSemester.id, // Link to the spring semester
+        },
+    });
+
+    // Create the second semester
+    const fallSemester = await prisma.semester.create({
+        data: {
+            name: "fall",
+            year: "2025",
+            date: "August 25th - December 12th",
+        },
+    });
+
+    // Add courses for the fall semester
+    await prisma.course.create({
+        data: {
+            title: "Intermediate Accounting I",
+            number: "ACCT 230-81",
+            credit: 3,
+            openseats: 20,
+            days: "Online",
+            times: "Online",
+            instructor_name: "Staff",
+            description: "In this first course of a two-part sequence focusing on financial reporting students will learn theory, concepts, principles and practices underlying preparation of external financial reports, particularly application of generally accepted accounting principles related to disclosure of current and noncurrent assets and principles of revenue recognition on the Balance sheet, Income Statement and Statement of Retained Earnings. Students will also consider broad issues like the environment of financial reporting, the role of financial reporting and the accounting standard-setting process.",
+            room: "",
+            subject: "Accounting - CCO",
+            type: "Online",
+            prereq: "ACCT-130",
+            start_date: new Date("2025-09-01T00:00:00"),
+            end_date: new Date("2025-12-12T00:00:00"),
+            semesterId: fallSemester.id, // Link to the fall semester
+        },
+    });
+
+    await prisma.course.create({
+        data: {
+            title: "Enterprise Database Systems",
+            number: "CMIT 310-45",
+            credit: 3,
+            openseats: 20,
+            days: "Online",
+            times: "Online",
+            instructor_name: "Staff",
+            description: "Introduces organization and processing in enterprise Database Management Systems. The student will develop skills in database systems analysis, management and processing. The structure, components, and processing of enterprise Database Management Systems (DBMS) will be covered. The course is presented from the viewpoint of operating and maintaining an enterprise level database system as well as supporting its use. Hands-on assignments will involve construction of a cloud based database server.",
+            room: "",
+            subject: "Comp & Info Tech -CPS",
+            type: "Accelerated",
+            prereq: "CMIT-200",
+            start_date: new Date("2025-10-27T00:00:00"),
+            end_date: new Date("2025-12-12T00:00:00"),
+            semesterId: fallSemester.id, // Link to the fall semester
+        },
+    });
 }
 
-addSeedData()
+addSeedData();
