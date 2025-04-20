@@ -98,7 +98,7 @@ router.delete("/:clubId", requireAPIKeyScopes([APIKeyScopes.CLUB_EDIT]), async (
     try {
         // Delete officers first to avoid FK constraint
         await prisma.officer.deleteMany({
-            where: { id: parseInt(clubId) }
+            where: { clubId: parseInt(clubId) }
         });
 
         await prisma.club.delete({
