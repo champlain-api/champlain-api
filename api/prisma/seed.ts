@@ -16,6 +16,7 @@
 */
 
 import prisma from "../src/prisma_client"
+
 import { mealType, station } from "@prisma/client";
 import * as fs from 'fs';
 import * as path from 'path';
@@ -523,6 +524,7 @@ async function addSeedData() {
     await prisma.apiKey.create({
         data: {
             key: "all-scopes",
+
             scopes: ["ANNOUNCEMENTS_EDIT", "FACULTY_EDIT", "SHUTTLE_EDIT", "HOUSING_EDIT", "BUILDING_EDIT", "COMPETENCIES_EDIT", "DINING_EDIT"],
             userID: 1
         }
@@ -649,3 +651,4 @@ async function addSeedData() {
 }
 
 addSeedData();
+
