@@ -30,6 +30,7 @@ router.get("/:clubName", async (req: Request, res: Response) => {
 
         if (!club) {
             res.status(404).json({ error: "Club not found" });
+            return
         }
 
         res.json(club);
