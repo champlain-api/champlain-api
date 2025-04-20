@@ -32,6 +32,7 @@ app.use("/announcements", announcementsRoute)
 app.use("/shuttles", shuttleRoute)
 app.use("/course", courseRoutes);
 app.use("/faculty", facultyRoute)
+app.use("/course", courseRoutes);
 app.use("/building", buildingRoute)
 app.use("/housing", housingRoute)
 app.use("/competencies", competenciesRoute)
