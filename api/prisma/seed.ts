@@ -267,7 +267,7 @@ async function addSeedData() {
             data: {
                 name: "Veggie Burger",
                 type: { set: [mealType.LUNCH] },
-                station: { set: [station.VEGAN] },
+                station: { set: [station.SIZZLE] },
                 DailyMenu: {
                     connect: { id: mondayMenu.id }
                 }
@@ -323,7 +323,7 @@ async function addSeedData() {
             data: {
                 name: "Tofu Stir Fry",
                 type: { set: [mealType.DINNER] },
-                station: { set: [station.VEGAN] },
+                station: { set: [station.SIZZLE] },
                 DailyMenu: {
                     connect: { id: mondayMenu.id }
                 }
@@ -334,7 +334,7 @@ async function addSeedData() {
             data: {
                 name: "Cheesecake",
                 type: { set: [mealType.DINNER] },
-                station: { set: [station.DESSERT] },
+                station: { set: [station.BAKERY] },
                 DailyMenu: {
                     connect: { id: mondayMenu.id }
                 }
@@ -433,7 +433,7 @@ async function addSeedData() {
             data: {
                 name: "Falafel Wrap",
                 type: { set: [mealType.LUNCH] },
-                station: { set: [station.VEGAN] },
+                station: { set: [station.SIZZLE] },
                 DailyMenu: {
                     connect: { id: tuesdayMenu.id }
                 }
@@ -489,7 +489,7 @@ async function addSeedData() {
             data: {
                 name: "Eggplant Parmesan",
                 type: { set: [mealType.DINNER] },
-                station: { set: [station.VEGETARIAN] },
+                station: { set: [station.SIZZLE] },
                 DailyMenu: {
                     connect: { id: tuesdayMenu.id }
                 }
@@ -500,7 +500,7 @@ async function addSeedData() {
             data: {
                 name: "Tiramisu",
                 type: { set: [mealType.DINNER] },
-                station: { set: [station.DESSERT] },
+                station: { set: [station.BAKERY] },
                 DailyMenu: {
                     connect: { id: tuesdayMenu.id }
                 }
