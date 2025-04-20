@@ -1,6 +1,8 @@
 import express from "express";
 import type { Response, Request } from "express";
 import prisma from "../prisma_client.ts";
+import {Prisma, APIKeyScopes} from "@prisma/client";
+import {requireAPIKeyScopes} from "../middleware/api-middleware.ts";
 
 const router = express.Router();
 router.use(express.json())
@@ -37,7 +39,7 @@ router.get("/:clubName", async (req: Request, res: Response) => {
 });
 
 // to update a club 
-router.put("/:clubId", async (req: Request, res: Response) => {
+router.put("/:clubId", requireAPIKeyScopes([APIKeyScopes.CLUB_EDIT]), async (req: Request, res: Response) => {
     const { clubId } = req.params;
     const data = req.body;
 
@@ -55,7 +57,7 @@ router.put("/:clubId", async (req: Request, res: Response) => {
 });
 
 // Route to create a new club
-router.post("/", async (req: Request, res: Response) => {
+router.post("/", requireAPIKeyScopes([APIKeyScopes.CLUB_EDIT]), async (req: Request, res: Response) => {
     try {
         const {
             name,
@@ -89,7 +91,7 @@ router.post("/", async (req: Request, res: Response) => {
 });
 
 // to delete a club by id
-router.delete("/:clubId", async (req: Request, res: Response) => {
+router.delete("/:clubId", requireAPIKeyScopes([APIKeyScopes.CLUB_EDIT]), async (req: Request, res: Response) => {
     const { clubId } = req.params;
 
     try {
@@ -119,7 +121,7 @@ router.get("/officers", async (req: Request, res: Response) => {
   });
 
   //  route to update an officer 
-  router.put("/officers/:officerId", async (req: Request, res: Response) => {
+  router.put("/officers/:officerId", requireAPIKeyScopes([APIKeyScopes.CLUB_EDIT]), async (req: Request, res: Response) => {
     const { officerId } = req.params;
     const { name, title } = req.body;
   
@@ -136,7 +138,7 @@ router.get("/officers", async (req: Request, res: Response) => {
   });
 
   // route delete an officer 
-  router.delete("/officers/:officerId", async (req: Request, res: Response) => {
+  router.delete("/officers/:officerId", requireAPIKeyScopes([APIKeyScopes.CLUB_EDIT]), async (req: Request, res: Response) => {
     const { officerId } = req.params;
   
     try {
