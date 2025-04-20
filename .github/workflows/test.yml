@@ -1,0 +1,43 @@
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./api
+    name: Build API & run tests
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: user
+          POSTGRES_PASSWORD: my-pass
+          POSTGRES_DB: champlain-api
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - "5432:5432"
+    env:
+      DATABASE_URL: "postgresql://user:my-pass@localhost:5432/champlain-api?schema=public&connection_limit=1"
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v2
+      - name: Install dependencies
+        run: bun install
+      - name: TSC Compile
+        run: bunx tsc --noEmit
+      - name: Primsa migrations
+        run: bunx prisma migrate deploy
+      - name: Prisma seed
+        run: bunx prisma db seed
+      - name: Run Tests
+        run: bun test

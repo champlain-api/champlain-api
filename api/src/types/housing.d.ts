@@ -15,15 +15,17 @@
 
 */
 /**
- * @description This is the faculty object.
+ * @description This is the housing object.
  * All the Info that is being returned.
  */
 
-export type Faculty = {
-    id: Number,
-    name: string,
-    title: string,
-    departments: string[],
-    imageURL: string,
-    updated: Date,
+export type House = {
+    id: number;
+    name: string;
+    type: string;
+    students: int;
+    distance: string;
+    address: string;
+    imageURL: string;
+    updated: Date;
 }

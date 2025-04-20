@@ -14,16 +14,17 @@
    limitations under the License.
 
 */
+
 /**
- * @description This is the faculty object.
+ * @description This is the competency object.
  * All the Info that is being returned.
  */
 
-export type Faculty = {
-    id: Number,
-    name: string,
-    title: string,
-    departments: string[],
-    imageURL: string,
-    updated: Date,
+export type Competencies = {
+    id: number;
+    competency: string;
+    description: string;
+    criteria: string;
+    information: string;
+    updated: Date;
 }

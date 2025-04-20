@@ -14,16 +14,22 @@
    limitations under the License.
 
 */
-/**
- * @description This is the faculty object.
- * All the Info that is being returned.
- */
-
-export type Faculty = {
-    id: Number,
-    name: string,
-    title: string,
-    departments: string[],
-    imageURL: string,
+export type Announcement = {
+    id: number,
     updated: Date,
+    title: string,
+    description: string,
+    type: AnnouncementType[]
+    style: AnnouncementStyle
+}
+
+export enum AnnouncementType {
+    "EMERGENCY",
+    "INFO"
+}
+
+export enum AnnouncementStyle {
+    "WEB",
+    "SHUTTLE",
+    "MOBILE"
 }
