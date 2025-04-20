@@ -47,7 +47,10 @@ describe("Courses API", () => {
         test("GET /courses should return a 200 and a list of courses", async () => {
             let req = await fetch("http://localhost:3000/courses");
             expect(req.status).toEqual(200);
-            let responseBody = await req.json();
+
+            // Explicitly cast the response body to the expected type
+            let responseBody = (await req.json()) as { courses: Course }[];
+
             expect(responseBody).toBeInstanceOf(Array);
             expect(responseBody.length).toBeGreaterThan(0);
             expect(responseBody[0]).toHaveProperty("courses");
