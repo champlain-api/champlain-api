@@ -23,19 +23,24 @@ import courseRoutes from "./routes/courses.ts"
 import buildingRoute from "./routes/building.ts"
 import housingRoute from "./routes/housing.ts"
 import competenciesRoute from "./routes/competencies.ts"
+import diningRoute from "./routes/dining.ts"
 import clubsRoutes from './routes/clubs.ts';
+
 
 const app = express()
 
 app.use("/", rootRoute)
 app.use("/announcements", announcementsRoute)
 app.use("/shuttles", shuttleRoute)
+app.use("/course", courseRoutes);
 app.use("/faculty", facultyRoute)
 app.use("/course", courseRoutes);
 app.use("/building", buildingRoute)
 app.use("/housing", housingRoute)
 app.use("/competencies", competenciesRoute)
+app.use("/dining-menu-idx", diningRoute)
 app.use('/clubs', clubsRoutes);
+
 
 app.listen(3000, () => {
     console.log("API running on :3000!")

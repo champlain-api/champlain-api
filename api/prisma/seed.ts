@@ -16,6 +16,8 @@
 */
 
 import prisma from "../src/prisma_client"
+
+import { mealType, station } from "@prisma/client";
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -111,8 +113,407 @@ async function addSeedData() {
         }
     })
 
-    // Add example API key and user
+    // Sample meal data for each day of the week
+    const sampleMenuData = {
+        monday: {
+            breakfast: [
+                { name: "Scrambled Eggs", station: "GRILL" },
+                { name: "Blueberry Pancakes", station: "GRILL" },
+                { name: "Bacon", station: "GRILL" },
+                { name: "Oatmeal", station: "CEREAL" },
+                { name: "Fresh Fruit", station: "SALAD_BAR" }
+            ],
+            lunch: [
+                { name: "Grilled Chicken Sandwich", station: "GRILL" },
+                { name: "Vegetable Soup", station: "SOUP" },
+                { name: "Caesar Salad", station: "SALAD_BAR" },
+                { name: "Veggie Burger", station: "VEGAN" },
+                { name: "French Fries", station: "GRILL" }
+            ],
+            dinner: [
+                { name: "Roast Beef", station: "MAIN" },
+                { name: "Mashed Potatoes", station: "MAIN" },
+                { name: "Glazed Carrots", station: "MAIN" },
+                { name: "Tofu Stir Fry", station: "VEGAN" },
+                { name: "Cheesecake", station: "DESSERT" }
+            ]
+        },
+        tuesday: {
+            breakfast: [
+                { name: "Breakfast Burrito", station: "GRILL" },
+                { name: "Hash Browns", station: "GRILL" },
+                { name: "Yogurt Parfait", station: "CEREAL" },
+                { name: "Fresh Fruit", station: "SALAD_BAR" }
+            ],
+            lunch: [
+                { name: "Turkey Club Sandwich", station: "DELI" },
+                { name: "Tomato Bisque", station: "SOUP" },
+                { name: "Garden Salad", station: "SALAD_BAR" },
+                { name: "Falafel Wrap", station: "VEGAN" },
+                { name: "Potato Chips", station: "DELI" }
+            ],
+            dinner: [
+                { name: "Spaghetti and Meatballs", station: "MAIN" },
+                { name: "Garlic Bread", station: "MAIN" },
+                { name: "Steamed Broccoli", station: "MAIN" },
+                { name: "Eggplant Parmesan", station: "VEGETARIAN" },
+                { name: "Tiramisu", station: "DESSERT" }
+            ]
+        },
 
+    };
+
+    // Create meals and daily menus directly for Monday and Tuesday only
+    try {
+        // Create daily menu for Monday
+        const mondayMenu = await prisma.dailyMenu.create({
+            data: {
+                dayofWeek: "Monday"
+            }
+        });
+        
+        console.log(`Daily menu for Monday created with ID: ${mondayMenu.id}`);
+        
+        // Monday breakfast meals
+        await prisma.meal.create({
+            data: {
+                name: "Scrambled Eggs",
+                type: { set: [mealType.BREAKFAST] },
+                station: { set: [station.ENTREE] },
+                DailyMenu: {
+                    connect: { id: mondayMenu.id }
+                }
+            }
+        });
+        
+        await prisma.meal.create({
+            data: {
+                name: "Blueberry Pancakes",
+                type: { set: [mealType.BREAKFAST] },
+                station: { set: [station.ENTREE] },
+                DailyMenu: {
+                    connect: { id: mondayMenu.id }
+                }
+            }
+        });
+        
+        await prisma.meal.create({
+            data: {
+                name: "Bacon",
+                type: { set: [mealType.BREAKFAST] },
+                station: { set: [station.ENTREE] },
+                DailyMenu: {
+                    connect: { id: mondayMenu.id }
+                }
+            }
+        });
+        
+        await prisma.meal.create({
+            data: {
+                name: "Oatmeal",
+                type: { set: [mealType.BREAKFAST] },
+                station: { set: [station.CEREAL] },
+                DailyMenu: {
+                    connect: { id: mondayMenu.id }
+                }
+            }
+        });
+        
+        await prisma.meal.create({
+            data: {
+                name: "Fresh Fruit",
+                type: { set: [mealType.BREAKFAST] },
+                station: { set: [station.SALAD_BAR] },
+                DailyMenu: {
+                    connect: { id: mondayMenu.id }
+                }
+            }
+        });
+        
+        // Monday lunch meals
+        await prisma.meal.create({
+            data: {
+                name: "Grilled Chicken Sandwich",
+                type: { set: [mealType.LUNCH] },
+                station: { set: [station.ENTREE] },
+                DailyMenu: {
+                    connect: { id: mondayMenu.id }
+                }
+            }
+        });
+        
+        await prisma.meal.create({
+            data: {
+                name: "Vegetable Soup",
+                type: { set: [mealType.LUNCH] },
+                station: { set: [station.SOUP] },
+                DailyMenu: {
+                    connect: { id: mondayMenu.id }
+                }
+            }
+        });
+        
+        await prisma.meal.create({
+            data: {
+                name: "Caesar Salad",
+                type: { set: [mealType.LUNCH] },
+                station: { set: [station.SALAD_BAR] },
+                DailyMenu: {
+                    connect: { id: mondayMenu.id }
+                }
+            }
+        });
+        
+        await prisma.meal.create({
+            data: {
+                name: "Veggie Burger",
+                type: { set: [mealType.LUNCH] },
+                station: { set: [station.SIZZLE] },
+                DailyMenu: {
+                    connect: { id: mondayMenu.id }
+                }
+            }
+        });
+        
+        await prisma.meal.create({
+            data: {
+                name: "French Fries",
+                type: { set: [mealType.LUNCH] },
+                station: { set: [station.ENTREE] },
+                DailyMenu: {
+                    connect: { id: mondayMenu.id }
+                }
+            }
+        });
+        
+        // Monday dinner meals
+        await prisma.meal.create({
+            data: {
+                name: "Roast Beef",
+                type: { set: [mealType.DINNER] },
+                station: { set: [station.SHOWCASE] },
+                DailyMenu: {
+                    connect: { id: mondayMenu.id }
+                }
+            }
+        });
+        
+        await prisma.meal.create({
+            data: {
+                name: "Mashed Potatoes",
+                type: { set: [mealType.DINNER] },
+                station: { set: [station.SHOWCASE] },
+                DailyMenu: {
+                    connect: { id: mondayMenu.id }
+                }
+            }
+        });
+        
+        await prisma.meal.create({
+            data: {
+                name: "Glazed Carrots",
+                type: { set: [mealType.DINNER] },
+                station: { set: [station.SHOWCASE] },
+                DailyMenu: {
+                    connect: { id: mondayMenu.id }
+                }
+            }
+        });
+        
+        await prisma.meal.create({
+            data: {
+                name: "Tofu Stir Fry",
+                type: { set: [mealType.DINNER] },
+                station: { set: [station.SIZZLE] },
+                DailyMenu: {
+                    connect: { id: mondayMenu.id }
+                }
+            }
+        });
+        
+        await prisma.meal.create({
+            data: {
+                name: "Cheesecake",
+                type: { set: [mealType.DINNER] },
+                station: { set: [station.BAKERY] },
+                DailyMenu: {
+                    connect: { id: mondayMenu.id }
+                }
+            }
+        });
+        
+        // Create daily menu for Tuesday
+        const tuesdayMenu = await prisma.dailyMenu.create({
+            data: {
+                dayofWeek: "Tuesday"
+            }
+        });
+        
+        console.log(`Daily menu for Tuesday created with ID: ${tuesdayMenu.id}`);
+        
+        // Tuesday breakfast meals
+        await prisma.meal.create({
+            data: {
+                name: "Breakfast Burrito",
+                type: { set: [mealType.BREAKFAST] },
+                station: { set: [station.ENTREE] },
+                DailyMenu: {
+                    connect: { id: tuesdayMenu.id }
+                }
+            }
+        });
+        
+        await prisma.meal.create({
+            data: {
+                name: "Hash Browns",
+                type: { set: [mealType.BREAKFAST] },
+                station: { set: [station.ENTREE] },
+                DailyMenu: {
+                    connect: { id: tuesdayMenu.id }
+                }
+            }
+        });
+        
+        await prisma.meal.create({
+            data: {
+                name: "Yogurt Parfait",
+                type: { set: [mealType.BREAKFAST] },
+                station: { set: [station.CEREAL] },
+                DailyMenu: {
+                    connect: { id: tuesdayMenu.id }
+                }
+            }
+        });
+        
+        await prisma.meal.create({
+            data: {
+                name: "Fresh Fruit",
+                type: { set: [mealType.BREAKFAST] },
+                station: { set: [station.SALAD_BAR] },
+                DailyMenu: {
+                    connect: { id: tuesdayMenu.id }
+                }
+            }
+        });
+        
+        // Tuesday lunch meals
+        await prisma.meal.create({
+            data: {
+                name: "Turkey Club Sandwich",
+                type: { set: [mealType.LUNCH] },
+                station: { set: [station.DELI] },
+                DailyMenu: {
+                    connect: { id: tuesdayMenu.id }
+                }
+            }
+        });
+        
+        await prisma.meal.create({
+            data: {
+                name: "Tomato Bisque",
+                type: { set: [mealType.LUNCH] },
+                station: { set: [station.SOUP] },
+                DailyMenu: {
+                    connect: { id: tuesdayMenu.id }
+                }
+            }
+        });
+        
+        await prisma.meal.create({
+            data: {
+                name: "Garden Salad",
+                type: { set: [mealType.LUNCH] },
+                station: { set: [station.SALAD_BAR] },
+                DailyMenu: {
+                    connect: { id: tuesdayMenu.id }
+                }
+            }
+        });
+        
+        await prisma.meal.create({
+            data: {
+                name: "Falafel Wrap",
+                type: { set: [mealType.LUNCH] },
+                station: { set: [station.SIZZLE] },
+                DailyMenu: {
+                    connect: { id: tuesdayMenu.id }
+                }
+            }
+        });
+        
+        await prisma.meal.create({
+            data: {
+                name: "Potato Chips",
+                type: { set: [mealType.LUNCH] },
+                station: { set: [station.DELI] },
+                DailyMenu: {
+                    connect: { id: tuesdayMenu.id }
+                }
+            }
+        });
+        
+        // Tuesday dinner meals
+        await prisma.meal.create({
+            data: {
+                name: "Spaghetti and Meatballs",
+                type: { set: [mealType.DINNER] },
+                station: { set: [station.SHOWCASE] },
+                DailyMenu: {
+                    connect: { id: tuesdayMenu.id }
+                }
+            }
+        });
+        
+        await prisma.meal.create({
+            data: {
+                name: "Garlic Bread",
+                type: { set: [mealType.DINNER] },
+                station: { set: [station.SHOWCASE] },
+                DailyMenu: {
+                    connect: { id: tuesdayMenu.id }
+                }
+            }
+        });
+        
+        await prisma.meal.create({
+            data: {
+                name: "Steamed Broccoli",
+                type: { set: [mealType.DINNER] },
+                station: { set: [station.SHOWCASE] },
+                DailyMenu: {
+                    connect: { id: tuesdayMenu.id }
+                }
+            }
+        });
+        
+        await prisma.meal.create({
+            data: {
+                name: "Eggplant Parmesan",
+                type: { set: [mealType.DINNER] },
+                station: { set: [station.SIZZLE] },
+                DailyMenu: {
+                    connect: { id: tuesdayMenu.id }
+                }
+            }
+        });
+        
+        await prisma.meal.create({
+            data: {
+                name: "Tiramisu",
+                type: { set: [mealType.DINNER] },
+                station: { set: [station.BAKERY] },
+                DailyMenu: {
+                    connect: { id: tuesdayMenu.id }
+                }
+            }
+        });
+        
+        console.log('Sample menu data for Monday and Tuesday has been successfully added to the database.');
+    } catch (error) {
+        console.error('Error adding seed data:', error);
+    }
+
+    // Add example API key and user
     await prisma.user.create({
         data: {
             email: "tester@example.invalid",
@@ -123,7 +524,8 @@ async function addSeedData() {
     await prisma.apiKey.create({
         data: {
             key: "all-scopes",
-            scopes: ["ANNOUNCEMENTS_EDIT", "FACULTY_EDIT", "SHUTTLE_EDIT", "HOUSING_EDIT", "BUILDING_EDIT", "COMPETENCIES_EDIT", ],
+
+            scopes: ["ANNOUNCEMENTS_EDIT", "FACULTY_EDIT", "SHUTTLE_EDIT", "HOUSING_EDIT", "BUILDING_EDIT", "COMPETENCIES_EDIT", "DINING_EDIT"],
             userID: 1
         }
     });

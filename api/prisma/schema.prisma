@@ -139,6 +139,59 @@ enum APIKeyScopes {
   COURSES_EDIT
   SEMESTER_EDIT
   CLUB_EDIT
+  DINING_EDIT
+}
+
+model DailyMenu {
+  id        Int    @id @default(autoincrement())
+  dayofWeek String @default("Monday")
+  Meals     Meal[]
+}
+
+enum station {
+  SIZZLE
+  SLICES
+  BAKERY
+  RISE
+  SAVORY
+  THE_BREAKFAST_BAR
+  SALAD_BAR
+  SHOWCASE
+  VEGETABLE
+  RUSTIC_ROOTS
+  SOUP
+  CEREAL
+  DELI
+  STARCH
+  OMELET
+  ENTREE
+  BREAKFAST
+  APPETIZER
+  HAVE_A_NICE_DAY
+  WAFFLE_BAR
+  PIZZA
+  GRILL
+  VEGAN
+  DESSERT
+  VEGETARIAN
+}
+
+enum mealType {
+  DINNER
+  LATE_NIGHT
+  BREAKFAST
+  LUNCH
+  MORNING_BREAK
+  BRUNCH
+}
+
+model Meal {
+  id        Int         @id @default(autoincrement())
+  name      String      @default("")
+  station   station[]
+  type      mealType[]
+  DailyMenu DailyMenu[]
+
 }
 
 model Club {
