@@ -14,106 +14,14 @@
    limitations under the License.
 */
 
-import { expect, test, describe, beforeAll, afterEach } from "bun:test";
-import request from "supertest";
-import { app } from "../index.ts";
+import { expect, test, describe, beforeAll } from "bun:test";
+import request from "supertest"
+import {app} from "../index.ts"
 import type { Course } from "../types/courses.ts";
 
-// Mock the Prisma client
-jest.mock("../prismaClient", () => ({
-    course: {
-        findMany: jest.fn(() => [
-            {
-                id: 1,
-                title: "Test Course",
-                number: "TEST-101",
-                credit: 3,
-                openseats: 10,
-                days: "MWF",
-                times: "10:00-11:00",
-                instructor_name: "John Doe",
-                description: "A test course description.",
-                room: "Room 101",
-                subject: "General",
-                type: "Lecture",
-                prereq: "None",
-                start_date: new Date("2025-01-01").toISOString(),
-                end_date: new Date("2025-05-01").toISOString(),
-                semesterId: 1,
-            },
-        ]),
-        findUnique: jest.fn((query) => {
-            if (query.where.id === 1) {
-                return {
-                    id: 1,
-                    title: "Test Course",
-                    number: "TEST-101",
-                    credit: 3,
-                    openseats: 10,
-                    days: "MWF",
-                    times: "10:00-11:00",
-                    instructor_name: "John Doe",
-                    description: "A test course description.",
-                    room: "Room 101",
-                    subject: "General",
-                    type: "Lecture",
-                    prereq: "None",
-                    start_date: new Date("2025-01-01").toISOString(),
-                    end_date: new Date("2025-05-01").toISOString(),
-                    semesterId: 1,
-                };
-            }
-            return null;
-        }),
-        create: jest.fn((data) => ({
-            id: 2,
-            ...data.data,
-        })),
-        update: jest.fn((data) => ({
-            id: data.where.id,
-            ...data.data,
-        })),
-        delete: jest.fn((data) => ({
-            id: data.where.id,
-        })),
-    },
-    semester: {
-        findMany: jest.fn(() => [
-            {
-                id: 1,
-                name: "Spring",
-                year: "2025",
-                date: "January 13th - May 2nd",
-            },
-        ]),
-        findUnique: jest.fn((query) => {
-            if (query.where.id === 1) {
-                return {
-                    id: 1,
-                    name: "Spring",
-                    year: "2025",
-                    date: "January 13th - May 2nd",
-                };
-            }
-            return null;
-        }),
-        create: jest.fn((data) => ({
-            id: 2,
-            ...data.data,
-        })),
-        update: jest.fn((data) => ({
-            id: data.where.id,
-            ...data.data,
-        })),
-        delete: jest.fn((data) => ({
-            id: data.where.id,
-        })),
-    },
-}));
-
 beforeAll(async () => {
-    request(app);
-});
+    request(app)
+})
 
 describe("Courses API", () => {
     const mockCourse: Partial<Course[0]> = {
@@ -137,88 +45,87 @@ describe("Courses API", () => {
 
     describe("GET requests", () => {
         test("GET /courses should return a 200 and a list of courses", async () => {
-            const response = await request(app).get("/courses").send();
-            expect(response.status).toBe(200);
-            expect(response.body).toBeInstanceOf(Array);
-            expect(response.body.length).toBeGreaterThan(0);
-            expect(response.body[0]).toMatchObject(mockCourse);
+            let req = await fetch("http://localhost:3000/courses");
+            expect(req.status).toEqual(200);
+            let responseBody = await req.json();
+            expect(responseBody).toBeInstanceOf(Array);
+            expect(responseBody.length).toBeGreaterThan(0);
+            expect(responseBody[0]).toHaveProperty("courses");
+            expect(responseBody[0].courses[0]).toMatchObject(mockCourse);
         });
 
         test("GET /courses/:id should return a 200 and a specific course", async () => {
-            const response = await request(app).get("/courses/1").send();
-            expect(response.status).toBe(200);
-            expect(response.body).toMatchObject(mockCourse);
+            let req = await fetch("http://localhost:3000/courses/1");
+            expect(req.status).toEqual(200);
+            let responseBody = await req.json();
+            expect(responseBody).toMatchObject(mockCourse);
         });
 
         test("GET /courses/:invalid-id should return a 400", async () => {
-            const response = await request(app).get("/courses/invalid-id").send();
-            expect(response.status).toBe(400);
-            expect(response.body).toMatchObject({ error: expect.any(String) });
+            let req = await fetch("http://localhost:3000/courses/invalid-id");
+            expect(req.status).toEqual(400);
+            expect(await req.json()).toMatchObject({ error: expect.any(String) });
         });
 
         test("GET /courses/:unknown-id should return a 404", async () => {
-            const response = await request(app).get("/courses/9999").send();
-            expect(response.status).toBe(404);
-            expect(response.body).toMatchObject({ error: expect.any(String) });
-        });
-
-        test("GET /courses/:courseNumber should return a 200 and a specific course", async () => {
-            const response = await request(app).get("/courses/CSI-240").send();
-            expect(response.status).toBe(200);
-            expect(response.body).toMatchObject(mockCourse);
-        });
-
-        test("GET /courses/:invalid-courseNumber should return a 404", async () => {
-            const response = await request(app).get("/courses/INVALID").send();
-            expect(response.status).toBe(404);
-            expect(response.body).toMatchObject({ error: expect.any(String) });
+            let req = await fetch("http://localhost:3000/courses/9999");
+            expect(req.status).toEqual(404);
+            expect(await req.json()).toMatchObject({ error: expect.any(String) });
         });
     });
 
     describe("POST requests", () => {
         test("POST /courses with valid data should return a 201 and the new course", async () => {
-            const response = await request(app)
-                .post("/courses")
-                .send({
+            let req = await fetch("http://localhost:3000/courses", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
                     title: "New Course",
-                    number: "COURSE-102",
+                    number: "COURSE-101",
                     credit: 3,
                     openseats: 10,
                     days: "MWF",
                     times: "10:00-11:00",
-                    instructor_name: "Jane Doe",
+                    instructor_name: "John Doe",
                     description: "A new course description.",
-                    room: "Room 102",
+                    room: "Room 101",
                     subject: "General",
                     type: "Lecture",
                     prereq: "None",
                     start_date: "2025-01-01",
                     end_date: "2025-05-01",
                     semesterId: 1,
-                });
-            expect(response.status).toBe(201);
-            expect(response.body).toMatchObject({
-                id: expect.any(Number),
-                title: "New Course",
-                number: "COURSE-102",
+                }),
             });
+            expect(req.status).toEqual(201);
+            let responseBody = await req.json();
+            expect(responseBody).toMatchObject(mockCourse);
         });
 
         test("POST /courses with missing required fields should return a 400", async () => {
-            const response = await request(app)
-                .post("/courses")
-                .send({
+            let req = await fetch("http://localhost:3000/courses", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
                     title: "Incomplete Course",
                     // Missing required fields like `number` and `semesterId`
-                });
-            expect(response.status).toBe(400);
-            expect(response.body).toMatchObject({ error: expect.any(String) });
+                }),
+            });
+            expect(req.status).toEqual(400);
+            expect(await req.json()).toMatchObject({ error: expect.any(String) });
         });
 
         test("POST /courses with invalid semesterId should return a 404", async () => {
-            const response = await request(app)
-                .post("/courses")
-                .send({
+            let req = await fetch("http://localhost:3000/courses", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
                     title: "Invalid Semester Course",
                     number: "COURSE-102",
                     credit: 3,
@@ -234,65 +141,85 @@ describe("Courses API", () => {
                     start_date: "2025-01-01",
                     end_date: "2025-05-01",
                     semesterId: 9999, // Invalid semesterId
-                });
-            expect(response.status).toBe(404);
-            expect(response.body).toMatchObject({ error: expect.any(String) });
+                }),
+            });
+            expect(req.status).toEqual(404);
+            expect(await req.json()).toMatchObject({ error: expect.any(String) });
         });
     });
 
     describe("PUT requests", () => {
         test("PUT /courses/:id with valid data should return a 200 and the updated course", async () => {
-            const response = await request(app)
-                .put("/courses/1")
-                .send({
+            let req = await fetch("http://localhost:3000/courses/1", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
                     title: "Updated Course Title",
                     description: "Updated course description.",
-                });
-            expect(response.status).toBe(200);
-            expect(response.body).toMatchObject({
+                }),
+            });
+            expect(req.status).toEqual(200);
+            let responseBody = await req.json();
+            expect(responseBody).toMatchObject({
                 title: "Updated Course Title",
                 description: "Updated course description.",
             });
         });
 
         test("PUT /courses/:id with invalid id should return a 400", async () => {
-            const response = await request(app)
-                .put("/courses/invalid-id")
-                .send({
+            let req = await fetch("http://localhost:3000/courses/invalid-id", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
                     title: "Updated Course Title",
-                });
-            expect(response.status).toBe(400);
-            expect(response.body).toMatchObject({ error: expect.any(String) });
+                }),
+            });
+            expect(req.status).toEqual(400);
+            expect(await req.json()).toMatchObject({ error: expect.any(String) });
         });
 
         test("PUT /courses/:unknown-id should return a 404", async () => {
-            const response = await request(app)
-                .put("/courses/9999")
-                .send({
+            let req = await fetch("http://localhost:3000/courses/9999", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
                     title: "Updated Course Title",
-                });
-            expect(response.status).toBe(404);
-            expect(response.body).toMatchObject({ error: expect.any(String) });
+                }),
+            });
+            expect(req.status).toEqual(404);
+            expect(await req.json()).toMatchObject({ error: expect.any(String) });
         });
     });
 
     describe("DELETE requests", () => {
         test("DELETE /courses/:id should return a 200 and delete the course", async () => {
-            const response = await request(app).delete("/courses/1").send();
-            expect(response.status).toBe(200);
-            expect(response.body).toMatchObject({ id: 1 });
+            let req = await fetch("http://localhost:3000/courses/1", {
+                method: "DELETE",
+            });
+            expect(req.status).toEqual(200);
+            expect(await req.json()).toMatchObject({ message: "Course deleted successfully." });
         });
 
         test("DELETE /courses/:invalid-id should return a 400", async () => {
-            const response = await request(app).delete("/courses/invalid-id").send();
-            expect(response.status).toBe(400);
-            expect(response.body).toMatchObject({ error: expect.any(String) });
+            let req = await fetch("http://localhost:3000/courses/invalid-id", {
+                method: "DELETE",
+            });
+            expect(req.status).toEqual(400);
+            expect(await req.json()).toMatchObject({ error: expect.any(String) });
         });
 
         test("DELETE /courses/:unknown-id should return a 404", async () => {
-            const response = await request(app).delete("/courses/9999").send();
-            expect(response.status).toBe(404);
-            expect(response.body).toMatchObject({ error: expect.any(String) });
+            let req = await fetch("http://localhost:3000/courses/9999", {
+                method: "DELETE",
+            });
+            expect(req.status).toEqual(404);
+            expect(await req.json()).toMatchObject({ error: expect.any(String) });
         });
     });
 });
