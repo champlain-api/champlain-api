@@ -30,27 +30,16 @@ model User {
 
 model Announcement {
   id          Int                @id @default(autoincrement())
-  updated     DateTime           @default(now()) @updatedAt @db.Timestamptz()
+  updated     DateTime           @default(now()) @updatedAt @db.Timestamptz(6)
   title       String             @default("Champlain College Announcement")
   description String             @default("")
   type        AnnouncementType[] @default([WEB])
   style       AnnouncementStyle  @default(INFO)
 }
 
-enum AnnouncementStyle {
-  EMERGENCY
-  INFO
-}
-
-enum AnnouncementType {
-  WEB
-  SHUTTLE
-  MOBILE
-}
-
 model Shuttle {
   id        Int      @id @default(autoincrement())
-  updated   DateTime @updatedAt @db.Timestamptz()
+  updated   DateTime @updatedAt @db.Timestamptz(6)
   lat       Float    @default(0)
   lon       Float    @default(0)
   mph       Int      @default(0)
@@ -61,8 +50,8 @@ model apiKey {
   id     Int            @id @default(autoincrement())
   key    String         @unique
   scopes APIKeyScopes[]
-  user   User           @relation(fields: [userID], references: [id])
   userID Int
+  user   User           @relation(fields: [userID], references: [id])
 }
 
 model Faculty {
@@ -101,13 +90,54 @@ model Building {
   hours    Json
 }
 
+model Course {
+  id              Int      @id @default(autoincrement())
+  title           String   @default("")
+  number          String   @default("")
+  credit          Int      @default(0)
+  openseats       Int      @default(0)
+  days            String?
+  times           String?
+  instructor_name String?
+  description     String?
+  room            String?
+  subject         String?
+  type            String?
+  prereq          String?
+  start_date      DateTime @db.Timestamptz(6)
+  end_date        DateTime @db.Timestamptz(6)
+  semesterId      Int
+  semester        Semester @relation(fields: [semesterId], references: [id])
+}
+
+model Semester {
+  id      Int      @id @default(autoincrement())
+  name    String   @default("")
+  year    String   @default("")
+  date    String   @default("")
+  courses Course[]
+}
+
+enum AnnouncementStyle {
+  EMERGENCY
+  INFO
+}
+
+enum AnnouncementType {
+  WEB
+  SHUTTLE
+  MOBILE
+}
+
 enum APIKeyScopes {
   ANNOUNCEMENTS_EDIT
   SHUTTLE_EDIT
   FACULTY_EDIT
-  BUILDING_EDIT
   HOUSING_EDIT
   COMPETENCIES_EDIT
+  BUILDING_EDIT
+  COURSES_EDIT
+  SEMESTER_EDIT
   DINING_EDIT
 }
 
@@ -139,6 +169,10 @@ enum station {
   HAVE_A_NICE_DAY
   WAFFLE_BAR
   PIZZA
+  GRILL
+  VEGAN
+  DESSERT
+  VEGETARIAN
 }
 
 enum mealType {

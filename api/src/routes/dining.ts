@@ -71,14 +71,14 @@ router.get('/:station/:dayofWeek', async (req: Request, res: Response) => {
 
 
     try {
-        // Cast stationParam to the station enum type
+     
         const stationEnum = stationParam as station;
 
 
         const mealsWithDayOfWeek = await prisma.meal.findMany({
             where: {
                 station: {
-                    has: stationEnum, // Filter by station
+                    has: stationEnum, 
                 },
                 DailyMenu: {
                     some: {
@@ -104,7 +104,7 @@ router.get('/:station/:dayofWeek/:mealType', async (req: Request, res: Response)
     const mealTypeParam = req.params.mealType?.toUpperCase();
 
 
-    // Validate station parameter against enum values
+    
     if (!stationParam || !Object.values(station).includes(stationParam as station)) {
          res.status(400).json({ error: `Invalid station provided` });
     }
