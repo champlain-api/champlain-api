@@ -23,6 +23,7 @@ import courseRoutes from "./routes/courses.ts"
 import buildingRoute from "./routes/building.ts"
 import housingRoute from "./routes/housing.ts"
 import competenciesRoute from "./routes/competencies.ts"
+import clubsRoutes from './routes/clubs.ts';
 
 const app = express()
 
@@ -34,6 +35,7 @@ app.use("/course", courseRoutes);
 app.use("/building", buildingRoute)
 app.use("/housing", housingRoute)
 app.use("/competencies", competenciesRoute)
+app.use('/clubs', clubsRoutes);
 
 app.listen(3000, () => {
     console.log("API running on :3000!")

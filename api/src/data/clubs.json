@@ -1,0 +1,1361 @@
+[
+    {
+      "clubName": "Anime Club",
+      "clubInfo": {
+        "type": "Art & Entertainment",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Ryan George",
+            "title": "President"
+          },
+          {
+            "name": "Jason Braccia",
+            "title": "Vice President"
+          },
+          {
+            "name": "Felipe Lega",
+            "title": "Faculty Advisor"
+          }
+        ],
+        "primaryContact": "Ryan George",
+        "email": "mailto:animeclub@champlain.edu"
+      },
+      "description": "Join the Anime Club to discuss and watch anime that students have voted on. Each week students put in their suggestions that correspond to a theme that members decide on each month. Other activities include trivia, karaoke, a jukebox, discussion on manga, and anime tier lists! Join us in our exploration of the Japanese animation and manga industry!"
+    },
+    {
+      "clubName": "Asian Student Association",
+      "clubInfo": {
+        "type": "Diversity & InclusionSocial",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Caroline Waddington",
+            "title": "President"
+          },
+          {
+            "name": "Jonathan Banfill",
+            "title": "Faculty Advisor"
+          }
+        ],
+        "primaryContact": "Caroline Waddington",
+        "email": "mailto:caroline.waddington@mymail.champlain.edu"
+      },
+      "description": "The Asian Student Association was created to make a safe space and learning environment for people who identify as Asian and/or want to learn more about and engage in Asian culture. Our main events are centered around food and movies for members to expand their taste in Asian food and media."
+    },
+    {
+      "clubName": "Black Student Union",
+      "clubInfo": {
+        "type": "Diversity & InclusionSocial",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Nadine Jones",
+            "title": "President"
+          },
+          {
+            "name": "A'zariya Daniels",
+            "title": "Vice President"
+          },
+          {
+            "name": "Van Dora Williams",
+            "title": "Faculty Advisor"
+          }
+        ],
+        "primaryContact": "Nadine Jones",
+        "email": "mailto:bsu@champlain.edu"
+      },
+      "description": "Black Student Union aims to foster a welcoming and supportive environment where students of color can freely share their opinions, ideas, and cultural heritage. It seeks to enhance understanding and appreciation of the histories, cultures, and issues pertinent to students of color through a variety of educational events, cultural celebrations, and open, engaging dialogues. Additionally, it is committed to advocating for and addressing issues that impact these students, striving to create a community that is inclusive and aware of diverse perspectives. Black Student Union wants to build a network between students of color on campus and the community around them through partnering through different BIPOC organizations with movie nights, youth Fridays and more."
+    },
+    {
+      "clubName": "Blue Stool Talks",
+      "clubInfo": {
+        "type": "Academic",
+        "semester": ["Fall Semester Spring Semester"],
+        "officers": [
+          {
+            "name": "Charles Bashaw",
+            "type": "Associate Professor"
+          },
+          {
+            "name": "Linda Goodrum",
+            "type": "Academic Operations Manager"
+          },
+          {
+            "name": "Erik Shonstrom",
+            "type": "Associate Professor"
+          }
+        ],
+        "primaryContact": "Charles Bashaw",
+        "email": "mailto:cbashaw@champlain.edu"
+      },
+      "description": "The Blue Stool Project is a series of flash lectures given on the Champlain College campus, appearing in the central courtyard with a goal of addressing topics that might not normally come up in the classroom. This engaging, open conversation style of teaching/learning was conceived by Bob Selby and further refined during monthly occurrences. Blue Stool talks are opportunities for Champlain College faculty and staff to share their passion for learning and ideas with students (and others) outside of the classroom. Students are encouraged to attend. The talks are meant to provoke thought, deepen understanding, and encourage listeners to reconsider ways of knowing. The topics may or may not be controversial in subject matter, but all aim to provide opportunities for listeners to learn."
+    },
+    {
+      "clubName": "Brotherhood Brunch",
+      "clubInfo": {
+        "type": "Diversity & Inclusion",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Caroline Waddington",
+            "title": "President"
+          },
+          {
+            "name": "Jonathan Banfill",
+            "title": "Faculty Advisor"
+          }
+        ],
+        "primaryContact": "Email Us",
+        "email": "mailto:caroline.waddington@mymail.champlain.edu"
+      },
+      "description": "Brotherhood Brunch invites men of color to join an intergenerational discourse including students, faculty, staff, and community members. Enjoy brunch and discuss topics relevant to your intersecting identities. These events are hosted by the Office of Diversity & Inclusion each semester."
+    },
+    {
+      "clubName": "CHAMP Student Organization",
+      "clubInfo": {
+        "type": "Social",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Caroline Waddington",
+            "title": "President"
+          },
+          {
+            "name": "Jonathan Banfill",
+            "title": "Faculty Advisor"
+          }
+        ],
+        "primaryContact": "Christine Koogle",
+        "email": "mailto:studentengagement@champlain.edu"
+      },
+      "description": "CHAMP is a student-run organization that plans and hosts exciting and spirit-filled events on campus each semester. All students are welcome to participate in CHAMP meetings and to volunteer as staff for CHAMP events. As a member of CHAMP, you are an integral part of the planning process–from brainstorming ideas to decorating and event execution. This club serves as a driving force for student involvement and engaging events! Our biggest celebrations of the year include: Spirit Week, the Halloween Dance, Late Night Breakfast, the Snowball Dance, and Spring Meltdown."
+    },
+    {
+      "clubName": "Champ 101 Peer Facilitator",
+      "clubInfo": {
+        "type": "Student Leadership",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "",
+            "title": ""
+          }
+        ],
+        "primaryContact": "Email Us",
+        "email": "mailto:sgaoperations@champlain.edu"
+      },
+      "description": "Champ 101 Peer Facilitators are student leaders who mentor first-year students as they transition to Champlain College. For the first 10 weeks of the fall semester, a Faculty/Staff Facilitator and a Peer Facilitator work together with a cohort of 20 students. They co-facilitate required workshops once or twice per week, meet together to plan and reflect, study the Champ 101 curriculum, and support students one-on-one as needed."
+    },
+    {
+      "clubName": "Champlain Catholic Association",
+      "clubInfo": {
+        "type": "Religious",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Kathryn James",
+            "title": "Club Head"
+          },
+          {
+            "name": "Alfonso Capone",
+            "title": "Faculty Advisor"
+          }
+        ],
+        "primaryContact": "Kathryn James",
+        "email": "mailto:catholicassociation@champlain.edu"
+      },
+      "description": "The Champlain Catholic Association aims to foster a faith-based community and act as a liaison to the resources at the Catholic Center at UVM through prayer, activities, and events. We walk with students in answering the call to holiness. Our club is open to students of all faiths or no faith at all."
+    },
+    {
+      "clubName": "Champlain Coffee and Tea Club",
+      "clubInfo": {
+        "type": "Social",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Ethan Engeldrum",
+            "title": "Co-President"
+          },
+          {
+            "name": "Cedar Santiago",
+            "title": "Co-President"
+          },
+          {
+            "name": "Claire Richard",
+            "title": "Secretary/Tech Support"
+          }
+        ],
+        "primaryContact": "Ethan Engeldrum",
+        "email": "mailto:champlainctclub@gmail.com"
+      },
+      "description": "The Champlain Coffee and Tea Club fosters a fun and safe space for students to try new kinds of teas, coffees, and snacks! We’ll have different weekly activities like watching shows, arts and crafts, and anything our members would like to see. If you’re looking for a way to just destress and have fun, the Champlain Tea and Coffee Club is for you!"
+    },
+    {
+      "clubName": "Champlain College Dance Team",
+      "clubInfo": {
+        "type": "Art & EntertainmentSports, Recreation, & Intramurals",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Adra Gonzalez",
+            "title": "Captain"
+          },
+          {
+            "name": "Avery Marr",
+            "title": "Captain"
+          },
+          {
+            "name": "Maia Tebbets",
+            "title": "Captain"
+          }
+        ],
+        "primaryContact": "Adra Gonzalez",
+        "email": "mailto:ccdtvt@gmail.com"
+      },
+      "description": "The Champlain College Dance Team is a fun way for students to dance in college without the pressure of tryouts. We work on many fun and unique projects during the year and experiment with different dance styles. At the end of the year, there is an opportunity to perform at the annual Champlain College Dance Team (CCDT) Showcase, with original choreography from our members. We strive to have a positive and safe environment for everyone to be in their bodies comfortably while dancing."
+    },
+    {
+      "clubName": "Champlain College Esports",
+      "clubInfo": {
+        "type": "Local Community EngagementSocialSports, Recreation, & Intramurals",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Raymond Graham Gombes",
+            "title": "Club President / Third Year Representative"
+          },
+          {
+            "name": "Jonathan Pacheco",
+            "title": "Second Year Representative Admin"
+          },
+          {
+            "name": "Ritter Redfield",
+            "title": "Second Year Representative Admin"
+          }
+        ],
+        "primaryContact": "Raymond Graham Gombes",
+        "email": "mailto:ckonczal@champlain.edu"
+      },
+      "description": "Champlain Club/College Esports (CCE) is a student run club that looks to provide a space for gaming and esports for all Champlain students who are passionate about gaming culture. We look to push the limits of esports and engage all students in club events that are centered around social interaction, fun, and of course, gaming. Being diverse and inclusive are our objectives as we look to make esports available to everyone and accommodate any game a student(s) want to build a team for. CCE is focused on gaming, esports, and bringing together a community of individuals who are passionate about video games."
+    },
+    {
+      "clubName": "Champlain College Soccer Club",
+      "clubInfo": {
+        "type": "SocialSports, Recreation, & Intramurals",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Parker Banas",
+            "title": "Club President"
+          },
+          {
+            "name": "Weston Allred",
+            "title": "Vice President"
+          }
+        ],
+        "primaryContact": "Parker Banas",
+        "email": "mailto:parker.banas@mymail.champlain.edu"
+      },
+      "description": "Are you an experienced soccer player wishing you had a competitive and fun club to continue your career with at Champlain? Champlain College Soccer Club provides an opportunity for athletes to continue to play competitive soccer in both practice and match settings. We hope you will join us!"
+    },
+    {
+      "clubName": "Champlain Cybersecurity Club",
+      "clubInfo": {
+        "type": "AcademicSocial",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Laila Martinez",
+            "title": "President"
+          },
+          {
+            "name": "James Nicholls",
+            "title": "Vice President"
+          },
+          {
+            "name": "Michael Ng",
+            "title": "Upperclassmen Rep"
+          }
+        ],
+        "primaryContact": "Laila Martinez",
+        "email": "mailto:ccsc@champlain.edu"
+      },
+      "description": "The Champlain Cybersecurity Club (CCSC) is an academic and social club focused on providing students with the opportunity to explore interesting topics within the realm of cybersecurity. This year, club leadership is focused on academic, personal, and professional development. Meetings are open to all majors, and we encourage students with alternative academic backgrounds to participate!"
+    },
+    {
+      "clubName": "Champlain Destiny",
+      "clubInfo": {
+        "type": "Art & Entertainment",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Ilan Fiarman",
+            "title": "President"
+          },
+          {
+            "name": "Ashley Tucker",
+            "title": "Vice President"
+          },
+          {
+            "name": "Johnathan Ferguson",
+            "title": "Faculty Advisor"
+          }
+        ],
+        "primaryContact": "Ilan Fiarman",
+        "email": "mailto:ilan.fiarman@mymail.champlain.edu"
+      },
+      "description": "The Champlain Destiny Club is an inclusive place for fans of the game “Destiny 2” to talk about and enjoy the game with fellow students. Over the semester, we host many events ranging from raid nights to in-game fashion contests on our discord server and sometimes in person. Our club is open to anyone of any skill level, and we are always happy to accept and meet new members!"
+    },
+    {
+      "clubName": "Champlain Equestrian Club",
+      "clubInfo": {
+        "type": "SocialSports, Recreation, & Intramurals",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Emerson Mako",
+            "title": "Primary Club Head"
+          },
+          {
+            "name": "Hollis Ambruster",
+            "title": "Secondary Club Head"
+          },
+          {
+            "name": "Jessica Allard",
+            "title": "Faculty Advisor"
+          }
+        ],
+        "primaryContact": "Emerson Mako",
+        "email": "mailto:emerson.mako@mymail.champlain.edu"
+      },
+      "description": "The Champlain Equestrian Club (CEC) is an equine club that offers free trail rides, riding lessons, equine workshops, and more! Experience Vermont straight from the horse’s back through fun activities and events for all things equine, and join a community of horse lovers and enthusiasts of all kinds!"
+    },
+    {
+      "clubName": "Champlain Fashion & Costuming Club",
+      "clubInfo": {
+        "type": "Art & Entertainment",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Siena Forbeck",
+            "title": "Club Head/ Founder"
+          },
+          {
+            "name": "Kathleen Clark",
+            "title": "Activities Manager"
+          },
+          {
+            "name": "Noah Maywar",
+            "title": "Accounting Manager"
+          }
+        ],
+        "primaryContact": "Siena Forbeck",
+        "email": "mailto:siena.forbeck@mymail.champlain.edu"
+      },
+      "description": "The Champlain Fashion & Costuming Club aims to encourage everyone to be the most authentic version of themselves. Our goal is to form a diverse and inclusive group of students that desire to learn, create, and grow together. Being such a unique and versatile form of self-expression, there’s a lot to unpack regarding not only the history behind the evolution of clothing, but also the role it plays in our daily lives. Whether you’re new to the fashion landscape or a seasoned connoisseur of all things vogue, Champlain Fashion & Costuming is a safe, creative space where we can work with one another to make this campus more fashionable. We welcome all tastes and styles, basic, trendy, traditional, cosplay, or otherwise!"
+    },
+    {
+      "clubName": "Champlain Lego Club",
+      "clubInfo": {
+        "type": "Art & EntertainmentLocal Community Engagement",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Andrew Tolbert",
+            "title": "President"
+          },
+          {
+            "name": "Zachary Cullin",
+            "title": "Vice President"
+          },
+          {
+            "name": "Nicholas Petronic",
+            "title": "Treasurer"
+          }
+        ],
+        "primaryContact": "Andrew Tolbert",
+        "email": "mailto:andrew.tolbert@mymail.champlain.edu"
+      },
+      "description": "The Champlain Lego club strives to bring a safe, welcoming environment to the Champlain College campus by using the wonderful world of Legos. In this club we meet weekly to socialize, relax, talk about Lego news, and of course build Legos! We also will host events for non club members to explore and engage with other creative minds to build legos and connections alike."
+    },
+    {
+      "clubName": "Champlain Music Club",
+      "clubInfo": {
+        "type": "Art & EntertainmentDiversity & InclusionSocial",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Noah Gomberg",
+            "title": "President"
+          },
+          {
+            "name": "Andres Sanchez",
+            "title": "Vice President"
+          },
+          {
+            "name": "John Levee",
+            "title": "Faculty Advisor"
+          }
+        ],
+        "primaryContact": "Noah Gomberg",
+        "email": "mailto:Noah.gomberg@mymail.champlain.edu"
+      },
+      "description": "The Champlain Music Club offers a dynamic and welcoming space for students to dive into their musical passions. Whether you’re an experienced musician or a curious beginner, our club provides opportunities to collaborate with peers, form bands, and perform in a variety of settings. Join us for jam sessions that will help you hone your skills and connect with fellow music enthusiasts. Be part of a community where creativity and camaraderie come together through the joy of music."
+    },
+    {
+      "clubName": "Page not found - Champlain College",
+      "clubInfo": {
+        "type": "",
+        "semester": [],
+        "officers": [],
+        "primaryContact": "",
+        "email": ""
+      },
+      "description": ""
+    },
+    {
+      "clubName": "Champlain Production Club",
+      "clubInfo": {
+        "type": "AcademicArt & Entertainment",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Harland Kissel",
+            "title": "President"
+          },
+          {
+            "name": "Miguel Kirsch",
+            "title": "Vice President"
+          },
+          {
+            "name": "Janet Weinstein",
+            "title": "Faculty Advisor"
+          }
+        ],
+        "primaryContact": "Harland Kissel",
+        "email": "mailto:champlainproductionclub@gmail.com"
+      },
+      "description": "The Production Club brings together students from several majors to produce a variety of video and audio content. We work on students’ passion projects that may fall outside the curriculum of classes. We also shoot videos for several local businesses to use on their websites and social media."
+    },
+    {
+      "clubName": "Champlain Supernatural Investigators",
+      "clubInfo": {
+        "type": "Social",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Audrey Quinn Orenstein",
+            "title": "Co-Founder &amp; Co-President"
+          },
+          {
+            "name": "Emerson Mako",
+            "title": "Co-Founder &amp; Co-President"
+          },
+          {
+            "name": "Alanah Tuohey",
+            "title": "Co-Founder &amp; Co-President"
+          }
+        ],
+        "primaryContact": "Audrey Quinn Orenstein",
+        "email": "mailto:csichamplain@gmail.com"
+      },
+      "description": "Are you looking to engage with the supernatural on a weekly basis? Then become a Champlain Supernatural Investigator! In addition to semi-regular ghost hunts, we also watch movies and TV shows, play games, and do other activities, all with a spooky edge. We welcome anyone and everyone that’s interested in the things that go bump in the night…"
+    },
+    {
+      "clubName": "Champlain Ultimate Frisbee",
+      "clubInfo": {
+        "type": "Sports, Recreation, & Intramurals",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Veronica Hill",
+            "title": "Co-Founder"
+          },
+          {
+            "name": "Erik Biedrzycki",
+            "title": "Co-Founder"
+          },
+          {
+            "name": "Alexander Been",
+            "title": "Co-Founder"
+          }
+        ],
+        "primaryContact": "Veronica Hill",
+        "email": "mailto:veronica.hill@mymail.champlain.edu"
+      },
+      "description": "Champlain Ultimate Frisbee welcomes players of all skill levels to join weekly pick-up games. We’re happy to teach new players! Ultimate is a great opportunity to meet people on campus, get some fresh air, and have fun. We play casual games on and off campus, as well as other disc-related games such as KanJam and disc golf."
+    },
+    {
+      "clubName": "Champlain Wargaming Club",
+      "clubInfo": {
+        "type": "Art & EntertainmentSocial",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Noah Viens",
+            "title": "President"
+          },
+          {
+            "name": "Zachary Kilmer",
+            "title": "Vice President"
+          },
+          {
+            "name": "Jonathan Banfill",
+            "title": "Faculty Advisor"
+          }
+        ],
+        "primaryContact": "Noah Ryan Viens",
+        "email": "mailto:noah.viens@mymail.champlain.edu"
+      },
+      "description": "Greetings Loyal Imperial Citizen and welcome to the Champlain Wargaming Club! Our club is dedicated to all things tabletop wargaming, with a heavy focus on Warhammer 40,000 and Warhammer: Age of Sigmar. Crusades, painting nights, campaigns, skirmishes, and strategy theorycrafting are just a handful of the things we offer. Don’t have an army? Don’t know how to play? We have you covered! Learning the games with starter armies will help to ease you into wargaming. Will you join the loyal forces of the God-Emperor? Fight against them within the traitorous armies of Chaos? Or will you duke it out with both as one of the many extraterrestrial Xenos in the galaxy? Find out at Champlain Wargaming!"
+    },
+    {
+      "clubName": "Champlain Young Democratic Socialist of America Club",
+      "clubInfo": {
+        "type": "Local Community EngagementPolitical",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Benjamin Emag",
+            "title": "Co-Chair"
+          },
+          {
+            "name": "Colin Colbert",
+            "title": "Co-Chair"
+          },
+          {
+            "name": "Morgan Smith",
+            "title": "Co-Chair"
+          }
+        ],
+        "primaryContact": "Benjamin Emag",
+        "email": "mailto:benjamin.emag@mymail.champlain.edu"
+      },
+      "description": "The Champlain College Chapter of the Young Democratic Socialists of America club is dedicated to bettering the lives of students, supporting workers rights, and upholding democratic values on campus."
+    },
+    {
+      "clubName": "Chivomengro",
+      "clubInfo": {
+        "type": "AcademicArt & EntertainmentStudent Publications",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Clara MacMeekin",
+            "title": "Editor-In-Chief"
+          },
+          {
+            "name": "Erik Shonstrom",
+            "title": "Faculty Advisor"
+          }
+        ],
+        "primaryContact": "Clara MacMeekin",
+        "email": "mailto:chivsubmissions@gmail.com"
+      },
+      "description": "Chivomengro aims to publish a monthly zine of personal essays, satire, and cultural commentary. The staff loves to include graphically driven pieces, such as comics or graphic literature, that speak to the college experience."
+    },
+    {
+      "clubName": "Climb Champlain",
+      "clubInfo": {
+        "type": "Sports, Recreation, & Intramurals",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Aidan Smith",
+            "title": "President"
+          },
+          {
+            "name": "Marit Ullrich",
+            "title": "Co-Leader"
+          },
+          {
+            "name": "Nic Anderson",
+            "title": "Advisor"
+          }
+        ],
+        "primaryContact": "Aidan Smith",
+        "email": "mailto:rockclimbing@champlain.edu"
+      },
+      "description": "Rock Climbing is a great way to de-stress after long days of studying and schoolwork. It’s also a great way to stay fit, meet new people, and exercise problem solving. Climb Champlain brings students to and from local climbing gyms where students can be a part of a community that welcomes and supports everyone. Students will learn how to be stronger, safer, and respectful in a climbing environment and inform new and returning climbers about various skills necessary for the sport."
+    },
+    {
+      "clubName": "Computer Science Club",
+      "clubInfo": {
+        "type": "Academic",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Mason Lee",
+            "title": "President"
+          },
+          {
+            "name": "Ryan Buck",
+            "title": "Vice President"
+          },
+          {
+            "name": "David Kopec",
+            "title": "Advisor"
+          }
+        ],
+        "primaryContact": "Mason Lee",
+        "email": "mailto:mason.lee@mymail.champlain.edu"
+      },
+      "description": "The Computer Science Club is a place for students passionate about programming to explore their interests with like-minded peers. We host:"
+    },
+    {
+      "clubName": "Dungeons & Dragons and TTRPGs Club",
+      "clubInfo": {
+        "type": "Art & EntertainmentSocial",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Ainsley Norris",
+            "title": "President"
+          },
+          {
+            "name": "Ven Higgins",
+            "title": "Vice President"
+          },
+          {
+            "name": "Jason Gardiner",
+            "title": "Moderator"
+          }
+        ],
+        "primaryContact": "Ainsley Norris",
+        "email": "mailto:ainsley.norris@mymail.champlain.edu"
+      },
+      "description": "Dungeons & Dragons and TTRPGs is a club that welcomes all tabletop roleplaying games (TTRPGs), and helps students find or create groups to play with. We also host trivia nights, workshops, guest speakers, and more! DM/GMs and players of all levels, beginner to veteran, are welcome!"
+    },
+    {
+      "clubName": "Environmental Club",
+      "clubInfo": {
+        "type": "AcademicLocal Community Engagement",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Madeleine Fenstermaker",
+            "title": "Co-Head"
+          },
+          {
+            "name": "Quinn Bailey",
+            "title": "Co-Head"
+          },
+          {
+            "name": "Valerie Esposito",
+            "title": "Faculty Advisor"
+          }
+        ],
+        "primaryContact": "Madeleine Fenstermaker",
+        "email": "mailto:champenviroclub@gmail.com"
+      },
+      "description": "The Environmental Club strives to gather like-minded students together to create a cleaner campus and Burlington community. We host weekly trash clean-ups, film showings, and weekly meetings on Tuesdays to foster important environmental conversations. The Environmental Club creates a space for students from all majors and backgrounds to come together to care for our campus and community."
+    },
+    {
+      "clubName": "Flag Football Club",
+      "clubInfo": {
+        "type": "Sports, Recreation, & Intramurals",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Morgan Walls",
+            "title": "President"
+          },
+          {
+            "name": "Chuck Justus",
+            "title": "Vice President"
+          },
+          {
+            "name": "Erik Shonstrom",
+            "title": "Faculty Advisor"
+          }
+        ],
+        "primaryContact": "Morgan Walls",
+        "email": "mailto:morgan.walls@mymail.champlain.edu"
+      },
+      "description": "The Champlain College Flag Football Club offers students a dynamic and welcoming environment to engage in weekly pick-up games, promoting fitness, camaraderie, and school spirit. Participants can join any game throughout the semester, making it accessible to players of all skill levels and schedules. Champlain Flag Football emphasizes inclusivity and fun, encouraging new friendships and teamwork while enjoying the excitement of the sport. As a reduced-contact version of American football, flag football provides a safer and enjoyable way to experience the game’s competitive spirit. Whether you’re a seasoned player or trying flag football for the first time, our club is the perfect place to stay active and connected on campus."
+    },
+    {
+      "clubName": "Hearthlight Club",
+      "clubInfo": {
+        "type": "SocialSports, Recreation, & Intramurals",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Charles Ward",
+            "title": "Commander"
+          },
+          {
+            "name": "Joshua Chong",
+            "title": "Lieutenant"
+          },
+          {
+            "name": "Sylvia Connolly",
+            "title": "Officer"
+          }
+        ],
+        "primaryContact": "Charles Ward",
+        "email": "mailto:charles.ward01@mymail.champlain.edu"
+      },
+      "description": "The Hearthlight Club meets twice a week to engage in physical activities using foam props. The main activities include games such as capture the flag and red-light, green-light. The main priority of the club is everyone’s safety followed by inclusion and fun. Everyone is welcome and encouraged to come participate or watch. It’s a great place to meet and talk to upperclassmen."
+    },
+    {
+      "clubName": "Include+",
+      "clubInfo": {
+        "type": "Diversity & InclusionSocial",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Charles Ward",
+            "title": "Club Head"
+          },
+          {
+            "name": "Reece Hoskyns",
+            "title": "Club Leader"
+          },
+          {
+            "name": "Ann McMullen",
+            "title": "Club Leader"
+          }
+        ],
+        "primaryContact": "Charles Ward",
+        "email": "mailto:include@champlain.edu"
+      },
+      "description": "Include+ hosts weekly gatherings for LGBTQ+ students and allies to come hang out, and monthly educational events to improve our understanding of LGBTQ+ topics (as well as possibly some additional activities on top of that). This club provides a safe, welcoming space for any student involved in the queer community. Some activities we have done at club meetings in the past include video games, board games, chess, PowerPoint presentation nights, pizza parties, and nail painting."
+    },
+    {
+      "clubName": "International Business Club",
+      "clubInfo": {
+        "type": "AcademicDiversity & InclusionPolitical",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Briar Gagne",
+            "title": "President"
+          },
+          {
+            "name": "Ciaran Buckley",
+            "title": "Advisor"
+          }
+        ],
+        "primaryContact": "Briar Gagne",
+        "email": "mailto:ibclub@champlain.edu"
+      },
+      "description": "Have a seat and chat for a while! The International Business Club is a round table for open academic discussion about international experiences and events fostering critical thinking and diverse perspectives. We prepare students to look at issues from different angles, both by exploring different cultures, and creating an inclusive space where we respectfully share and discuss diverse opinions. We host guest speaker events on occasion, as well as our popular bi-annual Montreal trip!"
+    },
+    {
+      "clubName": "Intramural Sports Club",
+      "clubInfo": {
+        "type": "Sports, Recreation, & Intramurals",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Kiyan Pourmaleki",
+            "title": "President"
+          },
+          {
+            "name": "Ryan Dunleavy",
+            "title": "Advisor"
+          },
+          {
+            "name": "Adra Gonzalez",
+            "title": "Captain"
+          }
+        ],
+        "primaryContact": "Kiyan Pourmaleki",
+        "email": "mailto:hockey@champlain.edu"
+      },
+      "description": "Join a community of enthusiastic students who share a passion for sports and friendly competition. Our Intramural Sports are run through the Office of Student Engagement and offer a diverse range of activities that cater to athletes of all levels and interests. Whether you’re a seasoned athlete or just looking to try something new, this is a great opportunity for you."
+    },
+    {
+      "clubName": "Japanese Culture Club",
+      "clubInfo": {
+        "type": "Social",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Carson Griffin",
+            "title": "President"
+          },
+          {
+            "name": "Zachary Kilmer",
+            "title": "Vice President"
+          },
+          {
+            "name": "Sinyoung Evans",
+            "title": "Faculty Advisor"
+          }
+        ],
+        "primaryContact": "Carson Griffin",
+        "email": "mailto:japanesecultureclub@champlain.edu"
+      },
+      "description": "Explore Japanese culture through games and activities! Learn a bit of the language and history, have fun, and meet people who share an interest in Japanese culture. Dive into sushi making sessions, pick up language tips, or connect with like-minded individuals who share your interests. Discover valuable insights into studying abroad in Japan during the summer with Champlain. Please feel free to stop by!"
+    },
+    {
+      "clubName": "Page not found - Champlain College",
+      "clubInfo": {
+        "type": "",
+        "semester": [],
+        "officers": [],
+        "primaryContact": "",
+        "email": ""
+      },
+      "description": ""
+    },
+    {
+      "clubName": "Magic The Gathering Club",
+      "clubInfo": {
+        "type": "Art & EntertainmentSocial",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Jack McKean",
+            "title": "President"
+          },
+          {
+            "name": "Sophia Bourgeois",
+            "title": "Vice President"
+          },
+          {
+            "name": "Warren Sides",
+            "title": "Faculty Advisor"
+          }
+        ],
+        "primaryContact": "Jack McKean",
+        "email": "mailto:jack.mckean@mymail.champlain.edu"
+      },
+      "description": "Zero cards? Zero experience? Zero problem. The Magic The Gathering Club strives to provide a place for anyone to learn how to play Magic, regardless of experience level, gender, or background."
+    },
+    {
+      "clubName": "Motion Magic Club",
+      "clubInfo": {
+        "type": "AcademicArt & Entertainment",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Halle Fulton",
+            "title": "President"
+          },
+          {
+            "name": "Caio Batista",
+            "title": "Vice-President"
+          },
+          {
+            "name": "Fatima Reyes Arana",
+            "title": "Secretary"
+          }
+        ],
+        "primaryContact": "Halle Fulton",
+        "email": "mailto:motionmagicclub@gmail.com"
+      },
+      "description": "Motion Magic is a student-run club that aims to create a dedicated and inviting space for animation majors to learn and grow together. Whether you’re a complete beginner or an expert animator, we’re open to students from any background. The Motion Magic club focus on providing a sense of community and support so that you can have your questions answered and complete your assignments. We will also have fun activities, such as movie nights or trips that help us build connections with one another."
+    },
+    {
+      "clubName": "Orientation Leader",
+      "clubInfo": {
+        "type": "Student Leadership",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "",
+            "title": ""
+          }
+        ],
+        "primaryContact": "Email Us",
+        "email": "mailto:sgaoperations@champlain.edu"
+      },
+      "description": "Give that warm Champlain welcome to our new students!"
+    },
+    {
+      "clubName": "Peer Coach",
+      "clubInfo": {
+        "type": "Student Leadership",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "",
+            "title": ""
+          }
+        ],
+        "primaryContact": "Email Us",
+        "email": "mailto:sgaoperations@champlain.edu"
+      },
+      "description": "Become a mentor for your fellow students!"
+    },
+    {
+      "clubName": "Page not found - Champlain College",
+      "clubInfo": {
+        "type": "",
+        "semester": [],
+        "officers": [],
+        "primaryContact": "",
+        "email": ""
+      },
+      "description": ""
+    },
+    {
+      "clubName": "Pokemon TCG Club",
+      "clubInfo": {
+        "type": "Art & EntertainmentSocial",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Gym Leader/Founder",
+            "title": "Cierra Rossi"
+          },
+          {
+            "name": "Gym Leader",
+            "title": "Jonathan Ingles"
+          },
+          {
+            "name": "Gym Leader",
+            "title": "Cole Jordan"
+          }
+        ],
+        "primaryContact": "Cierra Rossi",
+        "email": "mailto:cierra.rossi@mymail.champlain.edu"
+      },
+      "description": "Remember Pokemon Cards? Those things we shoved in binders as a kid and then put away? Here’s your chance to bring them out, at The Ogerpon League: Pokemon TCG Club! With room for trading, deck building, and battling, meet your fellow pokemon-enjoyers and have a chance to battle and become champion!"
+    },
+    {
+      "clubName": "Resident Advisor",
+      "clubInfo": {
+        "type": "Student Leadership",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "",
+            "title": ""
+          }
+        ],
+        "primaryContact": "Email Us",
+        "email": "mailto:sgaoperations@champlain.edu"
+      },
+      "description": "The Resident Advisor (RA) position is an exciting opportunity for highly motivated, highly qualified Champlain College students. As an RA, you’ll develop leadership, problem-solving, conflict management, and communication skills while helping fellow students thrive. From planning activities with current residents that encourage making connections and building teamwork to monitoring the halls, you will help create a welcoming and inclusive environment for your residents."
+    },
+    {
+      "clubName": "Sisterhood Brunch",
+      "clubInfo": {
+        "type": "Diversity & InclusionSocial",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Caroline Waddington",
+            "title": "President"
+          },
+          {
+            "name": "Jonathan Banfill",
+            "title": "Faculty Advisor"
+          }
+        ],
+        "primaryContact": "Email Us",
+        "email": "mailto:caroline.waddington@mymail.champlain.edu"
+      },
+      "description": "Sisterhood Brunch invites women and those who identify with femininity to join an intergenerational discourse among students, faculty, staff, and community members. Enjoy brunch and discuss topics relevant to your intersecting identities. These events are hosted by the Office of Diversity & Inclusion each semester."
+    },
+    {
+      "clubName": "Champlain Ski & Ride Club",
+      "clubInfo": {
+        "type": "Sports, Recreation, & Intramurals",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Leo Chrapla",
+            "title": "President"
+          },
+          {
+            "name": "Asa Fasching",
+            "title": "Vice President"
+          },
+          {
+            "name": "Erik Shonstrom",
+            "title": "Advisor"
+          }
+        ],
+        "primaryContact": "Leo Chrapla",
+        "email": "mailto:leo.chrapla@mymail.champlain.edu"
+      },
+      "description": "Ski and Ride is an inclusive, community-building club for students interested in winter outdoor recreation. Our goal is to form a community in which people can learn to ski and ride in a safe and welcoming environment! Meet friends and form lasting memories with other Champlain students. We host events like general meetings, movie premieres, and shop nights. When the cold months bring snow, the club will transition to in-person, on-hill events, such as community ski days, learn-to-ski events, and our annual Rail Jam."
+    },
+    {
+      "clubName": "Stiller Women in Business",
+      "clubInfo": {
+        "type": "Social",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Sarah Kelly",
+            "title": "President"
+          },
+          {
+            "name": "Carleigh Lane",
+            "title": "Treasurer"
+          },
+          {
+            "name": "Jennifer Vincent",
+            "title": "Faculty Advisor"
+          }
+        ],
+        "primaryContact": "Sarah Kelly",
+        "email": "mailto:stillerwomen@champlain.edu"
+      },
+      "description": "Stiller Women in Business is a group of students who are committed to giving women and other marginalized communities within the business world a safe space to hang out and talk about classes and other activities on campus. You do not have to be female identifying or a business major to participate in the club. Our goal is to explore, transform, and ignite the business world, and this starts with us. Through the combined efforts of its members and leaders in the business community, SWIB strengthens their professional expertise to positively impact their careers and society."
+    },
+    {
+      "clubName": "Student Activity Programmers",
+      "clubInfo": {
+        "type": "Social",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Caroline Waddington",
+            "title": "President"
+          },
+          {
+            "name": "Jonathan Banfill",
+            "title": "Faculty Advisor"
+          }
+        ],
+        "primaryContact": "Email Us",
+        "email": "https://www.instagram.com/champlain_saps/"
+      },
+      "description": "Student Activity Programmers (SAP) host multiple events each week to encourage social interactions and bonding within our community. These events are open to all students and are almost always free to participate in. Some program highlights include bingo, trivia, and free bowling nights, as well as crafts, movie nights, or themed food nights. If there is a fun event you want to see on campus, let us know and we can make it happen!"
+    },
+    {
+      "clubName": "Students Demand Action",
+      "clubInfo": {
+        "type": "Local Community EngagementPolitical",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Laurel Papera",
+            "title": "SDA Group Leader"
+          },
+          {
+            "name": "Arijia Hartel",
+            "title": "Head of Marketing"
+          },
+          {
+            "name": "Maya Houston",
+            "title": "Digital Designer"
+          }
+        ],
+        "primaryContact": "Laurel Papera",
+        "email": "mailto:laurel.papera@mymail.champlain.edu"
+      },
+      "description": "Students Demand Action is a network within Everytown for Gun Safety that reaches out to passionate students and channels their energy into the fight against gun violence. Our generation has grown up in gun violence that has worsened even through the COVID-19 pandemic. We should not fear for our lives at school, sporting events, or concerts. Gun violence needs to end, which is why we are going to educate and prepare students and registered voters and work together to advocate for safer schools, homes, and cities."
+    },
+    {
+      "clubName": "Tabletop Games Club",
+      "clubInfo": {
+        "type": "Art & EntertainmentSocial",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Joseph Lyons",
+            "title": "Club Head"
+          },
+          {
+            "name": "Jonah Thompson",
+            "title": "Club Head"
+          },
+          {
+            "name": "Paeton Moul",
+            "title": "Club Head"
+          }
+        ],
+        "primaryContact": "Joseph Lyons",
+        "email": "mailto:tabletop.champlain@gmail.com"
+      },
+      "description": "The Tabletop Games Club is a place for people to socialize and play tabletop games. We provide a large variety of games members can freely use. Whether you’re new to board games or a veteran, all are welcome! Don’t know what to play? Find a club head and we’ll help you get set up with a game. Our club is all about coming together and meeting new people with shared interests, and we’d love to have you there!"
+    },
+    {
+      "clubName": "The Champlayers",
+      "clubInfo": {
+        "type": "Art & Entertainment",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Cole Heigis",
+            "title": "President"
+          },
+          {
+            "name": "Katie Johnson",
+            "title": "Vice President"
+          },
+          {
+            "name": "Kerry Noonan",
+            "title": "Faculty Advisor"
+          }
+        ],
+        "primaryContact": "Cole Heigis",
+        "email": "mailto:champlayers@champlain.edu"
+      },
+      "description": "The Champlayers are a completely student-run theater club that produces a show each semester. We are an audition-based club, but we also have positions in tech and encourage students to join our discord to keep informed about what opportunities we have open! We meet twice a week until tech week and hold auditions early in the semester. We do not perform musicals."
+    },
+    {
+      "clubName": "The Crossover",
+      "clubInfo": {
+        "type": "AcademicStudent Publications",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Kelley Lebahn",
+            "title": "Editor-In-Chief"
+          },
+          {
+            "name": "Tanya Lee Stone",
+            "title": "Faculty Advisor"
+          },
+          {
+            "name": "Charles Bashaw",
+            "title": "Associate Professor"
+          }
+        ],
+        "primaryContact": "Kelley Lebahn",
+        "email": "mailto:champlaincrossover@gmail.com"
+      },
+      "description": "Written by students, for students."
+    },
+    {
+      "clubName": "The Grind",
+      "clubInfo": {
+        "type": "Art & EntertainmentSocial",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Ryan George",
+            "title": "President"
+          },
+          {
+            "name": "Jason Braccia",
+            "title": "Vice President"
+          },
+          {
+            "name": "Felipe Lega",
+            "title": "Faculty Advisor"
+          }
+        ],
+        "primaryContact": "Email Us",
+        "email": "mailto:animeclub@champlain.edu"
+      },
+      "description": "The Grind is an open mic coffee house that provides a safe space for people to express themselves through performance. The audience can relax, meet new people, and spend time with friends. Every Wednesday from 8:30-11:30 PM in Fireside Lounge, there is a player’s sheet; it’s first to sign-up, first to play. We have a sound system and an electric piano for acoustic music. There’s always snacks/coffee available. Our goals are to provide a safe environment for creative expression and creative community and to create an environment that develops and nurtures our performers."
+    },
+    {
+      "clubName": "Willard & Maple",
+      "clubInfo": {
+        "type": "AcademicArt & EntertainmentStudent Publications",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Samantha Taxter",
+            "title": "Editor-In-Chief"
+          },
+          {
+            "name": "Sheila Liming",
+            "title": "Faculty Advisor"
+          }
+        ],
+        "primaryContact": "Sheila Liming",
+        "email": "mailto:willardandmaple@champlain.edu"
+      },
+      "description": "Willard & Maple is the oldest running student publication on campus. Champlain’s student-run literary magazine, publishes annual issues that feature visual art, poetry, short fiction, and nonfiction each year. Its mission is to broadcast the diverse and powerful voices in the Champlain community out to the world."
+    },
+    {
+      "clubName": "Women in Cybersecurity",
+      "clubInfo": {
+        "type": "AcademicDiversity & Inclusion",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Hannelore Sanokklis",
+            "title": "President"
+          },
+          {
+            "name": "Nilufer Gungor",
+            "title": "Vice President"
+          },
+          {
+            "name": "Molly Shapiro",
+            "title": "Secretary"
+          }
+        ],
+        "primaryContact": "Hannelore Sanokklis",
+        "email": "mailto:wicys@champlain.edu"
+      },
+      "description": "The Champlain College Women in CyberSecurity Club (WiCyS) creates an inclusive space for women to explore and excel in cybersecurity. As part of a national chapter, we offer networking and mentorship opportunities with industry professionals. Our events, such as ‘Ice Cream and Incident Response,’ resume nights, and ‘Troubleshooting Tricks and Treats,’ are both social and technical, providing members with valuable skills and connections. Members also have the opportunity to attend the free annual WiCyS conference, further enhancing their professional development."
+    },
+    {
+      "clubName": "Women In Film",
+      "clubInfo": {
+        "type": "AcademicArt & EntertainmentDiversity & Inclusion",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Rosalie Bibona",
+            "title": "President"
+          },
+          {
+            "name": "TBD",
+            "title": "Faculty Advisor"
+          }
+        ],
+        "primaryContact": "Rosalie Bibona",
+        "email": "mailto:rosalie.bibona@mymail.champlain.edu"
+      },
+      "description": "Our goal is to create a welcoming space for women and non-binary people working in film to get to know each other and feel supported. We do demos, screen movies, work on projects together, and more!"
+    },
+    {
+      "clubName": "Women In Games Club",
+      "clubInfo": {
+        "type": "Diversity & InclusionSocial",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Bea Godeaux",
+            "title": "President"
+          },
+          {
+            "name": "Zoë Campos",
+            "title": "Vice President"
+          },
+          {
+            "name": "Brandy Caterino",
+            "title": "Communications"
+          }
+        ],
+        "primaryContact": "Zoë Marie Campos",
+        "email": "mailto:wig@champlain.edu"
+      },
+      "description": "Women In Games (W.I.G.) is a club that was created to show the value that women, femme-identifying, non-binary professionals, and allies hold within the Game Studio at Champlain College. By providing its members with access to technology, and conducting professional development workshops with keynote guest speakers, there is an elimination of any barriers that may be held within the industry. W.I.G. at Champlain College works with two organizations, Women in Games International (W.I.G.I.) as well as the Women In Games (W.I.G.) based out of the UK. Join W.I.G. to meet and collaborate with different students in an inclusive environment, as that is when the best ideas come together!"
+    },
+    {
+      "clubName": "Womxn in Technology",
+      "clubInfo": {
+        "type": "AcademicDiversity & InclusionSocial",
+        "semester": [
+          "Fall SemesterSpring Semester"
+        ],
+        "officers": [
+          {
+            "name": "Savannah Ciak",
+            "title": "President"
+          },
+          {
+            "name": "Lily Pouliot",
+            "title": "Vice President"
+          },
+          {
+            "name": "Sierra Blume",
+            "title": "Game Representative"
+          }
+        ],
+        "primaryContact": "Savannah Ciak",
+        "email": "mailto:wit@champlain.edu"
+      },
+      "description": "The Womxn in Technology Club offers a safe and supportive space for students who are considered minorities in the field of technology. While the club mainly focuses on the experiences of students who are minorities in regard to gender (female-identifying and gender non-conforming), all students are welcome. Diverse experiences and perspectives are what our club is all about! Join us for a mix of community building and technical nights, where we invite guest speakers, talk about different technologies folks are interested in, and do hands-on educational activities and labs."
+    }
+  ]
