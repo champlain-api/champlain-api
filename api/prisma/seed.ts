@@ -650,5 +650,56 @@ async function addSeedData() {
     });
 }
 
-addSeedData();
+// ADD example clubs
+await prisma.club.create({
+    data: {
+      name: "Anime Club",
+      type: "Art & Entertainment",
+      semester: "Fall SemesterSpring Semester",
+      primaryContact: "Ryan George",
+      email: "animeclub@champlain.edu",
+      description: "Join the Anime Club to discuss and watch anime that students have voted on. Each week students put in their suggestions that correspond to a theme that members decide on each month. Other activities include trivia, karaoke, a jukebox, discussion on manga, and anime tier lists! Join us in our exploration of the Japanese animation and manga industry!",
+      officers: {
+        create: [
+          {
+            name: "Ryan George",
+            title: "President"
+          },
+          {
+            name: "Jason Braccia",
+            title: "Vice President"
+          },
+          {
+            name: "Felipe Lega",
+            title: "Faculty Advisor"
+          }
+        ]
+      }
+    }
+  });
+  
+  await prisma.club.create({
+    data: {
+      name: "Asian Student Association",
+      type: "Diversity & InclusionSocial",
+      semester: "Fall SemesterSpring Semester",
+      primaryContact: "Caroline Waddington",
+      email: "caroline.waddington@mymail.champlain.edu",
+      description: "The Asian Student Association was created to make a safe space and learning environment for people who identify as Asian and/or want to learn more about and engage in Asian culture. Our main events are centered around food and movies for members to expand their taste in Asian food and media.",
+      officers: {
+        create: [
+          {
+            name: "Caroline Waddington",
+            title: "President"
+          },
+          {
+            name: "Jonathan Banfill",
+            title: "Faculty Advisor"
+          }
+        ]
+      }
+    }
+  });
+  
 
+addSeedData()

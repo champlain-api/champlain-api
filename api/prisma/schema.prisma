@@ -138,6 +138,7 @@ enum APIKeyScopes {
   BUILDING_EDIT
   COURSES_EDIT
   SEMESTER_EDIT
+  CLUB_EDIT
   DINING_EDIT
 }
 
@@ -190,4 +191,25 @@ model Meal {
   station   station[]
   type      mealType[]
   DailyMenu DailyMenu[]
+
+}
+
+model Club {
+  id Int        @id @default(autoincrement())
+  name          String @unique
+  type          String
+  semester      String
+  officers      Officer[]
+  updated       DateTime  @updatedAt @db.Timestamptz()
+  description   String
+  email         String
+  primaryContact String
+}
+
+model Officer {
+  id         Int       @id @default(autoincrement())
+  name       String
+  title      String
+  clubId     Int
+  club   Club   @relation(fields: [clubId], references: [id]) 
 }
