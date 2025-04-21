@@ -15,7 +15,7 @@
 
 openapi: "3.0.0"
 info:
-  version: "0.0.7"
+  version: "0.0.8"
   title: "Champlain API Documentation"
   description: "Champlain Open API Documentation."
   contact:
@@ -40,7 +40,7 @@ paths:
       tags:
         - shuttle
       summary: "Get information relating to all shuttles"
-      security: [ ]
+      security: []
       parameters:
         - in: query
           name: updatedWithin
@@ -68,7 +68,7 @@ paths:
       tags:
         - shuttle
       summary: "Get information relating to specific shuttle."
-      security: [ ]
+      security: []
       parameters:
         - in: path
           name: shuttleId
@@ -83,7 +83,6 @@ paths:
         400:
           description: "Invalid shuttle ID specified."
         200:
-          # TODO: Make schema for specific shuttle
           description: "OK"
           content:
             application/json:
@@ -97,7 +96,7 @@ paths:
       summary: "Create a new shuttle"
       description: "Requires the `SHUTTLE_EDIT` scope."
       security:
-        - bearerAuth: [ ]
+        - bearerAuth: []
       requestBody:
         description: "A shuttle object."
         required: true
@@ -120,10 +119,11 @@ paths:
   "/shuttle/{shuttleId}":
     put:
       summary: "Update an existing shuttle."
+      description: "Requires the `SHUTTLE_EDIT` scope."
       tags:
         - shuttle
       security:
-        - bearerAuth: [ ]
+        - bearerAuth: []
       requestBody:
         description: "A shuttle object."
         required: true
@@ -144,7 +144,7 @@ paths:
       summary: "Delete a shuttle."
       description: "Requires the `SHUTTLE_EDIT` scope."
       security:
-        - bearerAuth: [ ]
+        - bearerAuth: []
       parameters:
         - in: path
           name: shuttleId
@@ -161,7 +161,7 @@ paths:
       tags:
         - announcements
       summary: "Get current announcements."
-      security: [ ]
+      security: []
       parameters:
         - in: query
           name: type
@@ -195,7 +195,7 @@ paths:
       summary: "Make a new announcement"
       description: "Requires the `ANNOUNCEMENTS_EDIT` scope."
       security:
-        - bearerAuth: [ ]
+        - bearerAuth: []
       responses:
         200:
           description: "OK"
@@ -220,7 +220,7 @@ paths:
       tags:
         - announcements
       summary: "Get current announcement by id."
-      security: [ ]
+      security: []
       parameters:
         - in: path
           name: id
@@ -251,7 +251,7 @@ paths:
       summary: "Edit an announcement"
       description: "Requires the `ANNOUNCEMENTS_EDIT` scope."
       security:
-        - bearerAuth: [ ]
+        - bearerAuth: []
       parameters:
         - in: path
           name: id
@@ -280,7 +280,7 @@ paths:
       summary: "Delete an announcement"
       description: "Requires the `ANNOUNCEMENTS_EDIT` scope."
       security:
-        - bearerAuth: [ ]
+        - bearerAuth: []
       parameters:
         - in: path
           name: id
@@ -311,7 +311,7 @@ paths:
       tags:
         - faculty
       summary: "Get all faculty data."
-      security: [ ]
+      security: []
       description: "Returns a JSON list of all faculty members, including their title, departments, and photo URL."
       responses:
         200:
@@ -326,7 +326,7 @@ paths:
       summary: "Add a faculty member."
       description: "Requires the `FACULTY_EDIT` scope."
       security:
-        - bearerAuth: [ ]
+        - bearerAuth: []
       parameters:
         - in: query
           name: name
@@ -365,7 +365,7 @@ paths:
       summary: "Update a faculty member."
       description: "Requires the `FACULTY_EDIT` scope."
       security:
-        - bearerAuth: [ ]
+        - bearerAuth: []
       parameters:
         - in: query
           name: name
@@ -405,7 +405,7 @@ paths:
       summary: "Add a faculty member."
       description: "Requires the `FACULTY_EDIT` scope."
       security:
-        - bearerAuth: [ ]
+        - bearerAuth: []
       parameters:
         - in: path
           name: id
@@ -428,7 +428,7 @@ paths:
       tags:
         - faculty
       summary: "Get a faculty member by name."
-      security: [ ]
+      security: []
       description: "Returns a faculty member including their title, departments, and photo URL."
       parameters:
         - in: path
@@ -460,7 +460,7 @@ paths:
       tags:
         - faculty
       summary: "Get faculty members by department."
-      security: [ ]
+      security: []
       description: "Returns all faculty members within a department including their title and photo URL."
       parameters:
         - in: path
@@ -500,9 +500,62 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/building"
+    post:
+      tags:
+        - building
+      summary: "Create a new building"
+      description: "Requires the `BUILDING_EDIT` scope."
+      requestBody:
+        description: "A building object."
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/building"
 
-
-
+  "/building/{id}":
+    get:
+      tags:
+        - building
+      summary: "Get information relating to a specific building."
+      parameters:
+        - in: path
+          name: id
+          description: "Building id"
+          schema:
+            type: integer
+            required: true
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/building"
+    put:
+      tags:
+        - building
+      summary: "Make or update a new building"
+      description: "Requires the `BUILDING_EDIT` scope. All hours must be specified in the request."
+      requestBody:
+        description: "A building object."
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/building"
+    delete:
+      tags:
+        - building
+      summary: "Delete a building"
+      description: "Requires the `BUILDING_EDIT` scope. All hours must be specified in the request."
+      parameters:
+        - in: path
+          name: id
+          description: "Building id"
+          schema:
+            type: integer
+            required: true
 
 components:
   securitySchemes:
@@ -576,5 +629,43 @@ components:
           format: uri
     building:
       type: object
+      properties:
+        name:
+          description: "The building's name"
+          type: string
+          example: "Joyce Hall"
+        location:
+          description: "Location of the building"
+          example: "On campus"
+          type: string
+        hours:
+          example:
+            [
+              { "day": "monday", "hours": "24/7" },
+              { "day": "tuesday", "hours": "24/7" },
+              { "day": "wednesday", "hours": "24/7" },
+              { "day": "thursday", "hours": "24/7" },
+              { "day": "friday", "hours": "24/7" },
+              { "day": "saturday", "hours": "24/7" },
+              { "day": "sunday", "hours": "24/7" },
+            ]
+          description: "The hours of the building (if applicable). All days and hours must be supplied."
+          type: array
+          items:
+            type: object
+            properties:
+              day:
+                type: string
+                enum:
+                  - monday
+                  - tuesday
+                  - wednesday
+                  - thursday
+                  - friday
+                  - saturday
+                  - sunday
+              hours:
+                type: string
+
   security:
-    - bearerAuth: [ ]
+    - bearerAuth: []
